@@ -1,0 +1,832 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nord Garage — Design Sheet 01 · Home Page</title>
+<meta name="description" content="Blueprint-style moodboard and layout sheet for the Nord Garage home page.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* ══════════════════════════════════════════════════════════════
+   NORD GARAGE — DRAWING SHEET 01
+   Every hatched rectangle marked PH-xx is a photo slot.
+   Drag a photo onto it (or click it) to paste it into the drawing.
+   ══════════════════════════════════════════════════════════════ */
+:root{
+  --paper:#081320;
+  --paper-2:#0A1826;
+  --grid-fine:rgba(126,186,232,.055);
+  --grid-bold:rgba(126,186,232,.10);
+  --rule:rgba(146,196,236,.34);
+  --rule-soft:rgba(146,196,236,.17);
+  --ink:#D5E7F5;
+  --ink-2:#8FB0C9;
+  --ink-3:#5E7C95;
+  --cyan:#6FC3E8;
+  --brass:#DDAE5E;
+  --red:#E0705F;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --sans:"Manrope",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;padding:26px;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--mono);font-size:12px;line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+svg{display:block}
+a{color:inherit}
+
+/* ── the sheet ─────────────────────────────────────────────── */
+.sheet{
+  position:relative;max-width:1560px;margin:0 auto;
+  border:1px solid var(--rule);
+  background:
+    linear-gradient(var(--grid-bold) 1px,transparent 1px) 0 0/100% 80px,
+    linear-gradient(90deg,var(--grid-bold) 1px,transparent 1px) 0 0/80px 100%,
+    linear-gradient(var(--grid-fine) 1px,transparent 1px) 0 0/100% 16px,
+    linear-gradient(90deg,var(--grid-fine) 1px,transparent 1px) 0 0/16px 100%,
+    radial-gradient(120% 90% at 50% 0%, #0C1B2C, var(--paper) 70%);
+}
+/* inner border, like a real drawing frame */
+.sheet::before{
+  content:"";position:absolute;inset:9px;border:1px solid var(--rule-soft);pointer-events:none;
+}
+/* corner registration marks */
+.reg{position:absolute;width:22px;height:22px;pointer-events:none;opacity:.85}
+.reg::before,.reg::after{content:"";position:absolute;background:var(--rule)}
+.reg::before{left:0;top:10px;width:22px;height:1px}
+.reg::after{left:10px;top:0;width:1px;height:22px}
+.reg.tl{left:-11px;top:-11px}.reg.tr{right:-11px;top:-11px}
+.reg.bl{left:-11px;bottom:-11px}.reg.br{right:-11px;bottom:-11px}
+
+.pad{padding:34px 40px}
+
+/* ── sheet header ──────────────────────────────────────────── */
+.sheet-head{
+  display:flex;align-items:flex-end;justify-content:space-between;gap:30px;flex-wrap:wrap;
+  padding-bottom:22px;border-bottom:1px solid var(--rule);
+}
+.sheet-head h1{
+  margin:0;font-family:var(--sans);font-size:clamp(24px,3vw,38px);
+  font-weight:800;letter-spacing:-.03em;line-height:1.05;
+}
+.sheet-head h1 span{color:var(--brass)}
+.sub{margin:8px 0 0;color:var(--ink-3);letter-spacing:.16em;text-transform:uppercase;font-size:10.5px}
+.head-meta{display:flex;gap:0;border:1px solid var(--rule-soft)}
+.head-meta div{padding:9px 16px;border-right:1px solid var(--rule-soft)}
+.head-meta div:last-child{border-right:0}
+.head-meta b{display:block;font-size:9.5px;letter-spacing:.16em;color:var(--ink-3);font-weight:500}
+.head-meta span{display:block;margin-top:3px;font-size:13px;color:var(--ink)}
+
+/* ── section headers ───────────────────────────────────────── */
+.zone{margin-top:38px}
+.zone-head{display:flex;align-items:center;gap:14px;margin-bottom:20px}
+.zone-no{
+  flex:none;width:30px;height:30px;border:1px solid var(--rule);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:11.5px;color:var(--cyan);
+}
+.zone-head h2{
+  margin:0;font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--ink);
+}
+.zone-head .line{flex:1;height:1px;background:var(--rule-soft)}
+.zone-head .note{color:var(--ink-3);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase}
+
+/* ══ 01 · ELEVATION ════════════════════════════════════════ */
+.elev-wrap{display:grid;grid-template-columns:64px minmax(0,1fr) 250px;gap:18px;align-items:start}
+
+/* vertical dimension rail */
+.rail{display:flex;flex-direction:column;gap:0;padding-top:26px}
+.dim{
+  position:relative;flex:none;
+  border-left:1px solid var(--rule-soft);
+  display:flex;align-items:center;justify-content:flex-end;padding-right:9px;
+}
+.dim::before,.dim::after{content:"";position:absolute;left:-4px;width:9px;height:1px;background:var(--rule-soft)}
+.dim::before{top:0}.dim::after{bottom:0}
+.dim span{
+  writing-mode:vertical-rl;transform:rotate(180deg);
+  font-size:9.5px;letter-spacing:.14em;color:var(--ink-3);white-space:nowrap;
+}
+
+/* the elevation itself */
+.elev{position:relative;border:1px solid var(--rule);background:rgba(8,19,32,.55)}
+.elev-bar{
+  display:flex;align-items:center;gap:7px;height:26px;padding:0 10px;
+  border-bottom:1px solid var(--rule-soft);color:var(--ink-3);font-size:9.5px;letter-spacing:.13em;
+}
+.elev-bar i{width:7px;height:7px;border-radius:50%;border:1px solid var(--rule-soft);display:block}
+.elev-bar span{margin-left:auto}
+/* 12-column overlay */
+.cols{position:absolute;inset:26px 0 0;display:grid;grid-template-columns:repeat(12,1fr);gap:0;pointer-events:none;z-index:2}
+.cols i{border-right:1px dashed rgba(126,186,232,.09)}
+.cols i:last-child{border-right:0}
+
+.blk{position:relative;border-bottom:1px solid var(--rule-soft);padding:14px 16px}
+.blk:last-child{border-bottom:0}
+.blk-tag{
+  position:absolute;left:-1px;top:-1px;
+  background:var(--paper-2);border:1px solid var(--rule-soft);border-left:0;border-top:0;
+  padding:2px 8px;font-size:9px;letter-spacing:.15em;color:var(--cyan);
+}
+.blk-body{padding-top:16px}
+.ghost{border:1px dashed var(--rule-soft);color:var(--ink-3);font-size:10px;letter-spacing:.12em;
+  display:flex;align-items:center;justify-content:center;text-transform:uppercase;text-align:center;padding:6px}
+.ghost.solid{border-style:solid}
+.ghost.fill{background:rgba(221,174,94,.12);border-color:rgba(221,174,94,.5);color:var(--brass)}
+.row{display:flex;gap:10px;align-items:stretch}
+.stack{display:flex;flex-direction:column;gap:10px}
+
+/* callouts */
+.callout{
+  position:absolute;right:-13px;width:26px;height:26px;border-radius:50%;
+  background:var(--paper);border:1px solid var(--brass);color:var(--brass);
+  display:flex;align-items:center;justify-content:center;font-size:11px;z-index:4;
+}
+.legend{border:1px solid var(--rule-soft);padding:16px 18px;background:rgba(10,24,38,.5)}
+.legend h3{margin:0 0 14px;font-size:10px;letter-spacing:.2em;color:var(--ink-3);font-weight:500;text-transform:uppercase}
+.legend ol{margin:0;padding:0;list-style:none;counter-reset:c}
+.legend li{
+  position:relative;padding:0 0 12px 32px;margin-bottom:12px;
+  border-bottom:1px dashed var(--rule-soft);font-size:11px;color:var(--ink-2);line-height:1.5;
+}
+.legend li:last-child{border-bottom:0;margin-bottom:0;padding-bottom:0}
+.legend li::before{
+  counter-increment:c;content:counter(c);
+  position:absolute;left:0;top:-1px;width:22px;height:22px;border-radius:50%;
+  border:1px solid var(--brass);color:var(--brass);
+  display:flex;align-items:center;justify-content:center;font-size:10px;
+}
+.legend b{color:var(--ink);font-weight:600;display:block;margin-bottom:2px}
+
+/* ══ 02 · PHOTO SCHEDULE ═══════════════════════════════════ */
+.board{
+  display:grid;gap:14px;grid-template-columns:repeat(4,1fr);grid-auto-rows:186px;
+  grid-template-areas:
+    "p1 p1 p2 p3"
+    "p1 p1 p2 p4"
+    "p5 p6 p6 p4";
+}
+.s1{grid-area:p1}.s2{grid-area:p2}.s3{grid-area:p3}
+.s4{grid-area:p4}.s5{grid-area:p5}.s6{grid-area:p6}
+
+.slot{
+  position:relative;overflow:hidden;cursor:pointer;
+  border:1px solid var(--rule);background:rgba(10,24,38,.45);
+  transition:border-color .3s,background .3s;
+}
+.slot:hover{border-color:var(--cyan);background:rgba(12,32,50,.6)}
+.slot:focus-visible{outline:2px solid var(--brass);outline-offset:2px}
+/* drafting cross — the classic "image goes here" mark */
+.cross{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(to top right,transparent calc(50% - .5px),var(--rule-soft) 50%,transparent calc(50% + .5px)),
+    linear-gradient(to bottom right,transparent calc(50% - .5px),var(--rule-soft) 50%,transparent calc(50% + .5px));
+}
+.slot .img{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity .5s}
+.slot.has .img{opacity:1}
+.slot.has .cross{opacity:0}
+.slot.has .plate{background:rgba(6,14,24,.86);border-color:var(--rule)}
+.slot .corner{position:absolute;width:12px;height:12px;border:1px solid var(--cyan);opacity:.55}
+.slot .corner.a{left:6px;top:6px;border-right:0;border-bottom:0}
+.slot .corner.b{right:6px;top:6px;border-left:0;border-bottom:0}
+.slot .corner.c{left:6px;bottom:6px;border-right:0;border-top:0}
+.slot .corner.d{right:6px;bottom:6px;border-left:0;border-top:0}
+
+.plate{
+  position:absolute;left:0;bottom:0;right:0;
+  border-top:1px solid var(--rule-soft);background:rgba(8,19,32,.8);
+  padding:8px 11px;display:flex;align-items:center;gap:10px;justify-content:space-between;
+  backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
+}
+.plate .id{color:var(--brass);font-size:10.5px;letter-spacing:.1em;white-space:nowrap;flex:none}
+.plate .what{min-width:0}
+.plate .what{color:var(--ink);font-size:11px}
+.plate .spec{color:var(--ink-3);font-size:9.5px;letter-spacing:.1em;text-align:right;white-space:nowrap}
+.slot .hint{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  border:1px dashed var(--cyan);color:var(--cyan);background:rgba(8,19,32,.7);
+  padding:6px 12px;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;
+  opacity:0;transition:opacity .3s;pointer-events:none;white-space:nowrap;
+}
+.slot:hover .hint{opacity:1}
+.slot.has .hint{display:none}
+.slot.over{border-color:var(--brass);background:rgba(221,174,94,.1)}
+.slot.over .hint{opacity:1;border-color:var(--brass);color:var(--brass)}
+
+/* ══ 03 · PALETTE / 04 · TYPE / 05 · PARTS ═════════════════ */
+.tri{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:start}
+.card{border:1px solid var(--rule-soft);background:rgba(10,24,38,.4);padding:18px}
+.card h3{margin:0 0 16px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+
+.sw{display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px dashed var(--rule-soft)}
+.sw:last-child{border-bottom:0}
+.chip{width:38px;height:38px;flex:none;border:1px solid var(--rule-soft);position:relative}
+.chip::after{
+  content:"";position:absolute;right:-1px;bottom:-1px;width:9px;height:9px;
+  border-right:1px solid var(--cyan);border-bottom:1px solid var(--cyan);
+}
+.sw-t b{display:block;color:var(--ink);font-size:11.5px}
+.sw-t span{display:block;color:var(--ink-3);font-size:10px;letter-spacing:.09em}
+.sw-hex{margin-left:auto;color:var(--cyan);font-size:10.5px;letter-spacing:.06em}
+
+.spec-row{display:flex;align-items:baseline;gap:12px;padding:11px 0;border-bottom:1px dashed var(--rule-soft)}
+.spec-row:last-child{border-bottom:0}
+.spec-row .sz{color:var(--ink-3);font-size:9.5px;letter-spacing:.1em;white-space:nowrap;width:96px;flex:none}
+.spec-row .sample{font-family:var(--sans);color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sample.h1{font-size:26px;font-weight:800;letter-spacing:-.035em}
+.sample.serif{font-family:Georgia,"Times New Roman",serif;font-style:italic;color:var(--brass);font-size:24px}
+.sample.h2{font-size:17px;font-weight:700;letter-spacing:-.02em}
+.sample.body{font-size:13px;font-weight:400;color:var(--ink-2)}
+.sample.micro{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3)}
+
+.part{border:1px dashed var(--rule-soft);padding:16px;margin-bottom:12px;position:relative}
+.part:last-child{margin-bottom:0}
+.part .lbl{position:absolute;top:-8px;left:10px;background:var(--paper);padding:0 7px;font-size:9px;letter-spacing:.14em;color:var(--ink-3)}
+.demo-btn{
+  display:inline-flex;align-items:center;gap:9px;padding:11px 20px;border-radius:999px;
+  background:linear-gradient(180deg,#EFCE96,#DDAE5E);color:#1E1608;
+  font-family:var(--sans);font-weight:700;font-size:13px;
+}
+.demo-btn.ghost{background:transparent;border:1px solid var(--rule);color:var(--ink)}
+.measure{display:flex;align-items:center;gap:7px;margin-top:11px;color:var(--ink-3);font-size:9.5px;letter-spacing:.1em}
+.measure .arrow{flex:1;height:1px;background:var(--rule-soft);position:relative}
+.measure .arrow::before,.measure .arrow::after{content:"";position:absolute;top:-3px;width:1px;height:7px;background:var(--rule-soft)}
+.measure .arrow::before{left:0}.measure .arrow::after{right:0}
+
+/* ══ TITLE BLOCK ═══════════════════════════════════════════ */
+.titleblock{
+  margin-top:38px;border:1px solid var(--rule);
+  display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr 1fr;
+}
+.tb{padding:14px 16px;border-right:1px solid var(--rule-soft)}
+.tb:last-child{border-right:0}
+.tb b{display:block;font-size:9px;letter-spacing:.18em;color:var(--ink-3);font-weight:500}
+.tb span{display:block;margin-top:5px;font-size:12.5px;color:var(--ink)}
+.tb .big{font-family:var(--sans);font-size:16px;font-weight:800;letter-spacing:-.01em}
+.tb .big em{font-style:normal;color:var(--brass)}
+
+.revs{margin-top:18px;width:100%;border-collapse:collapse;font-size:10.5px}
+.revs th,.revs td{border:1px solid var(--rule-soft);padding:7px 11px;text-align:left}
+.revs th{color:var(--ink-3);font-weight:500;letter-spacing:.14em;font-size:9px;text-transform:uppercase}
+.revs td{color:var(--ink-2)}
+
+/* ── toolbar ───────────────────────────────────────────────── */
+.toolbar{
+  position:fixed;right:22px;bottom:22px;z-index:90;
+  display:flex;align-items:center;gap:10px;padding:9px 10px 9px 15px;
+  background:rgba(8,19,32,.94);border:1px solid var(--rule);
+  box-shadow:0 20px 40px -20px #000;font-size:11px;color:var(--ink-2);
+  transform:translateY(150%);transition:transform .45s cubic-bezier(.22,.7,.3,1);
+}
+.toolbar.show{transform:none}
+.toolbar b{color:var(--cyan)}
+.toolbar button{
+  font:inherit;font-family:var(--mono);cursor:pointer;padding:6px 12px;
+  background:transparent;border:1px solid var(--rule);color:var(--brass);
+  letter-spacing:.1em;text-transform:uppercase;font-size:9.5px;
+  transition:background .25s,color .25s;
+}
+.toolbar button:hover{background:var(--brass);color:#12100A;border-color:var(--brass)}
+
+/* ── responsive ────────────────────────────────────────────── */
+@media (max-width:1180px){
+  .elev-wrap{grid-template-columns:44px minmax(0,1fr)}
+  .legend{grid-column:1/-1}
+  .tri{grid-template-columns:1fr}
+  .titleblock{grid-template-columns:1fr 1fr}
+  .tb{border-bottom:1px solid var(--rule-soft)}
+}
+@media (max-width:820px){
+  body{padding:12px;font-size:11.5px}
+  .pad{padding:22px 18px}
+  .board{grid-template-columns:1fr 1fr;grid-auto-rows:150px;
+    grid-template-areas:"p1 p1" "p2 p3" "p4 p5" "p6 p6";}
+  .cols{display:none}
+  .elev-wrap{grid-template-columns:1fr}
+  .rail{display:none}
+  .titleblock{grid-template-columns:1fr}
+  .toolbar{left:12px;right:12px;justify-content:space-between}
+}
+
+/* ── print: it is a drawing, it should print like one ──────── */
+@media print{
+  @page{size:A3 landscape;margin:8mm}
+  body{background:#fff;color:#12202C;padding:0}
+  .sheet{background:#fff;border-color:#9FB4C4}
+  .toolbar{display:none}
+  :root{--ink:#12202C;--ink-2:#3C5468;--ink-3:#6E8496;--rule:#9FB4C4;--rule-soft:#C3D2DD;--cyan:#20648B;--paper:#fff;--paper-2:#fff}
+  .slot,.card,.legend,.elev{background:#fff}
+}
+</style>
+</head>
+<body>
+
+<div class="sheet">
+  <span class="reg tl"></span><span class="reg tr"></span>
+  <span class="reg bl"></span><span class="reg br"></span>
+
+  <div class="pad">
+
+    <!-- ══════════ SHEET HEAD ══════════ -->
+    <header class="sheet-head">
+      <div>
+        <h1>Nord Garage — <span>Home page</span></h1>
+        <p class="sub">Layout &amp; photo schedule · car service · car wash · car rental · Selfoss</p>
+      </div>
+      <div class="head-meta">
+        <div><b>SHEET</b><span>01 / 01</span></div>
+        <div><b>SCALE</b><span>N.T.S.</span></div>
+        <div><b>REV</b><span>B</span></div>
+        <div><b>STATUS</b><span style="color:var(--brass)">DRAFT</span></div>
+      </div>
+    </header>
+
+    <!-- ══════════ 01 ELEVATION ══════════ -->
+    <section class="zone">
+      <div class="zone-head">
+        <span class="zone-no">01</span>
+        <h2>Elevation — page structure</h2>
+        <span class="line"></span>
+        <span class="note">Grid 12 col · gutter 24 · max 1280</span>
+      </div>
+
+      <div class="elev-wrap">
+
+        <div class="rail" aria-hidden="true">
+          <div class="dim"><span>40</span></div>
+          <div class="dim"><span>80</span></div>
+          <div class="dim"><span>620</span></div>
+          <div class="dim"><span>54</span></div>
+          <div class="dim"><span>760</span></div>
+          <div class="dim"><span>520</span></div>
+          <div class="dim"><span>300</span></div>
+        </div>
+
+        <div class="elev">
+          <div class="elev-bar">
+            <i></i><i></i><i></i>
+            nordgarage.is
+            <span>1440 × auto</span>
+          </div>
+          <div class="cols" aria-hidden="true">
+            <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+          </div>
+
+          <!-- top bar -->
+          <div class="blk" style="padding:8px 16px">
+            <span class="blk-tag">A · UTILITY BAR</span>
+            <span class="callout" style="top:6px">1</span>
+            <div class="blk-body" style="padding-top:12px">
+              <div class="row" style="gap:14px">
+                <div class="ghost" style="flex:1.6">ADDRESS · GAGNHEIÐI 51</div>
+                <div class="ghost" style="flex:1.2">OPENING HOURS</div>
+                <div class="ghost" style="flex:2;opacity:.35"></div>
+                <div class="ghost" style="flex:1.4">EMAIL</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- header -->
+          <div class="blk">
+            <span class="blk-tag">B · HEADER · STICKY</span>
+            <span class="callout" style="top:14px">2</span>
+            <div class="blk-body">
+              <div class="row" style="align-items:center;gap:14px">
+                <div class="ghost solid" style="width:44px;height:44px;flex:none">◎</div>
+                <div class="ghost" style="width:150px;height:44px">WORDMARK</div>
+                <div class="ghost" style="flex:1;height:44px;opacity:.3"></div>
+                <div class="ghost" style="width:290px;height:44px">NAV · 5 ITEMS</div>
+                <div class="ghost fill" style="width:150px;height:44px">CALL 833 3370</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- hero -->
+          <div class="blk" style="padding-bottom:22px">
+            <span class="blk-tag">C · HERO</span>
+            <span class="callout" style="top:60px">3</span>
+            <div class="blk-body">
+              <div class="ghost" style="height:20px;width:220px;margin-bottom:12px">EYEBROW · LOCATION</div>
+              <div class="ghost solid" style="height:96px;margin-bottom:14px;font-size:13px;letter-spacing:.06em;color:var(--ink)">
+                H1 — “YOUR CAR, TREATED LIKE&nbsp;<em style="color:var(--brass);font-style:italic;font-family:Georgia,serif;text-transform:none;letter-spacing:0">our own.</em>”
+              </div>
+              <div class="row" style="align-items:flex-start;gap:24px">
+                <div class="stack" style="flex:1.5">
+                  <div class="ghost" style="height:56px">LEAD PARAGRAPH · MAX 44 CH</div>
+                  <div class="row">
+                    <div class="ghost fill" style="width:170px;height:44px">PRIMARY CTA</div>
+                    <div class="ghost" style="width:160px;height:44px">SECONDARY CTA</div>
+                  </div>
+                </div>
+                <div class="ghost" style="flex:1;height:116px">STATS · 2 × 2 · YEARS / CARS / TURNAROUND / MAKES</div>
+              </div>
+              <div class="ghost" style="height:22px;margin-top:14px;border-color:rgba(221,174,94,.4);color:var(--brass)">
+                BACKGROUND = PHOTO SLOT PH-00 · SEE SCHEDULE 02
+              </div>
+            </div>
+          </div>
+
+          <!-- marquee -->
+          <div class="blk" style="padding:8px 16px">
+            <span class="blk-tag">D · TICKER</span>
+            <span class="callout" style="top:6px">4</span>
+            <div class="blk-body" style="padding-top:12px">
+              <div class="ghost" style="height:26px;letter-spacing:.24em">CAR SERVICE · CAR WASH · CAR RENTAL · DIAGNOSTICS · TYRE &amp; WHEEL · BRAKES →</div>
+            </div>
+          </div>
+
+          <!-- moodboard -->
+          <div class="blk">
+            <span class="blk-tag">E · PHOTO BOARD</span>
+            <span class="callout" style="top:44px">5</span>
+            <div class="blk-body">
+              <div class="row" style="height:150px;gap:10px">
+                <div class="ghost" style="flex:2">PH-01</div>
+                <div class="ghost" style="flex:1">PH-02</div>
+                <div class="stack" style="flex:1">
+                  <div class="ghost" style="flex:1">PH-03</div>
+                  <div class="ghost" style="flex:1">PH-04</div>
+                </div>
+              </div>
+              <div class="row" style="height:64px;gap:10px;margin-top:10px">
+                <div class="ghost" style="flex:1">PH-05</div>
+                <div class="ghost" style="flex:2">PH-06</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- services -->
+          <div class="blk">
+            <span class="blk-tag">F · SERVICES</span>
+            <span class="callout" style="top:34px">6</span>
+            <div class="blk-body">
+              <div class="row" style="height:110px;gap:12px">
+                <div class="ghost" style="flex:1">01 · AUTO SERVICE</div>
+                <div class="ghost" style="flex:1">02 · CAR WASH</div>
+                <div class="ghost" style="flex:1">03 · CAR RENTAL</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- cta + footer -->
+          <div class="blk">
+            <span class="blk-tag">G · CTA + FOOTER</span>
+            <span class="callout" style="top:30px">7</span>
+            <div class="blk-body">
+              <div class="ghost fill" style="height:58px;margin-bottom:12px">CTA BAND · “BRING IT IN, WE’LL HAVE A LOOK.”</div>
+              <div class="row" style="height:52px;gap:10px">
+                <div class="ghost" style="flex:1">VISIT</div>
+                <div class="ghost" style="flex:1">CALL</div>
+                <div class="ghost" style="flex:1">EMAIL</div>
+                <div class="ghost" style="flex:1">HOURS</div>
+                <div class="ghost" style="width:120px">SOCIAL</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="legend">
+          <h3>Key notes</h3>
+          <ol>
+            <li><b>Utility bar · 40 px</b>Address, hours, email. Drops away below 900 px.</li>
+            <li><b>Header · 80 px, sticky</b>Blurred backdrop, 1 px hairline. Nav hides under 900 px, phone button stays.</li>
+            <li><b>Hero</b>Headline max 16 ch per line. Photo sits behind at 45 % opacity so type stays readable.</li>
+            <li><b>Ticker</b>One loop, 34 s, paused for reduced-motion users.</li>
+            <li><b>Photo board</b>Six slots, mixed ratios. Captions sit on a bottom scrim, 20 px inset.</li>
+            <li><b>Services</b>Three equal cards, feature list of three lines each. Stacks to one column below 1080 px.</li>
+            <li><b>Footer</b>Four info columns plus socials, then the legal line.</li>
+          </ol>
+        </aside>
+
+      </div>
+    </section>
+
+    <!-- ══════════ 02 PHOTO SCHEDULE ══════════ -->
+    <section class="zone">
+      <div class="zone-head">
+        <span class="zone-no">02</span>
+        <h2>Photo schedule — moodboard</h2>
+        <span class="line"></span>
+        <span class="note">Drag a photo onto a frame</span>
+      </div>
+
+      <div class="board">
+        <article class="slot s1" tabindex="0" data-slot="p1">
+          <div class="cross"></div><div class="img"></div>
+          <span class="corner a"></span><span class="corner b"></span><span class="corner c"></span><span class="corner d"></span>
+          <span class="hint">Drop / click to place</span>
+          <div class="plate">
+            <span class="id">PH-01</span>
+            <span class="what">Workshop — car on the lift, tools in frame</span>
+            <span class="spec">3:2 · ≥2000 px · LANDSCAPE</span>
+          </div>
+        </article>
+
+        <article class="slot s2" tabindex="0" data-slot="p2">
+          <div class="cross"></div><div class="img"></div>
+          <span class="corner a"></span><span class="corner b"></span><span class="corner c"></span><span class="corner d"></span>
+          <span class="hint">Drop / click to place</span>
+          <div class="plate">
+            <span class="id">PH-02</span>
+            <span class="what">Wash — foam on dark paint</span>
+            <span class="spec">2:3 · ≥1600 px</span>
+          </div>
+        </article>
+
+        <article class="slot s3" tabindex="0" data-slot="p3">
+          <div class="cross"></div><div class="img"></div>
+          <span class="corner a"></span><span class="corner b"></span><span class="corner c"></span><span class="corner d"></span>
+          <span class="hint">Drop / click to place</span>
+          <div class="plate">
+            <span class="id">PH-03</span>
+            <span class="what">Wheel &amp; tyre detail</span>
+            <span class="spec">1:1 · ≥1200 px</span>
+          </div>
+        </article>
+
+        <article class="slot s4" tabindex="0" data-slot="p4">
+          <div class="cross"></div><div class="img"></div>
+          <span class="corner a"></span><span class="corner b"></span><span class="corner c"></span><span class="corner d"></span>
+          <span class="hint">Drop / click to place</span>
+          <div class="plate">
+            <span class="id">PH-04</span>
+            <span class="what">Rental car — keys, clean interior</span>
+            <span class="spec">2:3 · ≥1600 px</span>
+          </div>
+        </article>
+
+        <article class="slot s5" tabindex="0" data-slot="p5">
+          <div class="cross"></div><div class="img"></div>
+          <span class="corner a"></span><span class="corner b"></span><span class="corner c"></span><span class="corner d"></span>
+          <span class="hint">Drop / click to place</span>
+          <div class="plate">
+            <span class="id">PH-05</span>
+            <span class="what">Hands at work — close crop</span>
+            <span class="spec">1:1 · ≥1200 px</span>
+          </div>
+        </article>
+
+        <article class="slot s6" tabindex="0" data-slot="p6">
+          <div class="cross"></div><div class="img"></div>
+          <span class="corner a"></span><span class="corner b"></span><span class="corner c"></span><span class="corner d"></span>
+          <span class="hint">Drop / click to place</span>
+          <div class="plate">
+            <span class="id">PH-06</span>
+            <span class="what">The garage from outside · Selfoss light</span>
+            <span class="spec">16:9 · ≥2400 px · WIDE</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ══════════ 03 · 04 · 05 ══════════ -->
+    <section class="zone">
+      <div class="zone-head">
+        <span class="zone-no">03</span>
+        <h2>Palette · type · parts</h2>
+        <span class="line"></span>
+        <span class="note">Specification</span>
+      </div>
+
+      <div class="tri">
+
+        <div class="card">
+          <h3>Colour</h3>
+          <div class="sw">
+            <span class="chip" style="background:#080D17"></span>
+            <span class="sw-t"><b>Night</b><span>PAGE GROUND</span></span>
+            <span class="sw-hex">#080D17</span>
+          </div>
+          <div class="sw">
+            <span class="chip" style="background:#121D31"></span>
+            <span class="sw-t"><b>Slate</b><span>CARDS · PANELS</span></span>
+            <span class="sw-hex">#121D31</span>
+          </div>
+          <div class="sw">
+            <span class="chip" style="background:#DDAE5E"></span>
+            <span class="sw-t"><b>Brass</b><span>ACCENT ONLY · ≤10 %</span></span>
+            <span class="sw-hex">#DDAE5E</span>
+          </div>
+          <div class="sw">
+            <span class="chip" style="background:#F2F5FA"></span>
+            <span class="sw-t"><b>Paper</b><span>HEADINGS</span></span>
+            <span class="sw-hex">#F2F5FA</span>
+          </div>
+          <div class="sw">
+            <span class="chip" style="background:#AEBACB"></span>
+            <span class="sw-t"><b>Mist</b><span>BODY COPY</span></span>
+            <span class="sw-hex">#AEBACB</span>
+          </div>
+          <div class="sw">
+            <span class="chip" style="background:rgba(255,255,255,.08)"></span>
+            <span class="sw-t"><b>Hairline</b><span>ALL BORDERS · 1 PX</span></span>
+            <span class="sw-hex">#FFF / 8%</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Type</h3>
+          <div class="spec-row">
+            <span class="sz">88 / .98 / −4 %</span>
+            <span class="sample h1">Your car,</span>
+          </div>
+          <div class="spec-row">
+            <span class="sz">SERIF ITALIC</span>
+            <span class="sample serif">our own.</span>
+          </div>
+          <div class="spec-row">
+            <span class="sz">44 / 1.08</span>
+            <span class="sample h2">Three things, done properly.</span>
+          </div>
+          <div class="spec-row">
+            <span class="sz">18 / 1.55</span>
+            <span class="sample body">Service, diagnostics, a proper wash.</span>
+          </div>
+          <div class="spec-row">
+            <span class="sz">11.5 / .24 EM</span>
+            <span class="sample micro">Selfoss · South Iceland</span>
+          </div>
+          <div class="spec-row" style="border-top:1px dashed var(--rule-soft);margin-top:6px">
+            <span class="sz">FAMILIES</span>
+            <span class="sample body" style="font-size:11.5px">Manrope 400–800 · Instrument Serif italic</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Parts</h3>
+
+          <div class="part">
+            <span class="lbl">BTN · PRIMARY</span>
+            <span class="demo-btn">Book a service</span>
+            <div class="measure"><span>H 46</span><span class="arrow"></span><span>R 999</span></div>
+          </div>
+
+          <div class="part">
+            <span class="lbl">BTN · SECONDARY</span>
+            <span class="demo-btn ghost">See our work →</span>
+            <div class="measure"><span>1 PX HAIRLINE</span><span class="arrow"></span><span>PAD 15 / 26</span></div>
+          </div>
+
+          <div class="part">
+            <span class="lbl">TILE CAPTION</span>
+            <div style="font-family:var(--sans)">
+              <div style="color:var(--brass);font-size:10px;letter-spacing:.18em">01 — WORKSHOP</div>
+              <div style="font-size:15px;font-weight:700;margin-top:2px">Inside the bay</div>
+            </div>
+            <div class="measure"><span>INSET 20 / 22</span><span class="arrow"></span><span>SCRIM 88 %</span></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════ TITLE BLOCK ══════════ -->
+    <div class="titleblock">
+      <div class="tb">
+        <b>PROJECT</b>
+        <span class="big">Nord <em>Garage</em></span>
+        <span style="color:var(--ink-3);font-size:10.5px;letter-spacing:.1em">GAGNHEIÐI 51 · 800 SELFOSS</span>
+      </div>
+      <div class="tb"><b>DRAWING</b><span>Home page —<br>layout &amp; photo schedule</span></div>
+      <div class="tb"><b>SHEET</b><span>01 of 01</span></div>
+      <div class="tb"><b>REVISION</b><span>B — moodboard</span></div>
+      <div class="tb"><b>CONTACT</b><span>833 3370<br><span style="font-size:10.5px;color:var(--ink-3)">nordgarage.is@gmail.com</span></span></div>
+    </div>
+
+    <table class="revs">
+      <thead><tr><th>Rev</th><th>Description</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>A</td><td>First pass — hero only</td><td>Too plain, no photography</td></tr>
+        <tr><td>B</td><td>Photo board added, six slots + hero slot</td><td>Current</td></tr>
+        <tr><td>—</td><td>Next: gallery page, price list, booking form</td><td>Pending photos</td></tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
+<div class="toolbar" id="toolbar">
+  <span>PLACED <b id="shotCount">0</b> / 6</span>
+  <button type="button" id="resetShots">Clear</button>
+</div>
+<input type="file" id="picker" accept="image/*" hidden>
+
+<script>
+/* dimension rail — measured off the real blocks, not guessed */
+(function(){
+  "use strict";
+  function sync(){
+    var rail=document.querySelector('.rail'),
+        bar=document.querySelector('.elev-bar'),
+        blocks=document.querySelectorAll('.elev .blk'),
+        dims=document.querySelectorAll('.rail .dim');
+    if(!rail||!bar||!dims.length) return;
+    rail.style.paddingTop=(bar.offsetHeight+1)+'px';
+    for(var i=0;i<dims.length;i++){
+      dims[i].style.height=(blocks[i]?blocks[i].offsetHeight:0)+'px';
+    }
+  }
+  window.addEventListener('load',sync);
+  window.addEventListener('resize',sync);
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(sync);
+  sync();
+})();
+
+(function(){
+  "use strict";
+  var KEY='nordgarage.sheet.v1', MAX_EDGE=1500;
+  var picker=document.getElementById('picker');
+  var toolbar=document.getElementById('toolbar');
+  var counter=document.getElementById('shotCount');
+  var target=null, slots={};
+
+  document.querySelectorAll('.slot').forEach(function(el){
+    slots[el.dataset.slot]={el:el,img:el.querySelector('.img')};
+  });
+
+  function store(){
+    var out={};
+    Object.keys(slots).forEach(function(k){ if(slots[k].data) out[k]=slots[k].data; });
+    try{ localStorage.setItem(KEY,JSON.stringify(out)); }catch(err){}
+    var n=Object.keys(out).length;
+    counter.textContent=n;
+    toolbar.classList.toggle('show',n>0);
+  }
+
+  function apply(k,url,remember){
+    var s=slots[k]; if(!s) return;
+    s.img.style.backgroundImage='url("'+url+'")';
+    s.el.classList.add('has');
+    if(remember){ s.data=url; store(); }
+  }
+
+  function readFile(file,k){
+    if(!file||!/^image\//.test(file.type)) return;
+    var fr=new FileReader();
+    fr.onload=function(){
+      var im=new Image();
+      im.onload=function(){
+        var sc=Math.min(1,MAX_EDGE/Math.max(im.width,im.height));
+        var c=document.createElement('canvas');
+        c.width=Math.round(im.width*sc); c.height=Math.round(im.height*sc);
+        c.getContext('2d').drawImage(im,0,0,c.width,c.height);
+        var small; try{ small=c.toDataURL('image/jpeg',0.78); }catch(e){ small=fr.result; }
+        apply(k,small,true);
+      };
+      im.onerror=function(){ apply(k,fr.result,true); };
+      im.src=fr.result;
+    };
+    fr.readAsDataURL(file);
+  }
+
+  Object.keys(slots).forEach(function(k){
+    var el=slots[k].el;
+    el.addEventListener('dragover',function(e){e.preventDefault();e.dataTransfer.dropEffect='copy';el.classList.add('over');});
+    ['dragleave','dragend'].forEach(function(t){ el.addEventListener(t,function(){el.classList.remove('over');}); });
+    el.addEventListener('drop',function(e){
+      e.preventDefault(); el.classList.remove('over');
+      readFile(e.dataTransfer.files&&e.dataTransfer.files[0],k);
+    });
+    el.addEventListener('click',function(){ target=k; picker.click(); });
+    el.addEventListener('keydown',function(e){
+      if(e.key==='Enter'||e.key===' '){ e.preventDefault(); target=k; picker.click(); }
+    });
+  });
+
+  picker.addEventListener('change',function(){
+    if(target) readFile(picker.files[0],target);
+    picker.value='';
+  });
+
+  document.getElementById('resetShots').addEventListener('click',function(){
+    Object.keys(slots).forEach(function(k){
+      var s=slots[k]; delete s.data;
+      s.img.style.backgroundImage=''; s.el.classList.remove('has');
+    });
+    try{ localStorage.removeItem(KEY); }catch(err){}
+    counter.textContent='0'; toolbar.classList.remove('show');
+  });
+
+  ['dragover','drop'].forEach(function(t){ window.addEventListener(t,function(e){e.preventDefault();}); });
+
+  try{
+    var saved=JSON.parse(localStorage.getItem(KEY)||'{}');
+    Object.keys(saved).forEach(function(k){ apply(k,saved[k],false); if(slots[k]) slots[k].data=saved[k]; });
+    var n=Object.keys(saved).length;
+    counter.textContent=n;
+    if(n) toolbar.classList.add('show');
+  }catch(err){}
+})();
+</script>
+</body>
+</html>
