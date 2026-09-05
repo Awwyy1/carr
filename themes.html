@@ -1,0 +1,609 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nord Garage — Colour Directions</title>
+<meta name="description" content="Three colour directions for the Nord Garage site, each shown on live interface with palette specs and contrast ratios.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ══════════════════════════════════════════════════════════════
+   NORD GARAGE — COLOUR DIRECTIONS
+   Page chrome is deliberately neutral grey so none of the three
+   palettes is flattered or poisoned by what surrounds it.
+   ══════════════════════════════════════════════════════════════ */
+:root{
+  --page:#0F0F11;
+  --page-2:#17171A;
+  --edge:rgba(255,255,255,.10);
+  --edge-2:rgba(255,255,255,.18);
+  --t1:#F0F0F2;
+  --t2:#A8A8AE;
+  --t3:#75757D;
+  --ok:#6FBF8B;
+  --warn:#D8A657;
+  --sans:"Manrope",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --serif:"Instrument Serif","Iowan Old Style",Georgia,serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  margin:0;background:var(--page);color:var(--t1);
+  font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased;
+}
+svg{display:block}
+.wrap{max-width:1340px;margin:0 auto;padding-left:30px;padding-right:30px}
+
+/* ── page head ─────────────────────────────────────────────── */
+.top{border-bottom:1px solid var(--edge);background:linear-gradient(180deg,#141417,var(--page))}
+.top .wrap{padding-top:64px;padding-bottom:52px}
+.mini{
+  display:inline-flex;align-items:center;gap:9px;margin-bottom:22px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--t3);
+}
+.mini .d{width:5px;height:5px;border-radius:50%;background:var(--warn)}
+h1{margin:0;font-size:clamp(34px,4.6vw,58px);line-height:1.02;letter-spacing:-.04em;font-weight:800;max-width:16ch}
+h1 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--warn)}
+.intro{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,420px);gap:50px;margin-top:30px;align-items:start}
+.intro p{margin:0;color:var(--t2);font-size:16px;max-width:56ch}
+.rules{border:1px solid var(--edge);padding:20px 22px;background:var(--page-2)}
+.rules h3{margin:0 0 14px;font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--t3);font-weight:500}
+.rules ul{margin:0;padding:0;list-style:none}
+.rules li{position:relative;padding-left:20px;margin-bottom:11px;font-size:13.5px;color:var(--t2)}
+.rules li:last-child{margin-bottom:0}
+.rules li::before{content:"";position:absolute;left:0;top:9px;width:8px;height:1px;background:var(--warn)}
+.rules b{color:var(--t1);font-weight:600}
+
+/* ── theme section ─────────────────────────────────────────── */
+.theme{padding:72px 0;border-bottom:1px solid var(--edge)}
+.theme-head{display:flex;align-items:flex-start;gap:22px;margin-bottom:30px;flex-wrap:wrap}
+.badge{
+  flex:none;width:52px;height:52px;border:1px solid var(--edge-2);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:15px;color:var(--t2);
+}
+.theme-head h2{margin:0;font-size:clamp(26px,3vw,38px);line-height:1.06;letter-spacing:-.035em;font-weight:800}
+.theme-head .pos{margin:7px 0 0;color:var(--t2);font-size:15.5px;max-width:52ch}
+.tag{
+  margin-left:auto;align-self:center;font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--t3);border:1px solid var(--edge);padding:7px 13px;white-space:nowrap;
+}
+.tag.now{color:var(--warn);border-color:rgba(216,166,87,.4)}
+
+.split{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:26px;align-items:start}
+
+/* ══ LIVE PREVIEW ═════════════════════════════════════════════
+   Everything below reads from the theme variables, so each block
+   is the same interface rendered in a different palette.        */
+.pv{
+  border:1px solid var(--edge);overflow:hidden;
+  background:var(--bg);color:var(--head);
+  font-family:var(--sans);
+}
+.pv-bar{
+  display:flex;align-items:center;gap:6px;padding:0 12px;height:30px;
+  border-bottom:1px solid var(--line);color:var(--body);
+  font-family:var(--mono);font-size:10px;letter-spacing:.1em;
+}
+.pv-bar i{width:7px;height:7px;border-radius:50%;background:var(--line);display:block}
+.pv-bar span{margin-left:8px;opacity:.75}
+
+.pv-nav{display:flex;align-items:center;gap:16px;padding:14px 22px;border-bottom:1px solid var(--line)}
+.pv-logo{display:flex;align-items:center;gap:9px}
+.pv-logo .m{width:26px;height:26px;border-radius:50%;border:1.2px solid var(--acc);flex:none;position:relative}
+.pv-logo .m::after{content:"";position:absolute;inset:6px;border:1.2px solid var(--acc);opacity:.6;transform:rotate(45deg)}
+.pv-logo b{font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+.pv-logo b em{font-style:normal;color:var(--acc)}
+.pv-links{display:flex;gap:14px;margin-left:auto;font-size:11.5px;color:var(--body)}
+.pv-links s{text-decoration:none;color:var(--head)}
+.pv-call{
+  padding:7px 14px;border-radius:999px;font-size:11.5px;font-weight:700;
+  border:1px solid var(--acc-line);color:var(--acc);background:var(--acc-wash);white-space:nowrap;
+}
+
+.pv-hero{position:relative;padding:34px 22px 26px;overflow:hidden}
+.pv-hero::before{content:"";position:absolute;inset:0;background:var(--hero-wash);pointer-events:none}
+.pv-hero > *{position:relative}
+.pv-eyebrow{font-family:var(--mono);font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--body);margin-bottom:14px}
+.pv-h1{font-size:clamp(26px,3.1vw,40px);line-height:1;letter-spacing:-.04em;font-weight:800;margin:0}
+.pv-h1 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--acc)}
+.pv-lead{margin:14px 0 0;font-size:12.5px;color:var(--body);max-width:40ch}
+.pv-btns{display:flex;gap:9px;margin-top:20px;flex-wrap:wrap}
+.pv-btn{padding:11px 18px;border-radius:999px;font-size:11.5px;font-weight:700}
+.pv-btn.a{background:var(--acc);color:var(--onacc)}
+.pv-btn.b{border:1px solid var(--line-2);color:var(--head)}
+.pv-stats{display:flex;gap:0;margin-top:22px;border:1px solid var(--line);max-width:400px}
+.pv-stat{flex:1;padding:11px 13px;border-right:1px solid var(--line)}
+.pv-stat:last-child{border-right:0}
+.pv-stat b{display:block;font-size:17px;font-weight:800;letter-spacing:-.03em}
+.pv-stat b i{font-style:normal;font-size:11px;color:var(--acc)}
+.pv-stat span{display:block;font-family:var(--mono);font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--body);margin-top:2px}
+
+.pv-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:10px;padding:0 22px 22px}
+.pv-tile{position:relative;height:168px;overflow:hidden;border:1px solid var(--line)}
+.pv-tile .g{position:absolute;inset:0}
+.pv-tile .g::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(0deg,rgba(5,9,13,.86),rgba(5,9,13,.2) 46%,transparent 72%);
+}
+.pv-tile.one .g{background:linear-gradient(150deg,var(--tile-a),var(--tile-b))}
+.pv-tile.two .g{background:linear-gradient(150deg,var(--tile-b),var(--tile-a))}
+.pv-tile.three{display:flex;flex-direction:column;border:0;gap:10px;height:168px;overflow:visible}
+.pv-cap{position:absolute;left:11px;bottom:9px;right:11px}
+.pv-cap .k,.pv-cap .n{display:block}
+.pv-cap .k{font-family:var(--mono);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--cap-k,var(--acc))}
+.pv-cap .n{font-size:11.5px;font-weight:700;color:var(--cap)}
+.pv-card{
+  flex:1;min-height:0;border:1px solid var(--line);background:var(--surf);padding:10px 12px;
+  display:flex;flex-direction:column;justify-content:center;overflow:hidden;
+}
+.pv-card .ic{
+  width:21px;height:21px;border:1px solid var(--acc-line);background:var(--acc-wash);
+  display:flex;align-items:center;justify-content:center;margin-bottom:6px;
+}
+.pv-card .ic svg{width:12px;height:12px;stroke:var(--acc);fill:none;stroke-width:1.7}
+.pv-card b{font-size:11.5px;font-weight:700;display:block}
+.pv-card span{font-size:10px;color:var(--body);display:block;margin-top:1px}
+
+/* ── spec column ───────────────────────────────────────────── */
+.spec{display:flex;flex-direction:column;gap:18px}
+.box{border:1px solid var(--edge);background:var(--page-2);padding:20px}
+.box h3{
+  margin:0 0 15px;font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--t3);font-weight:500;
+}
+.why{margin:0;padding:0;list-style:none}
+.why li{position:relative;padding-left:26px;margin-bottom:14px;font-size:13.5px;color:var(--t2);line-height:1.55}
+.why li:last-child{margin-bottom:0}
+.why li b{display:block;color:var(--t1);font-weight:600;margin-bottom:1px}
+.why li::before{
+  content:"";position:absolute;left:0;top:7px;width:11px;height:11px;
+  border-left:1px solid var(--warn);border-bottom:1px solid var(--warn);
+}
+.risk li::before{border-color:#C97B6B;transform:rotate(180deg)}
+
+table.pal{width:100%;border-collapse:collapse;font-size:12px}
+table.pal th{
+  text-align:left;font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--t3);font-weight:500;padding:0 8px 9px 0;border-bottom:1px solid var(--edge);
+}
+table.pal td{padding:9px 8px 9px 0;border-bottom:1px solid rgba(255,255,255,.06);vertical-align:middle}
+table.pal tr:last-child td{border-bottom:0}
+.dot{width:22px;height:22px;border:1px solid var(--edge-2);display:block}
+.hex{font-family:var(--mono);font-size:11px;color:var(--t2);white-space:nowrap}
+.role{color:var(--t2);font-size:11.5px}
+.role b{display:block;color:var(--t1);font-size:12.5px;font-weight:600}
+.cr{font-family:var(--mono);font-size:11px;text-align:right;white-space:nowrap}
+.pass{color:var(--ok)}
+.large{color:var(--warn)}
+
+.budget{display:flex;height:12px;border:1px solid var(--edge);margin:2px 0 12px}
+.budget i{display:block;height:100%}
+.budget-key{display:flex;gap:16px;margin-bottom:17px;flex-wrap:wrap;font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;color:var(--t3);text-transform:uppercase}
+.budget-key span{display:flex;align-items:center;gap:6px}
+.budget-key s{width:9px;height:9px;display:block;text-decoration:none}
+
+.sign{font-size:13px;color:var(--t2);margin:0}
+.sign b{color:var(--t1);font-weight:600}
+
+/* ── verdict ───────────────────────────────────────────────── */
+.verdict{padding:72px 0 90px}
+.verdict h2{margin:0 0 28px;font-size:clamp(26px,3vw,36px);letter-spacing:-.035em;font-weight:800}
+table.cmp{width:100%;border-collapse:collapse;font-size:13.5px;border:1px solid var(--edge)}
+table.cmp th,table.cmp td{padding:15px 18px;text-align:left;border-bottom:1px solid var(--edge);vertical-align:top}
+table.cmp th{
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--t3);font-weight:500;background:var(--page-2);
+}
+table.cmp td{color:var(--t2)}
+table.cmp td b{color:var(--t1);font-weight:600}
+table.cmp tr:last-child td{border-bottom:0}
+.pick{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-family:var(--mono);letter-spacing:.12em;text-transform:uppercase}
+.pick s{width:8px;height:8px;display:block;text-decoration:none}
+
+@media (max-width:1020px){
+  .intro{grid-template-columns:1fr;gap:26px}
+  .split{grid-template-columns:1fr}
+  .pv-grid{grid-template-columns:1fr 1fr}
+  .pv-tile.three{grid-column:1/-1;flex-direction:row;height:78px}
+}
+@media (max-width:620px){
+  .wrap{padding-left:18px;padding-right:18px}
+  .top .wrap{padding-top:40px;padding-bottom:34px}
+  .theme{padding:48px 0}
+  .tag{margin-left:0}
+  .pv-links{display:none}
+  .pv-grid{grid-template-columns:1fr}
+  .pv-tile.three{flex-direction:column;height:auto}
+  .pv-stats{flex-wrap:wrap}
+  table.cmp{font-size:12.5px}
+  table.cmp th,table.cmp td{padding:11px 12px}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════ HEAD ══════════ -->
+<header class="top">
+  <div class="wrap">
+    <p class="mini"><span class="d"></span> Nord Garage · colour study · rev A</p>
+    <h1>Three ways to paint <em>the same garage.</em></h1>
+
+    <div class="intro">
+      <p>
+        Same layout, same photography, same words — only the palette changes. Judge them on the
+        interface below rather than on the swatches: a colour that looks great as a square can fall
+        apart the moment it has to carry a phone number, a price and a dirty engine bay.
+      </p>
+      <div class="rules">
+        <h3>How these were built</h3>
+        <ul>
+          <li><b>One accent, strictly rationed.</b> Roughly a tenth of the surface. The reference mockup used bright yellow on every element, which is exactly why it read as noisy.</li>
+          <li><b>Contrast measured, not guessed.</b> Every ratio below is calculated; body text clears WCAG AA (4.5:1) in all three.</li>
+          <li><b>Photography first.</b> A garage site lives on photos of metal, foam and paint. The neutrals are chosen to sit behind them, not to fight them.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════ A · NIGHT & BRASS ══════════ -->
+<section class="theme" style="
+  --bg:#080D17; --surf:#121D31; --line:rgba(255,255,255,.09); --line-2:rgba(255,255,255,.17);
+  --head:#F2F5FA; --body:#AEBACB; --acc:#DDAE5E; --onacc:#1E1608;
+  --acc-line:rgba(221,174,94,.42); --acc-wash:rgba(221,174,94,.11); --cap:#F2F5FA;
+  --tile-a:#1B2A46; --tile-b:#0B1220;
+  --hero-wash:radial-gradient(46% 60% at 15% 25%,rgba(221,174,94,.14),transparent 62%),radial-gradient(50% 60% at 84% 5%,rgba(72,132,214,.16),transparent 64%);">
+  <div class="wrap">
+    <div class="theme-head">
+      <span class="badge">A</span>
+      <div>
+        <h2>Night &amp; Brass</h2>
+        <p class="pos">Deep navy with muted brass. The one already built — kept here as the control so the other two have something to beat.</p>
+      </div>
+      <span class="tag now">Current build</span>
+    </div>
+
+    <div class="split">
+      <div class="pv">
+        <div class="pv-bar"><i></i><i></i><i></i><span>nordgarage.is</span></div>
+        <div class="pv-nav">
+          <span class="pv-logo"><span class="m"></span><b>Nord <em>Garage</em></b></span>
+          <span class="pv-links"><s>Home</s> Services Our work Contact</span>
+          <span class="pv-call">833 3370</span>
+        </div>
+        <div class="pv-hero">
+          <div class="pv-eyebrow">Selfoss · South Iceland</div>
+          <p class="pv-h1">Your car,<br>treated like <em>our own.</em></p>
+          <p class="pv-lead">Service, diagnostics, a proper wash and rental cars — one workshop on Gagnheiði.</p>
+          <div class="pv-btns">
+            <span class="pv-btn a">Book a service</span>
+            <span class="pv-btn b">See our work</span>
+          </div>
+          <div class="pv-stats">
+            <span class="pv-stat"><b>12<i>+</i></b><span>Years</span></span>
+            <span class="pv-stat"><b>3<i>k</i></b><span>Cars</span></span>
+            <span class="pv-stat"><b>1<i>day</i></b><span>Turnaround</span></span>
+          </div>
+        </div>
+        <div class="pv-grid">
+          <div class="pv-tile one"><span class="g"></span><span class="pv-cap"><span class="k">01 — Workshop</span><span class="n">Inside the bay</span></span></div>
+          <div class="pv-tile two"><span class="g"></span><span class="pv-cap"><span class="k">02 — Wash</span><span class="n">Foam &amp; shine</span></span></div>
+          <div class="pv-tile three">
+            <span class="pv-card">
+              <span class="ic"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76Z"/></svg></span>
+              <b>Auto service</b><span>All makes &amp; models</span>
+            </span>
+            <span class="pv-card">
+              <span class="ic"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2M11.4 11.6a5.5 5.5 0 1 1-7.8 7.8 5.5 5.5 0 0 1 7.8-7.8ZM15.5 7.5l3 3L22 7l-3-3-3.5 3.5Z"/></svg></span>
+              <b>Car rental</b><span>Winter tyres included</span>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="spec">
+        <div class="box">
+          <h3>Why it works</h3>
+          <ul class="why">
+            <li><b>Night is a workshop at 17:00 in November.</b> Selfoss is dark half the year; the site matches the light your customers actually stand in when they call you.</li>
+            <li><b>Brass is warmth without alarm.</b> It carries the same "premium service" signal as gold in a hotel lobby, but desaturated enough not to shout like the yellow in the original mockup.</li>
+            <li><b>Photos glow on it.</b> Dark navy pushes chrome, headlights and wet paint forward — the tiles do the work, the background disappears.</li>
+          </ul>
+        </div>
+        <div class="box">
+          <h3>Watch out</h3>
+          <ul class="why risk">
+            <li><b>Everyone's premium garage is dark.</b> It is a safe, well-trodden choice — it will not be mistaken for anyone, but it will not stand out on the street either.</li>
+            <li><b>Brass needs discipline.</b> The moment it lands on every heading it turns back into the mockup you rejected.</li>
+          </ul>
+        </div>
+        <div class="box">
+          <h3>Palette</h3>
+          <div class="budget">
+            <i style="background:#080D17;flex:62"></i><i style="background:#121D31;flex:24"></i>
+            <i style="background:#AEBACB;flex:6"></i><i style="background:#DDAE5E;flex:8"></i>
+          </div>
+          <div class="budget-key">
+            <span><s style="background:#080D17;border:1px solid var(--edge-2)"></s>Ground 62%</span>
+            <span><s style="background:#121D31"></s>Panels 24%</span>
+            <span><s style="background:#DDAE5E"></s>Accent 8%</span>
+          </div>
+          <table class="pal">
+            <thead><tr><th></th><th>Role</th><th>Hex</th><th style="text-align:right">Contrast</th></tr></thead>
+            <tbody>
+              <tr><td><span class="dot" style="background:#080D17"></span></td><td class="role"><b>Night</b>Page ground</td><td class="hex">#080D17</td><td class="cr">—</td></tr>
+              <tr><td><span class="dot" style="background:#121D31"></span></td><td class="role"><b>Slate</b>Cards, panels</td><td class="hex">#121D31</td><td class="cr">—</td></tr>
+              <tr><td><span class="dot" style="background:#F2F5FA"></span></td><td class="role"><b>Paper</b>Headings</td><td class="hex">#F2F5FA</td><td class="cr pass">17.8 ✓</td></tr>
+              <tr><td><span class="dot" style="background:#AEBACB"></span></td><td class="role"><b>Mist</b>Body copy</td><td class="hex">#AEBACB</td><td class="cr pass">9.9 ✓</td></tr>
+              <tr><td><span class="dot" style="background:#DDAE5E"></span></td><td class="role"><b>Brass</b>Accent, CTA</td><td class="hex">#DDAE5E</td><td class="cr pass">9.5 ✓</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="box">
+          <h3>On the building</h3>
+          <p class="sign">Brass vinyl on a dark board looks expensive but goes flat under grey sky. <b>Add a white outline</b> on the exterior sign — keep brass for the logo mark only.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ B · GRAPHITE & SIGNAL ══════════ -->
+<section class="theme" style="
+  --bg:#131518; --surf:#1C2025; --line:rgba(255,255,255,.10); --line-2:rgba(255,255,255,.18);
+  --head:#F5F6F8; --body:#A6ADB8; --acc:#F2683A; --onacc:#1A0C05;
+  --acc-line:rgba(242,104,58,.45); --acc-wash:rgba(242,104,58,.12); --cap:#F5F6F8;
+  --tile-a:#262B31; --tile-b:#121417;
+  --hero-wash:radial-gradient(50% 62% at 12% 20%,rgba(242,104,58,.13),transparent 60%),linear-gradient(180deg,rgba(255,255,255,.03),transparent 40%);">
+  <div class="wrap">
+    <div class="theme-head">
+      <span class="badge">B</span>
+      <div>
+        <h2>Graphite &amp; Signal</h2>
+        <p class="pos">Machined grey with one hit of safety orange. The workshop itself, not a showroom pretending to be one.</p>
+      </div>
+      <span class="tag">Proposal 01</span>
+    </div>
+
+    <div class="split">
+      <div class="pv">
+        <div class="pv-bar"><i></i><i></i><i></i><span>nordgarage.is</span></div>
+        <div class="pv-nav">
+          <span class="pv-logo"><span class="m"></span><b>Nord <em>Garage</em></b></span>
+          <span class="pv-links"><s>Home</s> Services Our work Contact</span>
+          <span class="pv-call">833 3370</span>
+        </div>
+        <div class="pv-hero">
+          <div class="pv-eyebrow">Selfoss · South Iceland</div>
+          <p class="pv-h1">Your car,<br>treated like <em>our own.</em></p>
+          <p class="pv-lead">Service, diagnostics, a proper wash and rental cars — one workshop on Gagnheiði.</p>
+          <div class="pv-btns">
+            <span class="pv-btn a">Book a service</span>
+            <span class="pv-btn b">See our work</span>
+          </div>
+          <div class="pv-stats">
+            <span class="pv-stat"><b>12<i>+</i></b><span>Years</span></span>
+            <span class="pv-stat"><b>3<i>k</i></b><span>Cars</span></span>
+            <span class="pv-stat"><b>1<i>day</i></b><span>Turnaround</span></span>
+          </div>
+        </div>
+        <div class="pv-grid">
+          <div class="pv-tile one"><span class="g"></span><span class="pv-cap"><span class="k">01 — Workshop</span><span class="n">Inside the bay</span></span></div>
+          <div class="pv-tile two"><span class="g"></span><span class="pv-cap"><span class="k">02 — Wash</span><span class="n">Foam &amp; shine</span></span></div>
+          <div class="pv-tile three">
+            <span class="pv-card">
+              <span class="ic"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76Z"/></svg></span>
+              <b>Auto service</b><span>All makes &amp; models</span>
+            </span>
+            <span class="pv-card">
+              <span class="ic"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2M11.4 11.6a5.5 5.5 0 1 1-7.8 7.8 5.5 5.5 0 0 1 7.8-7.8ZM15.5 7.5l3 3L22 7l-3-3-3.5 3.5Z"/></svg></span>
+              <b>Car rental</b><span>Winter tyres included</span>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="spec">
+        <div class="box">
+          <h3>Why it works</h3>
+          <ul class="why">
+            <li><b>The colour is already in your building.</b> Torque wrenches, jack stands, hazard cones, hi-vis — orange is the native colour of a working garage. It reads as honest equipment, not as decoration.</li>
+            <li><b>Grey is neutral in a way navy is not.</b> Navy is a mood; graphite is a material. Photos of any car colour — white, red, silver — sit on it without clashing, which matters when the board fills with real customer cars.</li>
+            <li><b>Orange is the strongest "press this" colour there is.</b> Highest visibility per square centimetre of any warm hue, so the phone button can be small and still be the first thing the eye lands on.</li>
+            <li><b>It separates you from the dealership.</b> Every franchised service centre in the country is blue or silver. Orange on graphite reads independent, hands-on, cheaper without looking cheap.</li>
+          </ul>
+        </div>
+        <div class="box">
+          <h3>Watch out</h3>
+          <ul class="why risk">
+            <li><b>Orange has a volume knob and no brake.</b> Over roughly a tenth of the screen it stops meaning "important" and starts meaning "discount tyres". The budget bar below is not a suggestion.</li>
+            <li><b>It fights red cars.</b> If your best photo is a red car, the tile caption needs to sit on a scrim, not on the paint.</li>
+            <li><b>Not a luxury signal.</b> If you ever want to court the Range Rover crowd, A ages better.</li>
+          </ul>
+        </div>
+        <div class="box">
+          <h3>Palette</h3>
+          <div class="budget">
+            <i style="background:#131518;flex:60"></i><i style="background:#1C2025;flex:26"></i>
+            <i style="background:#A6ADB8;flex:7"></i><i style="background:#F2683A;flex:7"></i>
+          </div>
+          <div class="budget-key">
+            <span><s style="background:#131518;border:1px solid var(--edge-2)"></s>Ground 60%</span>
+            <span><s style="background:#1C2025"></s>Panels 26%</span>
+            <span><s style="background:#F2683A"></s>Accent 7%</span>
+          </div>
+          <table class="pal">
+            <thead><tr><th></th><th>Role</th><th>Hex</th><th style="text-align:right">Contrast</th></tr></thead>
+            <tbody>
+              <tr><td><span class="dot" style="background:#131518"></span></td><td class="role"><b>Graphite</b>Page ground</td><td class="hex">#131518</td><td class="cr">—</td></tr>
+              <tr><td><span class="dot" style="background:#1C2025"></span></td><td class="role"><b>Gunmetal</b>Cards, panels</td><td class="hex">#1C2025</td><td class="cr">—</td></tr>
+              <tr><td><span class="dot" style="background:#F5F6F8"></span></td><td class="role"><b>Chalk</b>Headings</td><td class="hex">#F5F6F8</td><td class="cr pass">16.9 ✓</td></tr>
+              <tr><td><span class="dot" style="background:#A6ADB8"></span></td><td class="role"><b>Steel</b>Body copy</td><td class="hex">#A6ADB8</td><td class="cr pass">8.1 ✓</td></tr>
+              <tr><td><span class="dot" style="background:#F2683A"></span></td><td class="role"><b>Signal</b>Accent, CTA</td><td class="hex">#F2683A</td><td class="cr pass">5.9 ✓</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="box">
+          <h3>On the building</h3>
+          <p class="sign">This is the one that survives outdoors. Orange on dark grey stays readable <b>at 60 km/h in the rain</b> — the same reason road signs use it. Cheapest palette to reproduce in vinyl and workwear.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ C · NORDIC DAYLIGHT ══════════ -->
+<section class="theme" style="
+  --bg:#F4F2ED; --surf:#FFFFFF; --line:#E4DFD6; --line-2:#D3CCC1;
+  --head:#14191E; --body:#55606C; --acc:#0E5460; --onacc:#FFFFFF;
+  --acc-line:rgba(14,84,96,.35); --acc-wash:rgba(14,84,96,.08); --cap:#FFFFFF; --cap-k:#8FD8E4;
+  --tile-a:#8FA3A8; --tile-b:#3E555C;
+  --hero-wash:radial-gradient(52% 64% at 14% 18%,rgba(14,84,96,.07),transparent 62%),linear-gradient(180deg,#FBFAF8,transparent 55%);">
+  <div class="wrap">
+    <div class="theme-head">
+      <span class="badge">C</span>
+      <div>
+        <h2>Nordic Daylight</h2>
+        <p class="pos">Warm paper, ink black, deep petrol. The opposite bet: bright, tidy, and quietly expensive.</p>
+      </div>
+      <span class="tag">Proposal 02</span>
+    </div>
+
+    <div class="split">
+      <div class="pv">
+        <div class="pv-bar"><i></i><i></i><i></i><span>nordgarage.is</span></div>
+        <div class="pv-nav">
+          <span class="pv-logo"><span class="m"></span><b>Nord <em>Garage</em></b></span>
+          <span class="pv-links"><s>Home</s> Services Our work Contact</span>
+          <span class="pv-call">833 3370</span>
+        </div>
+        <div class="pv-hero">
+          <div class="pv-eyebrow">Selfoss · South Iceland</div>
+          <p class="pv-h1">Your car,<br>treated like <em>our own.</em></p>
+          <p class="pv-lead">Service, diagnostics, a proper wash and rental cars — one workshop on Gagnheiði.</p>
+          <div class="pv-btns">
+            <span class="pv-btn a">Book a service</span>
+            <span class="pv-btn b">See our work</span>
+          </div>
+          <div class="pv-stats">
+            <span class="pv-stat"><b>12<i>+</i></b><span>Years</span></span>
+            <span class="pv-stat"><b>3<i>k</i></b><span>Cars</span></span>
+            <span class="pv-stat"><b>1<i>day</i></b><span>Turnaround</span></span>
+          </div>
+        </div>
+        <div class="pv-grid">
+          <div class="pv-tile one"><span class="g"></span><span class="pv-cap"><span class="k">01 — Workshop</span><span class="n">Inside the bay</span></span></div>
+          <div class="pv-tile two"><span class="g"></span><span class="pv-cap"><span class="k">02 — Wash</span><span class="n">Foam &amp; shine</span></span></div>
+          <div class="pv-tile three">
+            <span class="pv-card">
+              <span class="ic"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76Z"/></svg></span>
+              <b>Auto service</b><span>All makes &amp; models</span>
+            </span>
+            <span class="pv-card">
+              <span class="ic"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2M11.4 11.6a5.5 5.5 0 1 1-7.8 7.8 5.5 5.5 0 0 1 7.8-7.8ZM15.5 7.5l3 3L22 7l-3-3-3.5 3.5Z"/></svg></span>
+              <b>Car rental</b><span>Winter tyres included</span>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="spec">
+        <div class="box">
+          <h3>Why it works</h3>
+          <ul class="why">
+            <li><b>Nobody else in the trade is doing it.</b> Auto service sites are dark by reflex. A light one reads as a clinic — clean floors, itemised invoices, no surprises — which is precisely what people fear they will not get from a garage.</li>
+            <li><b>It is the honest local colour.</b> Warm paper, cold petrol green-blue: Icelandic daylight and glacier water. It belongs in Selfoss in a way a black showroom does not.</li>
+            <li><b>Phones are used outdoors.</b> Most of your visitors are on a phone, often in daylight or in a car. A light interface stays readable where a dark one becomes a mirror.</li>
+            <li><b>Petrol is trust without corporate blue.</b> Dark teal carries the same competence signal as navy but avoids the insurance-company look, and it holds 7.6:1 against paper — strong enough for body text, not just buttons.</li>
+          </ul>
+        </div>
+        <div class="box">
+          <h3>Watch out</h3>
+          <ul class="why risk">
+            <li><b>It demands better photography.</b> Dark backgrounds hide a mediocre snapshot; white does not. Every tile needs decent light and a clean crop, or the whole page looks unfinished.</li>
+            <li><b>Rust is decoration only.</b> #B4693A lands at 3.7:1 on paper — fine for icons, numbers and large headings, never for paragraphs.</li>
+            <li><b>Least "automotive" at first glance.</b> It signals care and order rather than speed and power. Right for service and rental; the weakest of the three if you ever pivot to tuning.</li>
+          </ul>
+        </div>
+        <div class="box">
+          <h3>Palette</h3>
+          <div class="budget">
+            <i style="background:#F4F2ED;flex:58"></i><i style="background:#FFFFFF;flex:26"></i>
+            <i style="background:#55606C;flex:9"></i><i style="background:#0E5460;flex:7"></i>
+          </div>
+          <div class="budget-key">
+            <span><s style="background:#F4F2ED"></s>Paper 58%</span>
+            <span><s style="background:#FFFFFF"></s>Cards 26%</span>
+            <span><s style="background:#0E5460"></s>Accent 7%</span>
+          </div>
+          <table class="pal">
+            <thead><tr><th></th><th>Role</th><th>Hex</th><th style="text-align:right">Contrast</th></tr></thead>
+            <tbody>
+              <tr><td><span class="dot" style="background:#F4F2ED"></span></td><td class="role"><b>Paper</b>Page ground</td><td class="hex">#F4F2ED</td><td class="cr">—</td></tr>
+              <tr><td><span class="dot" style="background:#FFFFFF"></span></td><td class="role"><b>Snow</b>Cards, panels</td><td class="hex">#FFFFFF</td><td class="cr">—</td></tr>
+              <tr><td><span class="dot" style="background:#14191E"></span></td><td class="role"><b>Ink</b>Headings</td><td class="hex">#14191E</td><td class="cr pass">15.8 ✓</td></tr>
+              <tr><td><span class="dot" style="background:#55606C"></span></td><td class="role"><b>Basalt</b>Body copy</td><td class="hex">#55606C</td><td class="cr pass">5.7 ✓</td></tr>
+              <tr><td><span class="dot" style="background:#0E5460"></span></td><td class="role"><b>Petrol</b>Accent, CTA</td><td class="hex">#0E5460</td><td class="cr pass">7.6 ✓</td></tr>
+              <tr><td><span class="dot" style="background:#B4693A"></span></td><td class="role"><b>Rust</b>Secondary accent</td><td class="hex">#B4693A</td><td class="cr large">3.7 — large only</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="box">
+          <h3>On the building</h3>
+          <p class="sign">Petrol on off-white is <b>the cheapest sign to keep looking new</b> — pale surfaces do not show Icelandic dust and salt film the way gloss black does. Reverse it after dark: white letters on petrol for the illuminated panel.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ VERDICT ══════════ -->
+<section class="verdict">
+  <div class="wrap">
+    <h2>Which one to take</h2>
+    <table class="cmp">
+      <thead>
+        <tr><th style="width:150px">Direction</th><th>Take it if</th><th>Leave it if</th><th style="width:180px">Reads as</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="pick"><s style="background:#DDAE5E"></s>A · Night &amp; Brass</span></td>
+          <td>You want the safe, premium default and plan to compete on <b>quality of finish</b>.</td>
+          <td>You want to look different from every other garage site.</td>
+          <td><b>Established.</b> Careful, a little formal.</td>
+        </tr>
+        <tr>
+          <td><span class="pick"><s style="background:#F2683A"></s>B · Graphite &amp; Signal</span></td>
+          <td>You want people to <b>call, today</b>, and you like being read as a real workshop.</td>
+          <td>Your photos are mostly red cars, or you are chasing a luxury clientele.</td>
+          <td><b>Capable.</b> Direct, energetic, independent.</td>
+        </tr>
+        <tr>
+          <td><span class="pick"><s style="background:#0E5460"></s>C · Nordic Daylight</span></td>
+          <td>You can get <b>good photographs</b> and want to be the tidy, transparent option in town.</td>
+          <td>Your pictures are grab shots on a phone in a dim bay.</td>
+          <td><b>Trustworthy.</b> Clean, local, unhurried.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="box" style="margin-top:26px">
+      <h3>My recommendation</h3>
+      <p style="margin:0;color:var(--t2);font-size:14.5px;max-width:74ch">
+        <b style="color:var(--t1)">B — Graphite &amp; Signal.</b> It is the only one of the three that is
+        both distinctive and unfussy about your photography, and for a business whose whole funnel ends in
+        someone tapping a phone number, the strongest possible call button is worth more than atmosphere.
+        Keep C in your pocket: if the photo shoot comes back bright and clean, it becomes the better site.
+      </p>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
