@@ -115,10 +115,19 @@
     radial-gradient(60% 50% at 60% 100%, rgba(237,241,247,.96), transparent 62%),
     linear-gradient(170deg,#FAFCFE 0%, #E3EAF4 44%, #EDF1F7 100%);
   /* dense to the end of the paragraph, then clear well before the edge */
-  --veil:linear-gradient(100deg,rgba(237,241,247,.94) 0%,rgba(237,241,247,.88) 46%,rgba(237,241,247,.26) 62%,rgba(237,241,247,0) 78%);
+  /* a long ramp: no visible edge where the veil hands over to the photo */
+  --veil:linear-gradient(100deg,
+    rgba(237,241,247,.90) 0%,
+    rgba(237,241,247,.86) 26%,
+    rgba(237,241,247,.80) 42%,
+    rgba(237,241,247,.60) 54%,
+    rgba(237,241,247,.38) 65%,
+    rgba(237,241,247,.20) 75%,
+    rgba(237,241,247,.08) 86%,
+    rgba(237,241,247,0) 96%);
   --photo-op:1;
   --photo-filter:saturate(1.4) contrast(1.2) brightness(.95);
-  --grain-op:.28;
+  --grain-op:.16;
 
   --shadow:0 26px 44px -26px rgba(11,18,32,.3);
   --shadow-btn:0 10px 24px -12px rgba(11,18,32,.35);
