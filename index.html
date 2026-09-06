@@ -69,6 +69,7 @@
     linear-gradient(170deg,#0E1729 0%, #12203a 42%, #0A101C 100%);
   --veil:linear-gradient(100deg,rgba(8,13,23,.55) 0%,rgba(8,13,23,.35) 45%,rgba(8,13,23,.1) 100%);
   --photo-op:.45;
+  --photo-filter:none;
   --grain-op:.5;
 
   --shadow:0 34px 60px -34px rgba(0,0,0,.95);
@@ -113,9 +114,10 @@
     radial-gradient(48% 58% at 82% 6%,  rgba(72,132,214,.16), transparent 66%),
     radial-gradient(60% 50% at 60% 100%, rgba(237,241,247,.96), transparent 62%),
     linear-gradient(170deg,#FAFCFE 0%, #E3EAF4 44%, #EDF1F7 100%);
-  /* heavy enough under the text, then it gets out of the way fast */
-  --veil:linear-gradient(100deg,rgba(237,241,247,.93) 0%,rgba(237,241,247,.88) 40%,rgba(237,241,247,.45) 62%,rgba(237,241,247,.06) 100%);
-  --photo-op:.88;
+  /* dense under the text, then off entirely: the right third is the photograph */
+  --veil:linear-gradient(100deg,rgba(237,241,247,.95) 0%,rgba(237,241,247,.9) 36%,rgba(237,241,247,.34) 58%,rgba(237,241,247,0) 82%);
+  --photo-op:1;
+  --photo-filter:saturate(1.2) contrast(1.08);
   --grain-op:.28;
 
   --shadow:0 26px 44px -26px rgba(11,18,32,.3);
@@ -271,7 +273,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .hero-slot .img{
   position:absolute;inset:0;
   background-image:var(--ph-hero);background-size:cover;background-position:center;
-  opacity:var(--photo-op);
+  opacity:var(--photo-op);filter:var(--photo-filter);
 }
 .hero-slot::after{content:"";position:absolute;inset:0;pointer-events:none;background:var(--veil);opacity:0;transition:opacity .4s}
 .hero-slot.has::after{opacity:1}
@@ -475,7 +477,7 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
   padding-top:36px;padding-bottom:36px;
 }
 .info{display:flex;align-items:flex-start;gap:13px;min-width:0}
-.info > svg{width:19px;height:19px;stroke:var(--brass);fill:none;stroke-width:1.7;opacity:.85;flex:none;margin-top:2px}
+.info > svg{width:19px;height:19px;stroke:var(--brass);fill:none;stroke-width:1.7;opacity:.85;flex:none;margin-top:-3px}
 .info-label{font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);margin-bottom:6px;line-height:1.2}
 .info-value{font-size:13.5px;color:var(--ink-2);line-height:1.5;overflow-wrap:break-word}
 .info-value b{color:var(--ink);font-weight:600}
