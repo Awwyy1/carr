@@ -215,10 +215,6 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 }
 .lang-menu button:hover{background:var(--hover);color:var(--ink)}
 .lang-menu button[aria-selected="true"]{color:var(--brass);font-weight:700}
-.lang-menu .code{
-  font-size:10.5px;font-weight:700;letter-spacing:.1em;color:var(--ink-3);
-  margin-left:auto;border:1px solid var(--line);border-radius:5px;padding:2px 6px;
-}
 
 .call{
   display:inline-flex;align-items:center;gap:9px;
@@ -264,6 +260,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 }
 .m-langs button[aria-selected="true"]{background:var(--brass-wash);border-color:var(--brass-line);color:var(--brass)}
 .m-menu .call{width:100%;justify-content:center;margin-top:16px;padding:14px 18px;font-size:15px}
+.m-menu .call i{font-style:normal;opacity:.55}
+.m-menu .call b{font-weight:800;letter-spacing:.01em}
 
 /* ══ HERO ════════════════════════════════════════════════════ */
 .hero{position:relative;overflow:hidden;isolation:isolate}
@@ -518,7 +516,8 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
 @media (max-width:960px){
   .nav{display:none}
   .lang,.theme-switch{display:none}       /* they live in the panel instead */
-  .burger{display:flex;margin-left:auto}
+  .tools{margin-left:auto}                /* .nav used to do this; it is gone here */
+  .burger{display:flex}
   .call{display:none}
 }
 @media (max-width:620px){
@@ -578,9 +577,9 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
           <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
         <div class="lang-menu" id="langMenu" role="listbox">
-          <button type="button" role="option" data-lang="is" lang="is">Íslenska <span class="code">IS</span></button>
-          <button type="button" role="option" data-lang="en" lang="en">English <span class="code">EN</span></button>
-          <button type="button" role="option" data-lang="es" lang="es">Español <span class="code">ES</span></button>
+          <button type="button" role="option" data-lang="is" lang="is">Íslenska</button>
+          <button type="button" role="option" data-lang="en" lang="en">English</button>
+          <button type="button" role="option" data-lang="es" lang="es">Español</button>
         </div>
       </div>
 
@@ -618,7 +617,9 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
 
     <a class="call" href="tel:+3548333370" style="display:inline-flex">
       <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
-      833 3370
+      <span data-i18n="hero.cta1">Call the garage</span>
+      <i aria-hidden="true">·</i>
+      <b>833 3370</b>
     </a>
   </div>
 </div>
@@ -1042,7 +1043,10 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
   document.addEventListener('click', function(e){ if (!langMenu.contains(e.target)) closeLang(); });
   document.addEventListener('keydown', function(e){ if (e.key === 'Escape'){ closeLang(); closeMenu(); } });
   document.querySelectorAll('[data-lang]').forEach(function(b){
-    b.addEventListener('click', function(){ applyLang(b.getAttribute('data-lang')); closeLang(); closeMenu(); });
+    b.addEventListener('click', function(){
+      applyLang(b.getAttribute('data-lang'));
+      closeLang();          /* the desktop dropdown closes; the mobile panel stays open */
+    });
   });
 
   /* ══════════════ MOBILE MENU ══════════════ */
