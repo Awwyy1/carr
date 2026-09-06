@@ -201,7 +201,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .lang-btn .chev{width:11px;height:11px;transition:transform .25s}
 .lang-btn[aria-expanded="true"] .chev{transform:rotate(180deg)}
 .lang-menu{
-  position:absolute;right:0;top:calc(100% + 9px);min-width:172px;z-index:70;
+  position:absolute;right:0;top:calc(100% + 9px);z-index:70;
+  width:max-content;min-width:0;      /* just wide enough for the longest name */
   background:var(--card);border:1px solid var(--line-2);border-radius:var(--r-md);
   box-shadow:var(--shadow);padding:6px;
   opacity:0;visibility:hidden;transform:translateY(-6px);
@@ -210,7 +211,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .lang-menu.open{opacity:1;visibility:visible;transform:none}
 .lang-menu button{
   display:flex;align-items:center;gap:10px;width:100%;
-  padding:9px 11px;border-radius:9px;text-align:left;
+  padding:9px 14px;border-radius:9px;text-align:left;white-space:nowrap;
   font-size:13.5px;color:var(--ink-2);transition:background .2s,color .2s;
 }
 .lang-menu button:hover{background:var(--hover);color:var(--ink)}
