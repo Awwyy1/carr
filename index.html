@@ -114,10 +114,10 @@
     radial-gradient(48% 58% at 82% 6%,  rgba(72,132,214,.16), transparent 66%),
     radial-gradient(60% 50% at 60% 100%, rgba(237,241,247,.96), transparent 62%),
     linear-gradient(170deg,#FAFCFE 0%, #E3EAF4 44%, #EDF1F7 100%);
-  /* dense under the text, then off entirely: the right third is the photograph */
-  --veil:linear-gradient(100deg,rgba(237,241,247,.95) 0%,rgba(237,241,247,.9) 36%,rgba(237,241,247,.34) 58%,rgba(237,241,247,0) 82%);
+  /* dense to the end of the paragraph, then clear well before the edge */
+  --veil:linear-gradient(100deg,rgba(237,241,247,.94) 0%,rgba(237,241,247,.88) 46%,rgba(237,241,247,.26) 62%,rgba(237,241,247,0) 78%);
   --photo-op:1;
-  --photo-filter:saturate(1.2) contrast(1.08);
+  --photo-filter:saturate(1.4) contrast(1.2) brightness(.95);
   --grain-op:.28;
 
   --shadow:0 26px 44px -26px rgba(11,18,32,.3);
@@ -256,6 +256,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   font-size:19px;font-weight:700;letter-spacing:-.01em;
 }
 .m-menu a.m-link:last-of-type{border-bottom:0}
+.m-menu a.m-link.on{color:var(--brass)}
 .m-row{display:flex;align-items:center;gap:12px;margin-top:22px;flex-wrap:wrap}
 .m-langs{display:flex;gap:6px}
 .m-langs button{
@@ -560,11 +561,11 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
     </a>
 
     <nav class="nav">
-      <a href="#" class="on" data-i18n="nav.home">Home</a>
-      <a href="#services" data-i18n="nav.services">Services</a>
-      <a href="#work" data-i18n="nav.work">Our work</a>
+      <a href="#" class="on" data-spy="hero" data-i18n="nav.home">Home</a>
+      <a href="#services" data-spy="services" data-i18n="nav.services">Services</a>
+      <a href="#work" data-spy="work" data-i18n="nav.work">Our work</a>
       <a href="#" data-i18n="nav.about">About</a>
-      <a href="#contact" data-i18n="nav.contact">Contact</a>
+      <a href="#contact" data-spy="contact" data-i18n="nav.contact">Contact</a>
     </nav>
 
     <div class="tools">
@@ -600,11 +601,11 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
 <!-- ══════════ MOBILE PANEL ══════════ -->
 <div class="m-menu" id="mMenu">
   <div class="wrap" style="padding:0">
-    <a class="m-link" href="#" data-i18n="nav.home">Home</a>
-    <a class="m-link" href="#services" data-i18n="nav.services">Services</a>
-    <a class="m-link" href="#work" data-i18n="nav.work">Our work</a>
+    <a class="m-link" href="#" data-spy="hero" data-i18n="nav.home">Home</a>
+    <a class="m-link" href="#services" data-spy="services" data-i18n="nav.services">Services</a>
+    <a class="m-link" href="#work" data-spy="work" data-i18n="nav.work">Our work</a>
     <a class="m-link" href="#" data-i18n="nav.about">About</a>
-    <a class="m-link" href="#contact" data-i18n="nav.contact">Contact</a>
+    <a class="m-link" href="#contact" data-spy="contact" data-i18n="nav.contact">Contact</a>
 
     <div class="m-row">
       <div class="m-langs" id="mLangs">
@@ -854,7 +855,7 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
       "tile3.tag":"03 · Dekk","tile3.name":"Dekkjaþjónusta",
       "tile4.tag":"04 · Bílaleiga","tile4.name":"Lyklar tilbúnir",
       "tile5.tag":"05 · Þrif","tile5.name":"Umhirða að innan",
-      "tile6.tag":"06 · Selfoss","tile6.name":"Á leiðinni suður",
+      "tile6.tag":"06 · Að utan","tile6.name":"Verkstæðið á Gagnheiði",
       "cta.kicker":"Bókaðu í dag","cta.h2":"Komdu með hann, við <em>kíkjum á hann.</em>",
       "cta.text":"Hringdu og við finnum tíma í þessari viku. Innlit eru líka velkomin, kaffið er á könnunni.",
       "foot.visit":"Heimsæktu okkur","foot.call":"Hringdu í okkur","foot.email":"Netfang","foot.hours":"Opnunartími",
@@ -892,7 +893,7 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
       "tile3.tag":"03 · Wheels","tile3.name":"Tyre service",
       "tile4.tag":"04 · Rental","tile4.name":"Keys ready",
       "tile5.tag":"05 · Detail","tile5.name":"Interior care",
-      "tile6.tag":"06 · Selfoss","tile6.name":"On the road south",
+      "tile6.tag":"06 · Outside","tile6.name":"The workshop on Gagnheiði",
       "cta.kicker":"Book today","cta.h2":"Bring it in, we&rsquo;ll <em>have a look.</em>",
       "cta.text":"Call and we will find you a slot this week. Walk in visits are welcome too, the kettle is on.",
       "foot.visit":"Visit us","foot.call":"Call us","foot.email":"Email","foot.hours":"Opening hours",
@@ -930,7 +931,7 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
       "tile3.tag":"03 · Neumáticos","tile3.name":"Servicio de ruedas",
       "tile4.tag":"04 · Alquiler","tile4.name":"Llaves listas",
       "tile5.tag":"05 · Detallado","tile5.name":"Cuidado interior",
-      "tile6.tag":"06 · Selfoss","tile6.name":"Rumbo al sur",
+      "tile6.tag":"06 · Exterior","tile6.name":"El taller en Gagnheiði",
       "cta.kicker":"Reserva hoy","cta.h2":"Tráelo y le <em>echamos un vistazo.</em>",
       "cta.text":"Llama y te buscamos hueco esta semana. También atendemos sin cita, el café está puesto.",
       "foot.visit":"Visítanos","foot.call":"Llámanos","foot.email":"Correo","foot.hours":"Horario",
@@ -1052,6 +1053,31 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
       closeLang();          /* the desktop dropdown closes; the mobile panel stays open */
     });
   });
+
+  /* ══════════════ SCROLLSPY ══════════════
+     Underline the section you are actually looking at, rather than
+     leaving Home lit for the whole page. */
+  var spyLinks = document.querySelectorAll('[data-spy]');
+  var spyIds = ['hero','services','work','contact'];
+  var spySecs = spyIds.map(function(id){ return document.getElementById(id); }).filter(Boolean);
+  var header = document.querySelector('.site-header');
+
+  function spy(){
+    if (!spySecs.length) return;
+    var line = window.pageYOffset + (header ? header.offsetHeight : 80) + 40;
+    var cur = spySecs[0].id;
+    spySecs.forEach(function(sec){
+      if (sec.getBoundingClientRect().top + window.pageYOffset <= line) cur = sec.id;
+    });
+    /* the footer is short, so pin it once the page bottoms out */
+    if (window.innerHeight + window.pageYOffset >= document.documentElement.scrollHeight - 4){
+      cur = spySecs[spySecs.length - 1].id;
+    }
+    spyLinks.forEach(function(a){ a.classList.toggle('on', a.getAttribute('data-spy') === cur); });
+  }
+  window.addEventListener('scroll', spy, {passive:true});   /* four rects, cheap enough to run straight */
+  window.addEventListener('resize', spy);
+  spy();
 
   /* ══════════════ MOBILE MENU ══════════════ */
   var burger = document.getElementById('burger');
