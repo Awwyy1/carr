@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="is" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Nord Garage · Car Service, Car Wash and Car Rental in Selfoss</title>
-<meta name="description" content="Nord Garage, Selfoss. Car service, car wash and car rental. One workshop, all makes and models.">
+<title>Nord Garage</title>
+<meta name="description" id="metaDesc" content="Nord Garage, Selfossi.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,47 +12,67 @@
 
 <style>
 /* ═══════════════════════════════════════════════════════════════
-   NORD GARAGE — hero / moodboard
+   NORD GARAGE
 
-   PHOTOS: every dark block is a photo slot. Two ways to fill them:
+   PHOTOS  every dark block is a photo slot. Drag a picture onto it,
+           or click it. Once a photo is in, two small buttons appear
+           on the block: swap it, or remove just that one.
+           To set photos permanently, put files next to this page and
+           paste the paths into the block below.
 
-   1) Fastest — just drag a photo from your desktop onto a block
-      (or click it). It sticks after reload. "Reset photos" clears all.
+   THEMES  dark is the default. The switch in the header flips to
+           light and the choice is remembered.
 
-   2) Permanent — put files next to this page in a /photos folder
-      and paste the paths below.
+   LANGUAGE  Icelandic, English, Spanish. Icelandic is the default.
    ═══════════════════════════════════════════════════════════════ */
 :root{
-  --ph-hero:  none;   /* url("photos/hero.jpg")     — big background  */
-  --ph-a:     none;   /* url("photos/workshop.jpg") — large square    */
-  --ph-b:     none;   /* url("photos/wash.jpg")     — tall            */
-  --ph-c:     none;   /* url("photos/wheels.jpg")   — small           */
-  --ph-d:     none;   /* url("photos/rental.jpg")   — tall            */
-  --ph-e:     none;   /* url("photos/detail.jpg")   — small           */
-  --ph-f:     none;   /* url("photos/selfoss.jpg")  — wide            */
+  --ph-hero:  none;   /* url("photos/hero.jpg")     */
+  --ph-a:     none;   /* url("photos/workshop.jpg") */
+  --ph-b:     none;   /* url("photos/wash.jpg")     */
+  --ph-c:     none;   /* url("photos/wheels.jpg")   */
+  --ph-d:     none;   /* url("photos/rental.jpg")   */
+  --ph-e:     none;   /* url("photos/detail.jpg")   */
+  --ph-f:     none;   /* url("photos/selfoss.jpg")  */
 }
 
+/* ── DARK: the default ───────────────────────────────────────── */
 :root{
-  /* light theme = the dark one turned inside out.
-     Same navy, same brass. Ground and ink swap places.
-     Bright brass #DDAE5E is kept for fills (buttons, captions on photos);
-     a deepened brass carries anything set in small type.        */
-  --navy-950:#EDF1F7;   /* page ground   (was #080D17) */
-  --navy-900:#E7EDF5;   /* recessed      (was #0B1220) */
-  --navy-850:#F4F7FB;   /* tiles         (was #0E1728) */
-  --navy-800:#FFFFFF;   /* cards         (was #121D31) */
+  --bg:#080D17;
+  --bg-2:#0B1220;
+  --tile:#0E1728;
+  --card:#121D31;
 
-  --brass:#8E6314;      /* small type   4.7:1 on ground */
-  --brass-soft:#7E5714; /* stronger     5.5:1           */
-  --brass-lit:#DDAE5E;  /* fills only, never small type */
-  --brass-dim:rgba(142,99,20,.10);
+  --ink:#F2F5FA;
+  --ink-2:#AEBACB;
+  --ink-3:#7C8AA0;
 
-  --ink:#0B1220;        /* headings    16.5:1 */
-  --ink-2:#44566E;      /* body         6.6:1 */
-  --ink-3:#5B6A84;      /* muted        4.8:1 */
+  --brass:#DDAE5E;              /* accents in small type */
+  --brass-fill:#DDAE5E;         /* button fill           */
+  --brass-fill-2:#EFCE96;
+  --on-brass:#1E1608;           /* label on that fill    */
+  --brass-wash:rgba(221,174,94,.13);
+  --brass-line:rgba(221,174,94,.38);
 
-  --line:rgba(11,18,32,.10);
-  --line-2:rgba(11,18,32,.18);
+  --line:rgba(255,255,255,.08);
+  --line-2:rgba(255,255,255,.15);
+  --hover:rgba(255,255,255,.06);
+  --sheen:rgba(255,255,255,.05);
+
+  --glass:rgba(8,13,23,.78);
+  --glass-2:rgba(255,255,255,.02);
+  --panel:rgba(11,18,32,.6);
+
+  --hero-grad:
+    radial-gradient(42% 52% at 16% 30%, rgba(221,174,94,.16), transparent 64%),
+    radial-gradient(48% 58% at 82% 6%,  rgba(72,132,214,.18), transparent 66%),
+    radial-gradient(60% 50% at 60% 100%, rgba(8,13,23,.95), transparent 62%),
+    linear-gradient(170deg,#0E1729 0%, #12203a 42%, #0A101C 100%);
+  --veil:linear-gradient(100deg,rgba(8,13,23,.55) 0%,rgba(8,13,23,.35) 45%,rgba(8,13,23,.1) 100%);
+  --photo-op:.45;
+  --grain-op:.5;
+
+  --shadow:0 34px 60px -34px rgba(0,0,0,.95);
+  --shadow-btn:0 12px 30px -14px rgba(221,174,94,.7);
 
   --r-lg:20px;
   --r-md:14px;
@@ -61,20 +81,61 @@
   --serif:"Instrument Serif","Iowan Old Style",Georgia,"Times New Roman",serif;
 }
 
+/* ── LIGHT: the same navy and brass, ground and ink swapped ──── */
+[data-theme="light"]{
+  --bg:#EDF1F7;
+  --bg-2:#E7EDF5;
+  --tile:#F4F7FB;
+  --card:#FFFFFF;
+
+  --ink:#0B1220;
+  --ink-2:#44566E;
+  --ink-3:#5B6A84;
+
+  --brass:#8E6314;              /* light brass falls to 1.8:1 in small type */
+  --brass-fill:#DDAE5E;         /* fills keep the bright brass             */
+  --brass-fill-2:#EFCE96;
+  --on-brass:#1E1608;
+  --brass-wash:rgba(142,99,20,.10);
+  --brass-line:rgba(142,99,20,.38);
+
+  --line:rgba(11,18,32,.10);
+  --line-2:rgba(11,18,32,.18);
+  --hover:rgba(11,18,32,.05);
+  --sheen:rgba(255,255,255,.6);
+
+  --glass:rgba(237,241,247,.82);
+  --glass-2:rgba(255,255,255,.55);
+  --panel:rgba(255,255,255,.85);
+
+  --hero-grad:
+    radial-gradient(42% 52% at 16% 30%, rgba(221,174,94,.22), transparent 64%),
+    radial-gradient(48% 58% at 82% 6%,  rgba(72,132,214,.16), transparent 66%),
+    radial-gradient(60% 50% at 60% 100%, rgba(237,241,247,.96), transparent 62%),
+    linear-gradient(170deg,#FAFCFE 0%, #E3EAF4 44%, #EDF1F7 100%);
+  --veil:linear-gradient(100deg,rgba(237,241,247,.95) 0%,rgba(237,241,247,.9) 42%,rgba(237,241,247,.56) 70%,rgba(237,241,247,.28) 100%);
+  --photo-op:.6;
+  --grain-op:.28;
+
+  --shadow:0 26px 44px -26px rgba(11,18,32,.3);
+  --shadow-btn:0 10px 24px -12px rgba(11,18,32,.35);
+}
+
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
 body{
-  margin:0;background:var(--navy-950);color:var(--ink);
+  margin:0;background:var(--bg);color:var(--ink);
   font-family:var(--font);line-height:1.55;
   -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  transition:background .4s ease,color .4s ease;
 }
 a{color:inherit;text-decoration:none}
 svg{display:block}
-::selection{background:rgba(142,99,20,.18)}
-
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+::selection{background:var(--brass-wash)}
 .wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding-left:30px;padding-right:30px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
-/* ── reveal on scroll ─────────────────────────────────────────── */
 .rv{opacity:0;transform:translateY(20px);transition:opacity .85s cubic-bezier(.22,.7,.3,1),transform .85s cubic-bezier(.22,.7,.3,1)}
 .rv.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
@@ -82,84 +143,152 @@ svg{display:block}
 /* ══ HEADER ══════════════════════════════════════════════════ */
 .site-header{
   position:sticky;top:0;z-index:60;
-  background:rgba(237,241,247,.82);
+  background:var(--glass);
   backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
   border-bottom:1px solid var(--line);
 }
-.header-inner{display:flex;align-items:center;gap:30px;height:80px}
-.brand{display:flex;align-items:center;gap:13px}
+.header-inner{display:flex;align-items:center;gap:22px;height:80px}
+.brand{display:flex;align-items:center;gap:13px;flex:none}
 .brand .mark{width:42px;height:42px;flex:none}
+.brand .mark path,.brand .mark circle{stroke:var(--brass)}
 .brand-text{display:flex;flex-direction:column;line-height:1.12}
-.brand-name{font-size:18px;font-weight:800;letter-spacing:.15em;text-transform:uppercase}
+.brand-name{font-size:18px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;white-space:nowrap}
 .brand-name em{font-style:normal;color:var(--brass)}
-.brand-sub{font-size:9px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-3);margin-top:3px}
+.brand-sub{font-size:9px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-3);margin-top:3px;white-space:nowrap}
 
-.nav{display:flex;align-items:center;gap:4px;margin-left:auto}
+.nav{display:flex;align-items:center;gap:2px;margin-left:auto}
 .nav a{
-  position:relative;padding:10px 15px;border-radius:999px;
-  font-size:13.5px;font-weight:600;color:var(--ink-2);
+  position:relative;padding:10px 13px;border-radius:999px;
+  font-size:13.5px;font-weight:600;color:var(--ink-2);white-space:nowrap;
   transition:color .22s,background .22s;
 }
-.nav a:hover{color:var(--ink);background:rgba(11,18,32,.05)}
+.nav a:hover{color:var(--ink);background:var(--hover)}
 .nav a.on{color:var(--ink)}
-.nav a.on::after{content:"";position:absolute;left:15px;right:15px;bottom:3px;height:1.5px;border-radius:2px;background:var(--brass)}
+.nav a.on::after{content:"";position:absolute;left:13px;right:13px;bottom:3px;height:1.5px;border-radius:2px;background:var(--brass)}
+
+.tools{display:flex;align-items:center;gap:10px;flex:none}
+
+/* theme switch: two seats, one sliding puck */
+.theme-switch{
+  position:relative;display:flex;align-items:center;
+  width:62px;height:32px;padding:3px;flex:none;
+  border:1px solid var(--line-2);border-radius:999px;background:var(--glass-2);
+}
+.theme-switch .puck{
+  position:absolute;top:3px;left:3px;width:26px;height:24px;border-radius:999px;
+  background:var(--brass-fill);
+  transition:transform .32s cubic-bezier(.4,1.3,.5,1);
+}
+[data-theme="light"] .theme-switch .puck{transform:translateX(28px)}
+.theme-switch span{
+  position:relative;z-index:1;flex:1;display:flex;align-items:center;justify-content:center;
+}
+.theme-switch svg{width:14px;height:14px;stroke:var(--ink-3);fill:none;stroke-width:1.8;transition:stroke .3s}
+.theme-switch span:first-of-type svg{stroke:var(--on-brass)}
+[data-theme="light"] .theme-switch span:first-of-type svg{stroke:var(--ink-3)}
+[data-theme="light"] .theme-switch span:last-of-type svg{stroke:var(--on-brass)}
+
+/* language menu */
+.lang{position:relative;flex:none}
+.lang-btn{
+  display:flex;align-items:center;gap:7px;height:32px;padding:0 12px;
+  border:1px solid var(--line-2);border-radius:999px;background:var(--glass-2);
+  font-size:12.5px;font-weight:700;letter-spacing:.06em;color:var(--ink-2);
+  transition:border-color .25s,color .25s,background .25s;
+}
+.lang-btn:hover{color:var(--ink);border-color:var(--line-2);background:var(--hover)}
+.lang-btn svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.6}
+.lang-btn .chev{width:11px;height:11px;transition:transform .25s}
+.lang-btn[aria-expanded="true"] .chev{transform:rotate(180deg)}
+.lang-menu{
+  position:absolute;right:0;top:calc(100% + 9px);min-width:172px;z-index:70;
+  background:var(--card);border:1px solid var(--line-2);border-radius:var(--r-md);
+  box-shadow:var(--shadow);padding:6px;
+  opacity:0;visibility:hidden;transform:translateY(-6px);
+  transition:opacity .22s,transform .22s,visibility .22s;
+}
+.lang-menu.open{opacity:1;visibility:visible;transform:none}
+.lang-menu button{
+  display:flex;align-items:center;gap:10px;width:100%;
+  padding:9px 11px;border-radius:9px;text-align:left;
+  font-size:13.5px;color:var(--ink-2);transition:background .2s,color .2s;
+}
+.lang-menu button:hover{background:var(--hover);color:var(--ink)}
+.lang-menu button[aria-selected="true"]{color:var(--brass);font-weight:700}
+.lang-menu .code{
+  font-size:10.5px;font-weight:700;letter-spacing:.1em;color:var(--ink-3);
+  margin-left:auto;border:1px solid var(--line);border-radius:5px;padding:2px 6px;
+}
 
 .call{
-  display:inline-flex;align-items:center;gap:10px;margin-left:12px;
-  padding:11px 20px;border-radius:999px;white-space:nowrap;
-  border:1px solid rgba(142,99,20,.38);color:var(--brass-soft);
-  font-weight:700;font-size:14.5px;
-  background:linear-gradient(180deg,rgba(221,174,94,.22),rgba(221,174,94,.08));
+  display:inline-flex;align-items:center;gap:9px;
+  padding:10px 18px;border-radius:999px;white-space:nowrap;flex:none;
+  border:1px solid var(--brass-line);color:var(--brass);
+  font-weight:700;font-size:14px;background:var(--brass-wash);
   transition:border-color .25s,background .25s,transform .25s;
 }
-.call:hover{border-color:rgba(142,99,20,.7);background:linear-gradient(180deg,rgba(221,174,94,.38),rgba(221,174,94,.16));transform:translateY(-1px)}
-.call svg{width:16px;height:16px;stroke:currentColor}
+.call:hover{border-color:var(--brass);transform:translateY(-1px)}
+.call svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.8}
+
+.burger{
+  display:none;width:40px;height:40px;flex:none;
+  border:1px solid var(--line-2);border-radius:11px;
+  align-items:center;justify-content:center;
+}
+.burger span{position:relative;display:block;width:16px;height:1.6px;background:var(--ink);border-radius:2px;transition:transform .3s,opacity .2s}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0;width:16px;height:1.6px;background:var(--ink);border-radius:2px;transition:transform .3s}
+.burger span::before{top:-5px}.burger span::after{top:5px}
+.burger.on span{background:transparent}
+.burger.on span::before{transform:translateY(5px) rotate(45deg)}
+.burger.on span::after{transform:translateY(-5px) rotate(-45deg)}
+
+/* mobile panel */
+.m-menu{
+  position:fixed;inset:0 0 auto;top:0;z-index:55;
+  padding:96px 20px 26px;
+  background:var(--bg);border-bottom:1px solid var(--line);
+  transform:translateY(-102%);transition:transform .4s cubic-bezier(.22,.7,.3,1);
+  max-height:100dvh;overflow-y:auto;
+}
+.m-menu.open{transform:none}
+.m-menu a.m-link{
+  display:block;padding:15px 4px;border-bottom:1px solid var(--line);
+  font-size:19px;font-weight:700;letter-spacing:-.01em;
+}
+.m-menu a.m-link:last-of-type{border-bottom:0}
+.m-row{display:flex;align-items:center;gap:12px;margin-top:22px;flex-wrap:wrap}
+.m-langs{display:flex;gap:6px}
+.m-langs button{
+  padding:9px 14px;border:1px solid var(--line-2);border-radius:999px;
+  font-size:12.5px;font-weight:700;color:var(--ink-2);
+}
+.m-langs button[aria-selected="true"]{background:var(--brass-wash);border-color:var(--brass-line);color:var(--brass)}
+.m-menu .call{width:100%;justify-content:center;margin-top:16px;padding:14px 18px;font-size:15px}
 
 /* ══ HERO ════════════════════════════════════════════════════ */
 .hero{position:relative;overflow:hidden;isolation:isolate}
-.hero-slot{position:absolute;inset:0;z-index:-3;background:var(--navy-900)}
+.hero-slot{position:absolute;inset:0;z-index:-3;background:var(--bg-2)}
 .hero-slot .img{
   position:absolute;inset:0;
   background-image:var(--ph-hero);background-size:cover;background-position:center;
-  opacity:.6;
+  opacity:var(--photo-op);
 }
-/* veil over the photo: dense under the headline, light on the open side */
-.hero-slot::after{
-  content:"";position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(100deg,rgba(237,241,247,.95) 0%,rgba(237,241,247,.9) 42%,rgba(237,241,247,.56) 70%,rgba(237,241,247,.28) 100%);
-}
-.hero-slot .fallback{
-  position:absolute;inset:0;
-  background:
-    radial-gradient(42% 52% at 16% 30%, rgba(221,174,94,.22), transparent 64%),
-    radial-gradient(48% 58% at 82% 6%,  rgba(72,132,214,.16), transparent 66%),
-    radial-gradient(60% 50% at 60% 100%, rgba(237,241,247,.96), transparent 62%),
-    linear-gradient(170deg,#FAFCFE 0%, #E3EAF4 44%, #EDF1F7 100%);
-}
+.hero-slot::after{content:"";position:absolute;inset:0;pointer-events:none;background:var(--veil);opacity:0;transition:opacity .4s}
+.hero-slot.has::after{opacity:1}
+.hero-slot .fallback{position:absolute;inset:0;background:var(--hero-grad)}
 .grain{
-  position:absolute;inset:0;z-index:-2;pointer-events:none;opacity:.28;
+  position:absolute;inset:0;z-index:-2;pointer-events:none;opacity:var(--grain-op);
   background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/><feColorMatrix type='saturate' values='0'/></filter><rect width='200' height='200' filter='url(%23n)' opacity='.05'/></svg>");
 }
-
+.hero.over::before{
+  content:"";position:absolute;inset:10px;z-index:5;pointer-events:none;
+  border:2px dashed var(--brass);background:var(--brass-wash);border-radius:16px;
+}
 .hero-inner{padding-top:96px;padding-bottom:76px}
-.eyebrow{
-  display:inline-flex;align-items:center;gap:10px;margin:0 0 26px;
-  font-size:11.5px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-3);
-}
-.eyebrow .dot{width:5px;height:5px;border-radius:50%;background:var(--brass);flex:none}
 
-h1{
-  margin:0;max-width:16ch;
-  font-size:clamp(44px,6.6vw,88px);line-height:.98;letter-spacing:-.04em;font-weight:800;
-}
-h1 .serif{
-  font-family:var(--serif);font-style:italic;font-weight:400;
-  color:var(--brass);letter-spacing:-.01em;
-}
-.hero-cols{
-  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,360px);
-  gap:56px;align-items:start;margin-top:44px;
-}
+h1{margin:0;max-width:16ch;font-size:clamp(44px,6.6vw,88px);line-height:.98;letter-spacing:-.04em;font-weight:800}
+h1 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--brass);letter-spacing:-.01em}
+.hero-cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,360px);gap:56px;align-items:start}
 .lede{margin:0;max-width:44ch;font-size:clamp(16px,1.3vw,18px);color:var(--ink-2)}
 .cta{display:flex;flex-wrap:wrap;gap:13px;margin-top:32px}
 .btn{
@@ -167,266 +296,240 @@ h1 .serif{
   padding:15px 26px;border-radius:999px;font-size:14.5px;font-weight:700;
   transition:transform .25s,box-shadow .25s,background .25s,border-color .25s;
 }
-.btn svg{width:16px;height:16px;stroke:currentColor}
-.btn-a{background:linear-gradient(180deg,#EFCE96,#DDAE5E);color:#1E1608;border:1px solid rgba(142,99,20,.35);box-shadow:0 10px 24px -12px rgba(11,18,32,.35)}
-.btn-a:hover{transform:translateY(-2px);box-shadow:0 16px 32px -12px rgba(11,18,32,.45)}
-.btn-b{border:1px solid var(--line-2);background:#FFFFFF;color:var(--ink)}
-.btn-b:hover{border-color:rgba(11,18,32,.34);background:#FFFFFF;transform:translateY(-2px)}
+.btn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.8}
+.btn-a{background:linear-gradient(180deg,var(--brass-fill-2),var(--brass-fill));color:var(--on-brass);box-shadow:var(--shadow-btn)}
+.btn-a:hover{transform:translateY(-2px)}
+.btn-b{border:1px solid var(--line-2);background:var(--glass-2);color:var(--ink)}
+.btn-b:hover{transform:translateY(-2px);background:var(--hover)}
 
-/* stats */
 .stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden}
-.stat{background:rgba(255,255,255,.85);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:20px}
+.stat{background:var(--panel);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:20px}
 .stat b{display:block;font-size:26px;font-weight:800;letter-spacing:-.03em;color:var(--ink);white-space:nowrap}
 .stat b .u{display:inline;font-size:15px;color:var(--brass);margin-left:2px;text-transform:none;letter-spacing:0}
 .stat > span{display:block;margin-top:3px;font-size:11.5px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3)}
 
-.hero-hint{
-  display:inline-flex;align-items:center;gap:9px;margin-top:44px;
+.hero-tools{display:flex;flex-wrap:wrap;gap:10px;margin-top:44px}
+.chip{
+  display:inline-flex;align-items:center;gap:9px;
   padding:9px 15px;border-radius:999px;
-  border:1px dashed rgba(142,99,20,.45);background:rgba(221,174,94,.14);
+  border:1px dashed var(--brass-line);background:var(--brass-wash);
   font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--brass);
   cursor:pointer;transition:background .25s,border-color .25s,transform .25s;
 }
-.hero-hint:hover{background:rgba(221,174,94,.26);border-color:rgba(142,99,20,.75);transform:translateY(-1px)}
-.hero-hint:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
-/* the whole hero is a drop target */
-.hero.over::before{
-  content:"";position:absolute;inset:10px;z-index:5;pointer-events:none;
-  border:2px dashed var(--brass);background:rgba(221,174,94,.10);border-radius:16px;
-}
-.hero-hint svg{width:14px;height:14px;stroke:currentColor}
+.chip:hover{border-color:var(--brass);transform:translateY(-1px)}
+.chip.solid{border-style:solid}
+.chip svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.8}
+.chip[hidden]{display:none}
 
 /* ══ MARQUEE ═════════════════════════════════════════════════ */
 .marquee{
   border-top:1px solid var(--line);border-bottom:1px solid var(--line);
-  background:rgba(255,255,255,.55);overflow:hidden;padding:15px 0;
+  background:var(--glass-2);overflow:hidden;padding:15px 0;
   -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
   mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
 }
 .marquee-track{display:flex;width:max-content;animation:slide 34s linear infinite}
 .marquee-track span{
   display:inline-flex;align-items:center;gap:22px;padding-right:22px;
-  font-size:13px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);
-  white-space:nowrap;
+  font-size:13px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);white-space:nowrap;
 }
 .marquee-track i{width:5px;height:5px;border-radius:50%;background:var(--brass);opacity:.75;font-style:normal;flex:none}
 @keyframes slide{to{transform:translateX(-50%)}}
 @media (prefers-reduced-motion:reduce){.marquee-track{animation:none}}
 
-/* ══ SECTION HEADS ═══════════════════════════════════════════ */
+/* ══ SECTIONS ════════════════════════════════════════════════ */
 .sec{padding:96px 0}
 .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;margin-bottom:38px;flex-wrap:wrap}
-.kicker{
-  display:flex;align-items:center;gap:10px;margin:0 0 14px;
-  font-size:11.5px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--brass);
-}
+.kicker{display:flex;align-items:center;gap:10px;margin:0 0 14px;font-size:11.5px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--brass)}
 .kicker .bar{width:26px;height:1px;background:var(--brass);opacity:.6}
 h2{margin:0;font-size:clamp(30px,3.6vw,44px);line-height:1.08;letter-spacing:-.035em;font-weight:800;max-width:18ch}
-h2 .serif{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--brass)}
+h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--brass)}
 .sec-note{margin:0;max-width:38ch;color:var(--ink-3);font-size:14.5px}
 
-/* ══ MOODBOARD ═══════════════════════════════════════════════ */
-.board{
-  display:grid;gap:16px;
-  grid-template-columns:repeat(4,1fr);
-  grid-auto-rows:190px;
-  grid-template-areas:
-    "a a b c"
-    "a a b d"
-    "e f f d";
+/* ── services ── */
+.svc{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.svc-card{
+  position:relative;overflow:hidden;border-radius:var(--r-lg);
+  border:1px solid var(--line);background:linear-gradient(170deg,var(--card),var(--tile) 55%,var(--bg-2));
+  display:flex;flex-direction:column;
+  transition:transform .4s cubic-bezier(.22,.7,.3,1),border-color .4s,box-shadow .4s;
 }
+.svc-card:hover{transform:translateY(-6px);border-color:var(--line-2);box-shadow:var(--shadow)}
+.svc-body{padding:30px 30px 32px}
+.svc-num{font-size:11px;font-weight:700;letter-spacing:.2em;color:var(--ink-3);display:flex;align-items:center;gap:10px;margin-bottom:20px}
+.svc-num .bar{flex:1;height:1px;background:var(--line)}
+.svc-icon{width:50px;height:50px;border-radius:14px;margin-bottom:20px;display:flex;align-items:center;justify-content:center;background:var(--brass-wash);border:1px solid var(--brass-line)}
+.svc-icon svg{width:22px;height:22px;stroke:var(--brass);fill:none;stroke-width:1.7}
+.svc-card h3{margin:0 0 10px;font-size:20px;font-weight:700;letter-spacing:-.02em}
+.svc-card p{margin:0 0 22px;color:var(--ink-3);font-size:14.5px}
+.svc-list{list-style:none;margin:0 0 26px;padding:0;display:flex;flex-direction:column;gap:9px}
+.svc-list li{display:flex;align-items:center;gap:10px;font-size:13.5px;color:var(--ink-2)}
+.svc-list svg{width:14px;height:14px;stroke:var(--brass);fill:none;stroke-width:2.4;flex:none}
+.svc-link{margin-top:auto;display:inline-flex;align-items:center;gap:9px;font-size:12.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--brass)}
+.svc-link svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;transition:transform .3s}
+.svc-card:hover .svc-link svg{transform:translateX(5px)}
+
+/* ── moodboard ── */
+.board{display:grid;gap:16px;grid-template-columns:repeat(4,1fr);grid-auto-rows:190px;
+  grid-template-areas:"a a b c" "a a b d" "e f f d";}
 .t-a{grid-area:a}.t-b{grid-area:b}.t-c{grid-area:c}
 .t-d{grid-area:d}.t-e{grid-area:e}.t-f{grid-area:f}
 
 .tile{
   position:relative;overflow:hidden;border-radius:var(--r-lg);
-  border:1px solid var(--line);background:var(--navy-850);
-  cursor:pointer;isolation:isolate;
+  border:1px solid var(--line);background:var(--tile);cursor:pointer;isolation:isolate;
   transition:border-color .35s,transform .45s cubic-bezier(.22,.7,.3,1),box-shadow .45s;
 }
-.tile:hover{transform:translateY(-4px);border-color:rgba(11,18,32,.22);box-shadow:0 26px 44px -26px rgba(11,18,32,.3)}
+.tile:hover{transform:translateY(-4px);border-color:var(--line-2);box-shadow:var(--shadow)}
 .tile:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+.ph{position:absolute;inset:0;
+  background:linear-gradient(150deg,var(--sheen),transparent 46%),
+             radial-gradient(80% 70% at 25% 15%, var(--c1), transparent 70%),
+             linear-gradient(165deg, var(--c1), var(--c2));}
+.ph::after{content:"";position:absolute;inset:0;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/><feColorMatrix type='saturate' values='0'/></filter><rect width='160' height='160' filter='url(%23n)' opacity='.06'/></svg>");}
+.t-a .ph{--c1:#1B2A46;--c2:#0B1220}
+.t-b .ph{--c1:#16324A;--c2:#0A121F}
+.t-c .ph{--c1:#1E2942;--c2:#0C1119}
+.t-d .ph{--c1:#223349;--c2:#0A111C}
+.t-e .ph{--c1:#14314A;--c2:#090F1A}
+.t-f .ph{--c1:#1A2D3E;--c2:#080D17}
+[data-theme="light"] .t-a .ph{--c1:#DEE6F0;--c2:#C2CEDE}
+[data-theme="light"] .t-b .ph{--c1:#D9E5EC;--c2:#BDCDD8}
+[data-theme="light"] .t-c .ph{--c1:#E0E5EF;--c2:#C6CEDC}
+[data-theme="light"] .t-d .ph{--c1:#DCE4EE;--c2:#C0CBDA}
+[data-theme="light"] .t-e .ph{--c1:#D6E3EB;--c2:#BAC9D6}
+[data-theme="light"] .t-f .ph{--c1:#DFE6ED;--c2:#C3CEDA}
 
-/* the designed placeholder — reads as art, not as a missing image */
-.ph{
-  position:absolute;inset:0;
-  background:
-    linear-gradient(150deg, rgba(255,255,255,.6), transparent 46%),
-    radial-gradient(80% 70% at 25% 15%, var(--c1), transparent 70%),
-    linear-gradient(165deg, var(--c1), var(--c2));
-}
-.ph::after{
-  content:"";position:absolute;inset:0;
-  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/><feColorMatrix type='saturate' values='0'/></filter><rect width='160' height='160' filter='url(%23n)' opacity='.06'/></svg>");
-}
-.ph-icon{
-  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-  transition:opacity .4s,transform .6s;
-}
-.ph-icon svg{width:82px;height:82px;stroke:var(--brass);opacity:.26;stroke-width:1}
+.ph-icon{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;transition:opacity .4s,transform .6s}
+.ph-icon svg{width:82px;height:82px;stroke:var(--brass);fill:none;opacity:.2;stroke-width:1}
 .tile:hover .ph-icon{transform:scale(1.06)}
-
-.tile .img{
-  position:absolute;inset:0;background-size:cover;background-position:center;
-  transform:scale(1.015);transition:transform .9s cubic-bezier(.22,.7,.3,1);
-  opacity:0;
-}
+.tile .img{position:absolute;inset:0;background-size:cover;background-position:center;transform:scale(1.015);transition:transform .9s cubic-bezier(.22,.7,.3,1);opacity:0}
 .tile.has .img{opacity:1}
 .tile.has .ph-icon,.tile.has .drop{opacity:0}
 .tile:hover .img{transform:scale(1.07)}
-.tile .scrim{
-  position:absolute;inset:0;opacity:0;transition:opacity .4s;
-  background:linear-gradient(0deg,rgba(6,10,18,.88) 0%,rgba(6,10,18,.25) 42%,transparent 72%);
-}
+.tile .scrim{position:absolute;inset:0;opacity:0;transition:opacity .4s;
+  background:linear-gradient(0deg,rgba(6,10,18,.88) 0%,rgba(6,10,18,.25) 42%,transparent 72%);}
 .tile.has .scrim{opacity:1}
 
-.tile .cap{
-  position:absolute;left:22px;right:22px;bottom:20px;
-  display:flex;align-items:center;justify-content:space-between;gap:14px;
-}
+.cap{position:absolute;left:22px;right:22px;bottom:20px;display:flex;align-items:center;justify-content:space-between;gap:14px}
 .cap-name{font-size:15px;font-weight:700;letter-spacing:-.01em}
 .cap-tag{font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--brass);margin-top:3px}
-.cap-arrow{
-  width:34px;height:34px;border-radius:50%;flex:none;
-  border:1px solid var(--line-2);display:flex;align-items:center;justify-content:center;
-  opacity:0;transform:translateX(-6px);transition:opacity .35s,transform .35s,background .35s;
-}
-.tile:hover .cap-arrow{opacity:1;transform:none;background:rgba(11,18,32,.06)}
-.cap-arrow svg{width:14px;height:14px;stroke:var(--ink)}
-/* once a photo and its scrim are in, the caption flips to light */
+.cap-arrow{width:34px;height:34px;border-radius:50%;flex:none;border:1px solid var(--line-2);display:flex;align-items:center;justify-content:center;opacity:0;transform:translateX(-6px);transition:opacity .35s,transform .35s,background .35s}
+.tile:hover .cap-arrow{opacity:1;transform:none;background:var(--hover)}
+.cap-arrow svg{width:14px;height:14px;stroke:var(--ink);fill:none;stroke-width:2}
 .tile.has .cap-name{color:#FFFFFF}
-.tile.has .cap-tag{color:var(--brass-lit)}
+.tile.has .cap-tag{color:#EFCE96}
 .tile.has .cap-arrow{border-color:rgba(255,255,255,.5)}
 .tile.has .cap-arrow svg{stroke:#FFFFFF}
 
-/* drop affordance */
 .drop{
   position:absolute;top:16px;left:16px;
-  display:inline-flex;align-items:center;gap:7px;
-  padding:7px 12px;border-radius:999px;
-  background:rgba(255,255,255,.93);border:1px dashed rgba(142,99,20,.5);
-  font-size:10.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--brass-soft);
-  opacity:0;transform:translateY(-5px);transition:opacity .3s,transform .3s;
-  pointer-events:none;
+  display:inline-flex;align-items:center;gap:7px;padding:7px 12px;border-radius:999px;
+  background:var(--bg);border:1px dashed var(--brass-line);
+  font-size:10.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--brass);
+  opacity:0;transform:translateY(-5px);transition:opacity .3s,transform .3s;pointer-events:none;
 }
 .tile:hover .drop{opacity:1;transform:none}
-.drop svg{width:13px;height:13px;stroke:currentColor}
+.drop svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:1.8}
 .tile.over{border-color:var(--brass);transform:translateY(-4px)}
-.tile.over .drop{opacity:1;transform:none;background:var(--brass);color:#FFFFFF;border-style:solid}
+.tile.over .drop{opacity:1;transform:none;background:var(--brass-fill);color:var(--on-brass);border-style:solid}
 
-/* ══ SERVICES ════════════════════════════════════════════════ */
-.svc{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.svc-card{
-  position:relative;overflow:hidden;border-radius:var(--r-lg);
-  border:1px solid var(--line);background:linear-gradient(170deg,var(--navy-800),var(--navy-850) 55%,var(--navy-900));
-  display:flex;flex-direction:column;
-  transition:transform .4s cubic-bezier(.22,.7,.3,1),border-color .4s,box-shadow .4s;
-}
-.svc-card:hover{transform:translateY(-6px);border-color:rgba(11,18,32,.2);box-shadow:0 28px 48px -28px rgba(11,18,32,.3)}
-.svc-body{padding:30px 30px 32px}
-.svc-num{
-  font-size:11px;font-weight:700;letter-spacing:.2em;color:var(--ink-3);
-  display:flex;align-items:center;gap:10px;margin-bottom:20px;
-}
-.svc-num .bar{flex:1;height:1px;background:var(--line)}
-.svc-icon{
-  width:50px;height:50px;border-radius:14px;margin-bottom:20px;
+/* per photo controls: swap this one, or remove just this one */
+.acts{position:absolute;top:14px;right:14px;z-index:3;display:none;gap:8px}
+.tile.has .acts{display:flex}
+.acts button{
+  width:34px;height:34px;border-radius:50%;
   display:flex;align-items:center;justify-content:center;
-  background:var(--brass-dim);border:1px solid rgba(142,99,20,.24);
+  background:rgba(6,10,18,.72);border:1px solid rgba(255,255,255,.28);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  opacity:0;transform:translateY(-4px);
+  transition:opacity .3s,transform .3s,background .25s,border-color .25s;
 }
-.svc-icon svg{width:22px;height:22px;stroke:var(--brass)}
-.svc-card h3{margin:0 0 10px;font-size:20px;font-weight:700;letter-spacing:-.02em}
-.svc-card p{margin:0 0 22px;color:var(--ink-3);font-size:14.5px}
-.svc-list{list-style:none;margin:0 0 26px;padding:0;display:flex;flex-direction:column;gap:9px}
-.svc-list li{display:flex;align-items:center;gap:10px;font-size:13.5px;color:var(--ink-2)}
-.svc-list svg{width:14px;height:14px;stroke:var(--brass);flex:none}
-.svc-link{
-  margin-top:auto;display:inline-flex;align-items:center;gap:9px;
-  font-size:12.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--brass);
-}
-.svc-link svg{width:15px;height:15px;stroke:currentColor;transition:transform .3s}
-.svc-card:hover .svc-link svg{transform:translateX(5px)}
+.tile:hover .acts button,.tile:focus-within .acts button{opacity:1;transform:none}
+.acts button:hover{background:var(--brass-fill);border-color:var(--brass-fill)}
+.acts svg{width:15px;height:15px;stroke:#FFFFFF;fill:none;stroke-width:1.9}
+.acts button:hover svg{stroke:var(--on-brass)}
+@media (hover:none){.acts button{opacity:1;transform:none}}
 
 /* ══ CTA BAND ════════════════════════════════════════════════ */
 .band{
   position:relative;overflow:hidden;border-radius:24px;
   border:1px solid var(--line-2);padding:56px 50px;
-  background:linear-gradient(150deg,#FFFFFF,#E4EBF4 64%);
+  background:linear-gradient(150deg,var(--card),var(--bg-2) 62%);
   display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap;
 }
-.band::before{
-  content:"";position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(60% 120% at 88% 10%, rgba(221,174,94,.3), transparent 62%);
-}
+.band::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(60% 120% at 88% 10%, var(--brass-wash), transparent 62%)}
 .band > *{position:relative}
 .band h2{max-width:20ch}
 .band p{margin:14px 0 0;color:var(--ink-2);max-width:42ch;font-size:15px}
 
 /* ══ FOOTER ══════════════════════════════════════════════════ */
-.strip{border-top:1px solid var(--line);background:var(--navy-950)}
-.strip-inner{display:grid;grid-template-columns:repeat(4,1fr) auto;gap:34px;align-items:center;padding-top:36px;padding-bottom:36px}
-.info{display:flex;align-items:flex-start;gap:13px}
-.info > svg{width:19px;height:19px;stroke:var(--brass);opacity:.85;flex:none;margin-top:2px}
-.info-label{font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);margin-bottom:5px}
-.info-value{font-size:13.5px;color:var(--ink-2);line-height:1.5}
+.strip{border-top:1px solid var(--line);background:var(--bg)}
+.strip-inner{
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr)) auto;gap:30px;
+  align-items:start;                    /* labels line up, whatever the value height */
+  padding-top:36px;padding-bottom:36px;
+}
+.info{display:flex;align-items:flex-start;gap:13px;min-width:0}
+.info > svg{width:19px;height:19px;stroke:var(--brass);fill:none;stroke-width:1.7;opacity:.85;flex:none;margin-top:2px}
+.info-label{font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);margin-bottom:6px;line-height:1.2}
+.info-value{font-size:13.5px;color:var(--ink-2);line-height:1.5;overflow-wrap:break-word}
 .info-value b{color:var(--ink);font-weight:600}
 .info-value a:hover{color:var(--brass)}
-.socials{display:flex;gap:10px}
-.socials a{
-  width:38px;height:38px;border-radius:50%;border:1px solid var(--line-2);
-  display:flex;align-items:center;justify-content:center;color:var(--ink-2);
-  transition:color .25s,border-color .25s,background .25s,transform .25s;
-}
-.socials a:hover{color:var(--brass);border-color:rgba(142,99,20,.45);background:var(--brass-dim);transform:translateY(-2px)}
+.socials{display:flex;gap:10px;align-self:center}
+.socials a{width:38px;height:38px;border-radius:50%;border:1px solid var(--line-2);display:flex;align-items:center;justify-content:center;color:var(--ink-2);transition:color .25s,border-color .25s,background .25s,transform .25s}
+.socials a:hover{color:var(--brass);border-color:var(--brass-line);background:var(--brass-wash);transform:translateY(-2px)}
 .socials svg{width:16px;height:16px}
 .legal{border-top:1px solid var(--line);padding-top:18px;padding-bottom:18px;font-size:12px;color:var(--ink-3);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 
-/* ══ PHOTO TOOLBAR ═══════════════════════════════════════════ */
+/* ══ TOOLBAR ═════════════════════════════════════════════════ */
 .toolbar{
   position:fixed;right:20px;bottom:20px;z-index:80;
-  display:flex;align-items:center;gap:10px;
-  padding:10px 12px 10px 16px;border-radius:999px;
-  background:rgba(255,255,255,.96);border:1px solid var(--line-2);
+  display:flex;align-items:center;gap:10px;padding:10px 12px 10px 16px;border-radius:999px;
+  background:var(--card);border:1px solid var(--line-2);
   backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
-  box-shadow:0 18px 36px -18px rgba(11,18,32,.4);
-  font-size:12px;color:var(--ink-2);
+  box-shadow:var(--shadow);font-size:12px;color:var(--ink-2);
   transform:translateY(140%);transition:transform .5s cubic-bezier(.22,.7,.3,1);
 }
 .toolbar.show{transform:none}
 .toolbar b{color:var(--ink);font-weight:700}
 .toolbar button{
-  font:inherit;font-weight:700;color:var(--brass);cursor:pointer;
-  background:var(--brass-dim);border:1px solid rgba(142,99,20,.3);
-  padding:7px 14px;border-radius:999px;transition:background .25s,color .25s;
+  font-weight:700;color:var(--brass);background:var(--brass-wash);
+  border:1px solid var(--brass-line);padding:7px 14px;border-radius:999px;
+  transition:background .25s,color .25s;
 }
-.toolbar button:hover{background:var(--brass);color:#FFFFFF}
+.toolbar button:hover{background:var(--brass-fill);color:var(--on-brass)}
 
 /* ══ RESPONSIVE ══════════════════════════════════════════════ */
-@media (max-width:1080px){
-  .hero-cols{grid-template-columns:1fr;gap:36px;align-items:start}
-  .stats{max-width:420px}
-  .board{
-    grid-template-columns:repeat(2,1fr);grid-auto-rows:200px;
-    grid-template-areas:"a a" "b c" "d e" "f f";
-  }
-  .svc{grid-template-columns:1fr}
-  .strip-inner{grid-template-columns:repeat(2,1fr)}
-  .socials{grid-column:1/-1}
+@media (max-width:1140px){
+  .nav a{padding:10px 10px;font-size:13px}
+  .header-inner{gap:14px}
 }
-@media (max-width:900px){
+@media (max-width:1080px){
+  .hero-cols{grid-template-columns:1fr;gap:36px}
+  .stats{max-width:420px}
+  .svc{grid-template-columns:1fr}
+  .board{grid-template-columns:repeat(2,1fr);grid-auto-rows:200px;grid-template-areas:"a a" "b c" "d e" "f f";}
+  .strip-inner{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .socials{grid-column:1/-1;align-self:start}
+}
+@media (max-width:960px){
   .nav{display:none}
-  .call{margin-left:auto}
+  .lang,.theme-switch{display:none}       /* they live in the panel instead */
+  .burger{display:flex;margin-left:auto}
+  .call{display:none}
 }
 @media (max-width:620px){
   .wrap{padding-left:20px;padding-right:20px}
   .header-inner{height:70px;gap:12px}
   .brand-sub{display:none}
-  .brand-name{font-size:16px;letter-spacing:.1em;white-space:nowrap}
-  .call{padding:10px 16px;font-size:13.5px}
+  .brand-name{font-size:16px;letter-spacing:.1em}
+  .m-menu{padding-top:86px}
   .hero-inner{padding-top:58px;padding-bottom:56px}
   .sec{padding:64px 0}
   .board{grid-template-columns:1fr;grid-auto-rows:210px;grid-template-areas:"a" "b" "c" "d" "e" "f"}
-  .t-a{grid-row:span 1}
   .band{padding:38px 26px}
   .btn{flex:1 1 auto}
   .strip-inner{grid-template-columns:1fr}
@@ -441,35 +544,87 @@ h2 .serif{font-family:var(--serif);font-style:italic;font-weight:400;color:var(-
   <div class="wrap header-inner">
     <a class="brand" href="#">
       <svg class="mark" viewBox="0 0 48 48" fill="none" aria-hidden="true">
-        <circle cx="24" cy="24" r="22.4" stroke="#DDAE5E" stroke-width="1.4" opacity=".5"/>
-        <circle cx="24" cy="24" r="19.2" stroke="#DDAE5E" stroke-width=".9" opacity=".22"/>
-        <path d="M24 12.6 33.9 18.3v11.4L24 35.4 14.1 29.7V18.3L24 12.6Z" stroke="#DDAE5E" stroke-width="1.5" stroke-linejoin="round"/>
-        <path d="M24 19.4a4.6 4.6 0 1 0 0 9.2 4.6 4.6 0 0 0 0-9.2Z" stroke="#DDAE5E" stroke-width="1.3" opacity=".7"/>
-        <path d="M24 5.2v3.4M24 39.4v3.4M8.6 24h3.4M36 24h3.4" stroke="#DDAE5E" stroke-width="1.4" stroke-linecap="round" opacity=".55"/>
+        <circle cx="24" cy="24" r="22.4" stroke-width="1.4" opacity=".5"/>
+        <circle cx="24" cy="24" r="19.2" stroke-width=".9" opacity=".22"/>
+        <path d="M24 12.6 33.9 18.3v11.4L24 35.4 14.1 29.7V18.3L24 12.6Z" stroke-width="1.5" stroke-linejoin="round"/>
+        <path d="M24 19.4a4.6 4.6 0 1 0 0 9.2 4.6 4.6 0 0 0 0-9.2Z" stroke-width="1.3" opacity=".7"/>
+        <path d="M24 5.2v3.4M24 39.4v3.4M8.6 24h3.4M36 24h3.4" stroke-width="1.4" stroke-linecap="round" opacity=".55"/>
       </svg>
       <span class="brand-text">
         <span class="brand-name">Nord <em>Garage</em></span>
-        <span class="brand-sub">Service · Wash · Rental</span>
+        <span class="brand-sub" data-i18n="brand.sub">Service · Wash · Rental</span>
       </span>
     </a>
 
     <nav class="nav">
-      <a href="#" class="on">Home</a>
-      <a href="#services">Services</a>
-      <a href="#work">Our work</a>
-      <a href="#">About</a>
-      <a href="#contact">Contact</a>
+      <a href="#" class="on" data-i18n="nav.home">Home</a>
+      <a href="#services" data-i18n="nav.services">Services</a>
+      <a href="#work" data-i18n="nav.work">Our work</a>
+      <a href="#" data-i18n="nav.about">About</a>
+      <a href="#contact" data-i18n="nav.contact">Contact</a>
     </nav>
 
-    <a class="call" href="tel:+3548333370">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
-      833 3370
-    </a>
+    <div class="tools">
+      <button class="theme-switch" id="themeBtn" type="button" data-i18n-aria="a11y.theme" aria-label="Switch theme">
+        <span class="puck" aria-hidden="true"></span>
+        <span aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg></span>
+        <span aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.6M12 19.4V22M2 12h2.6M19.4 12H22M4.9 4.9l1.9 1.9M17.2 17.2l1.9 1.9M19.1 4.9l-1.9 1.9M6.8 17.2l-1.9 1.9" stroke-linecap="round"/></svg></span>
+      </button>
+
+      <div class="lang">
+        <button class="lang-btn" id="langBtn" type="button" aria-haspopup="listbox" aria-expanded="false" data-i18n-aria="a11y.lang" aria-label="Change language">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3.4 9h17.2M3.4 15h17.2M12 3a15 15 0 0 1 0 18a15 15 0 0 1 0-18Z"/></svg>
+          <span id="langNow">IS</span>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="lang-menu" id="langMenu" role="listbox">
+          <button type="button" role="option" data-lang="is" lang="is">Íslenska <span class="code">IS</span></button>
+          <button type="button" role="option" data-lang="en" lang="en">English <span class="code">EN</span></button>
+          <button type="button" role="option" data-lang="es" lang="es">Español <span class="code">ES</span></button>
+        </div>
+      </div>
+
+      <a class="call" href="tel:+3548333370">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+        833 3370
+      </a>
+
+      <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="mMenu" data-i18n-aria="a11y.menu" aria-label="Menu"><span></span></button>
+    </div>
   </div>
 </header>
 
+<!-- ══════════ MOBILE PANEL ══════════ -->
+<div class="m-menu" id="mMenu">
+  <div class="wrap" style="padding:0">
+    <a class="m-link" href="#" data-i18n="nav.home">Home</a>
+    <a class="m-link" href="#services" data-i18n="nav.services">Services</a>
+    <a class="m-link" href="#work" data-i18n="nav.work">Our work</a>
+    <a class="m-link" href="#" data-i18n="nav.about">About</a>
+    <a class="m-link" href="#contact" data-i18n="nav.contact">Contact</a>
+
+    <div class="m-row">
+      <div class="m-langs" id="mLangs">
+        <button type="button" data-lang="is" lang="is">Íslenska</button>
+        <button type="button" data-lang="en" lang="en">English</button>
+        <button type="button" data-lang="es" lang="es">Español</button>
+      </div>
+      <button class="theme-switch" id="themeBtnM" type="button" style="display:flex" data-i18n-aria="a11y.theme" aria-label="Switch theme">
+        <span class="puck" aria-hidden="true"></span>
+        <span aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg></span>
+        <span aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.6M12 19.4V22M2 12h2.6M19.4 12H22M4.9 4.9l1.9 1.9M17.2 17.2l1.9 1.9M19.1 4.9l-1.9 1.9M6.8 17.2l-1.9 1.9" stroke-linecap="round"/></svg></span>
+      </button>
+    </div>
+
+    <a class="call" href="tel:+3548333370" style="display:inline-flex">
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+      833 3370
+    </a>
+  </div>
+</div>
+
 <!-- ══════════ HERO ══════════ -->
-<section class="hero">
+<section class="hero" id="hero">
   <div class="hero-slot" id="heroSlot">
     <div class="fallback"></div>
     <div class="img"></div>
@@ -477,47 +632,51 @@ h2 .serif{font-family:var(--serif);font-style:italic;font-weight:400;color:var(-
   <div class="grain"></div>
 
   <div class="wrap hero-inner">
-    <h1 class="rv">Your car,<br>treated like <span class="serif">our own.</span></h1>
+    <h1 class="rv" data-i18n-html="hero.h1">Your car,<br>treated like <em>our own.</em></h1>
 
-    <div class="hero-cols">
+    <div class="hero-cols" style="margin-top:44px">
       <div class="rv">
-        <p class="lede">
-          Service, diagnostics, a proper wash and rental cars. One workshop on
-          Gagnheiði, every make and model, no runaround.
-        </p>
+        <p class="lede" data-i18n="hero.lead">Service, diagnostics, a proper wash and rental cars. One workshop on Gagnheiði, every make and model, no runaround.</p>
         <div class="cta">
           <a class="btn btn-a" href="tel:+3548333370">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
-            Call the garage
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+            <span data-i18n="hero.cta1">Call the garage</span>
           </a>
           <a class="btn btn-b" href="#work">
-            See our work
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            <span data-i18n="hero.cta2">See our work</span>
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
         </div>
       </div>
 
       <div class="stats rv">
-        <div class="stat"><b>12<span class="u">+</span></b><span>Years of experience</span></div>
-        <div class="stat"><b>3<span class="u">k</span></b><span>Cars serviced</span></div>
-        <div class="stat"><b>1<span class="u">day</span></b><span>Turnaround</span></div>
-        <div class="stat"><b>All</b><span>Makes &amp; models</span></div>
+        <div class="stat"><b>12<span class="u">+</span></b><span data-i18n="stat.years">Years of experience</span></div>
+        <div class="stat"><b>3<span class="u">k</span></b><span data-i18n="stat.cars">Cars serviced</span></div>
+        <div class="stat"><b>1<span class="u" data-i18n="stat.dayUnit">day</span></b><span data-i18n="stat.turn">Turnaround</span></div>
+        <div class="stat"><b data-i18n="stat.allWord">All</b><span data-i18n="stat.makes">Makes &amp; models</span></div>
       </div>
     </div>
 
-    <span class="hero-hint" id="heroHint">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4m0 0L7 9m5-5 5 5M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
-      Click or drop a photo to set the hero image
-    </span>
+    <div class="hero-tools">
+      <button class="chip" id="heroHint" type="button">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4m0 0L7 9m5-5 5 5M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+        <span data-i18n="photo.setHero">Click or drop a photo to set the hero image</span>
+      </button>
+      <button class="chip solid" id="heroSwap" type="button" hidden>
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10a8 8 0 0 0-13.5-4L4 8m0-4v4h4M4 14a8 8 0 0 0 13.5 4L20 16m0 4v-4h-4"/></svg>
+        <span data-i18n="photo.swap">Change photo</span>
+      </button>
+      <button class="chip solid" id="heroDrop" type="button" hidden>
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        <span data-i18n="photo.remove">Remove</span>
+      </button>
+    </div>
   </div>
 </section>
 
 <!-- ══════════ MARQUEE ══════════ -->
 <div class="marquee" aria-hidden="true">
-  <div class="marquee-track">
-    <span>Car service <i></i> Car wash <i></i> Car rental <i></i> Diagnostics <i></i> Tyre &amp; wheel <i></i> Brakes <i></i> Oil change <i></i> Detailing <i></i></span>
-    <span>Car service <i></i> Car wash <i></i> Car rental <i></i> Diagnostics <i></i> Tyre &amp; wheel <i></i> Brakes <i></i> Oil change <i></i> Detailing <i></i></span>
-  </div>
+  <div class="marquee-track" id="marquee"></div>
 </div>
 
 <!-- ══════════ SERVICES ══════════ -->
@@ -525,55 +684,55 @@ h2 .serif{font-family:var(--serif);font-style:italic;font-weight:400;color:var(-
   <div class="wrap">
     <div class="sec-head rv">
       <div>
-        <p class="kicker"><span class="bar"></span> What we do</p>
-        <h2>Three things, done <span class="serif">properly.</span></h2>
+        <p class="kicker"><span class="bar"></span> <span data-i18n="svc.kicker">What we do</span></p>
+        <h2 data-i18n-html="svc.h2">Three things, done <em>properly.</em></h2>
       </div>
-      <p class="sec-note">Book by phone and we will tell you straight away what it takes and what it costs.</p>
+      <p class="sec-note" data-i18n="svc.note">Book by phone and we will tell you straight away what it takes and what it costs.</p>
     </div>
 
     <div class="svc rv">
       <article class="svc-card">
         <div class="svc-body">
           <div class="svc-num">01 <span class="bar"></span></div>
-          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76Z"/></svg></div>
-          <h3>Auto service</h3>
-          <p>Repairs, maintenance and full diagnostics for all makes and models.</p>
+          <div class="svc-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76Z"/></svg></div>
+          <h3 data-i18n="svc1.title">Auto service</h3>
+          <p data-i18n="svc1.text">Repairs, maintenance and full diagnostics for all makes and models.</p>
           <ul class="svc-list">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L19 7"/></svg> Fault diagnostics</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L19 7"/></svg> Brakes &amp; suspension</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L19 7"/></svg> Oil &amp; filters</li>
+            <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L19 7"/></svg><span data-i18n="svc1.li1">Fault diagnostics</span></li>
+            <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L19 7"/></svg><span data-i18n="svc1.li2">Brakes &amp; suspension</span></li>
+            <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L19 7"/></svg><span data-i18n="svc1.li3">Oil &amp; filters</span></li>
           </ul>
-          <span class="svc-link">Learn more <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          <span class="svc-link"><span data-i18n="svc.learn">Learn more</span> <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         </div>
       </article>
 
       <article class="svc-card">
         <div class="svc-body">
           <div class="svc-num">02 <span class="bar"></span></div>
-          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7 17.66 8.36a8 8 0 1 1-11.32 0L12 2.7Z"/><path d="M12 18a4 4 0 0 1-4-4"/></svg></div>
-          <h3>Car wash</h3>
-          <p>Exterior and interior cleaning. A clean car, a better mood.</p>
+          <div class="svc-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7 17.66 8.36a8 8 0 1 1-11.32 0L12 2.7Z"/><path d="M12 18a4 4 0 0 1-4-4"/></svg></div>
+          <h3 data-i18n="svc2.title">Car wash</h3>
+          <p data-i18n="svc2.text">Exterior and interior cleaning. A clean car, a better mood.</p>
           <ul class="svc-list">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L19 7"/></svg> Hand wash &amp; wax</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L19 7"/></svg> Interior detailing</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L19 7"/></svg> Winter salt removal</li>
+            <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L19 7"/></svg><span data-i18n="svc2.li1">Hand wash &amp; wax</span></li>
+            <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L19 7"/></svg><span data-i18n="svc2.li2">Interior detailing</span></li>
+            <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L19 7"/></svg><span data-i18n="svc2.li3">Winter salt removal</span></li>
           </ul>
-          <span class="svc-link">Learn more <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          <span class="svc-link"><span data-i18n="svc.learn">Learn more</span> <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         </div>
       </article>
 
       <article class="svc-card">
         <div class="svc-body">
           <div class="svc-num">03 <span class="bar"></span></div>
-          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2M11.39 11.61a5.5 5.5 0 1 1-7.78 7.78 5.5 5.5 0 0 1 7.78-7.78ZM15.5 7.5l3 3L22 7l-3-3-3.5 3.5Z"/></svg></div>
-          <h3>Car rental</h3>
-          <p>Comfortable, well-kept cars ready for any journey around Iceland.</p>
+          <div class="svc-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2M11.39 11.61a5.5 5.5 0 1 1-7.78 7.78 5.5 5.5 0 0 1 7.78-7.78ZM15.5 7.5l3 3L22 7l-3-3-3.5 3.5Z"/></svg></div>
+          <h3 data-i18n="svc3.title">Car rental</h3>
+          <p data-i18n="svc3.text">Comfortable, well kept cars ready for any journey around Iceland.</p>
           <ul class="svc-list">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L19 7"/></svg> Daily &amp; weekly rates</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L19 7"/></svg> Winter tyres included</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L19 7"/></svg> Courtesy car while we work</li>
+            <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L19 7"/></svg><span data-i18n="svc3.li1">Daily &amp; weekly rates</span></li>
+            <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L19 7"/></svg><span data-i18n="svc3.li2">Winter tyres included</span></li>
+            <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L19 7"/></svg><span data-i18n="svc3.li3">Courtesy car while we work</span></li>
           </ul>
-          <span class="svc-link">Learn more <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          <span class="svc-link"><span data-i18n="svc.learn">Learn more</span> <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         </div>
       </article>
     </div>
@@ -585,84 +744,13 @@ h2 .serif{font-family:var(--serif);font-style:italic;font-weight:400;color:var(-
   <div class="wrap">
     <div class="sec-head rv">
       <div>
-        <p class="kicker"><span class="bar"></span> The workshop</p>
-        <h2>Real cars, real <span class="serif">hands</span>, real results.</h2>
+        <p class="kicker"><span class="bar"></span> <span data-i18n="work.kicker">The workshop</span></p>
+        <h2 data-i18n-html="work.h2">Real cars, real <em>hands</em>, real results.</h2>
       </div>
-      <p class="sec-note">
-        Every block below is a photo slot. Drop a picture straight onto it to
-        see the board come alive.
-      </p>
+      <p class="sec-note" data-i18n="work.note">Every block below is a photo slot. Drop a picture straight onto it to see the board come alive.</p>
     </div>
 
-    <div class="board rv">
-
-      <article class="tile t-a" tabindex="0" data-slot="a">
-        <div class="ph" style="--c1:#DEE6F0;--c2:#C2CEDE"></div>
-        <div class="ph-icon"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76Z"/></svg></div>
-        <div class="img"></div><div class="scrim"></div>
-        <span class="drop"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4m0 0L7 9m5-5 5 5M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg> Drop photo</span>
-        <div class="cap">
-          <div><div class="cap-tag">01 · Workshop</div><div class="cap-name">Inside the bay</div></div>
-          <span class="cap-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
-        </div>
-      </article>
-
-      <article class="tile t-b" tabindex="0" data-slot="b">
-        <div class="ph" style="--c1:#D9E5EC;--c2:#BDCDD8"></div>
-        <div class="ph-icon"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7 17.66 8.36a8 8 0 1 1-11.32 0L12 2.7Z"/><path d="M12 18a4 4 0 0 1-4-4"/></svg></div>
-        <div class="img"></div><div class="scrim"></div>
-        <span class="drop"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4m0 0L7 9m5-5 5 5M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg> Drop photo</span>
-        <div class="cap">
-          <div><div class="cap-tag">02 · Wash</div><div class="cap-name">Foam &amp; shine</div></div>
-          <span class="cap-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
-        </div>
-      </article>
-
-      <article class="tile t-c" tabindex="0" data-slot="c">
-        <div class="ph" style="--c1:#E0E5EF;--c2:#C6CEDC"></div>
-        <div class="ph-icon"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.4"/><path d="M12 3v5.6M20.5 16.5l-5.4-2.4M3.5 16.5l5.4-2.4"/></svg></div>
-        <div class="img"></div><div class="scrim"></div>
-        <span class="drop"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4m0 0L7 9m5-5 5 5M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg> Drop photo</span>
-        <div class="cap">
-          <div><div class="cap-tag">03 · Wheels</div><div class="cap-name">Tyre service</div></div>
-          <span class="cap-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
-        </div>
-      </article>
-
-      <article class="tile t-d" tabindex="0" data-slot="d">
-        <div class="ph" style="--c1:#DCE4EE;--c2:#C0CBDA"></div>
-        <div class="ph-icon"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2M11.39 11.61a5.5 5.5 0 1 1-7.78 7.78 5.5 5.5 0 0 1 7.78-7.78ZM15.5 7.5l3 3L22 7l-3-3-3.5 3.5Z"/></svg></div>
-        <div class="img"></div><div class="scrim"></div>
-        <span class="drop"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4m0 0L7 9m5-5 5 5M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg> Drop photo</span>
-        <div class="cap">
-          <div><div class="cap-tag">04 · Rental</div><div class="cap-name">Keys ready</div></div>
-          <span class="cap-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
-        </div>
-      </article>
-
-      <article class="tile t-e" tabindex="0" data-slot="e">
-        <div class="ph" style="--c1:#D6E3EB;--c2:#BAC9D6"></div>
-        <div class="ph-icon"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16v-3.5L6 7h12l2 5.5V16M4 16h16M4 16v2.5h3V16M17 16v2.5h3V16"/><circle cx="7.5" cy="12.5" r="1"/><circle cx="16.5" cy="12.5" r="1"/></svg></div>
-        <div class="img"></div><div class="scrim"></div>
-        <span class="drop"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4m0 0L7 9m5-5 5 5M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg> Drop photo</span>
-        <div class="cap">
-          <div><div class="cap-tag">05 · Detail</div><div class="cap-name">Interior care</div></div>
-          <span class="cap-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
-        </div>
-      </article>
-
-      <article class="tile t-f" tabindex="0" data-slot="f">
-        <div class="ph" style="--c1:#DFE6ED;--c2:#C3CEDA"></div>
-        <div class="ph-icon"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18l5.5-7 4 5 3-3.5L21 18H3Z"/><circle cx="8" cy="7.5" r="2"/></svg></div>
-        <div class="img"></div><div class="scrim"></div>
-        <span class="drop"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4m0 0L7 9m5-5 5 5M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg> Drop photo</span>
-        <div class="cap">
-          <div><div class="cap-tag">06 · Selfoss</div><div class="cap-name">On the road south</div></div>
-          <span class="cap-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
-        </div>
-      </article>
-
-    </div>
+    <div class="board rv" id="board"></div>
   </div>
 </section>
 
@@ -671,13 +759,13 @@ h2 .serif{font-family:var(--serif);font-style:italic;font-weight:400;color:var(-
   <div class="wrap">
     <div class="band rv">
       <div>
-        <p class="kicker"><span class="bar"></span> Book today</p>
-        <h2>Bring it in, we&rsquo;ll <span class="serif">have a look.</span></h2>
-        <p>Call and we will find you a slot this week. Walk-ins are welcome too, the kettle is on.</p>
+        <p class="kicker"><span class="bar"></span> <span data-i18n="cta.kicker">Book today</span></p>
+        <h2 data-i18n-html="cta.h2">Bring it in, we&rsquo;ll <em>have a look.</em></h2>
+        <p data-i18n="cta.text">Call and we will find you a slot this week. Walk in visits are welcome too, the kettle is on.</p>
       </div>
       <div class="cta" style="margin:0">
         <a class="btn btn-a" href="tel:+3548333370">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
           833 3370
         </a>
       </div>
@@ -689,20 +777,25 @@ h2 .serif{font-family:var(--serif);font-style:italic;font-weight:400;color:var(-
 <footer class="strip" id="contact">
   <div class="wrap strip-inner">
     <div class="info">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-      <div><div class="info-label">Visit us</div><div class="info-value"><b>Gagnheiði 51</b><br>800 Selfoss</div></div>
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+      <div><div class="info-label" data-i18n="foot.visit">Visit us</div><div class="info-value"><b>Gagnheiði 51</b><br>800 Selfoss</div></div>
     </div>
     <div class="info">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
-      <div><div class="info-label">Call us</div><div class="info-value"><a href="tel:+3548333370"><b>833 3370</b></a></div></div>
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+      <div><div class="info-label" data-i18n="foot.call">Call us</div><div class="info-value"><a href="tel:+3548333370"><b>833 3370</b></a></div></div>
     </div>
     <div class="info">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6 8.5-6"/></svg>
-      <div><div class="info-label">Email</div><div class="info-value"><a href="mailto:nordgarage.is@gmail.com">nordgarage.is@gmail.com</a></div></div>
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6 8.5-6"/></svg>
+      <div><div class="info-label" data-i18n="foot.email">Email</div><div class="info-value"><a href="mailto:nordgarage.is@gmail.com">nordgarage.is@gmail.com</a></div></div>
     </div>
     <div class="info">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-      <div><div class="info-label">Opening hours</div><div class="info-value">Mon to Fri <b>08:00 to 18:00</b><br>Sat <b>08:00 to 17:00</b></div></div>
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+      <div><div class="info-label" data-i18n="foot.hours">Opening hours</div>
+        <div class="info-value">
+          <span data-i18n="foot.week">Mon to Fri</span> <b data-i18n="foot.weekH">08:00 to 18:00</b><br>
+          <span data-i18n="foot.sat">Sat</span> <b data-i18n="foot.satH">08:00 to 17:00</b>
+        </div>
+      </div>
     </div>
     <div class="socials">
       <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v2H8v3h2v7h3v-7h3l1-3h-4v-2c0-.6.4-1 1-1Z"/></svg></a>
@@ -710,15 +803,14 @@ h2 .serif{font-family:var(--serif);font-style:italic;font-weight:400;color:var(-
     </div>
   </div>
   <div class="wrap legal">
-    <span>© 2026 Nord Garage · Bílapjónusta · Bílapvottur · Bílaleiga</span>
+    <span data-i18n="legal">© 2026 Nord Garage · Bílapjónusta · Bílapvottur · Bílaleiga</span>
     <span>Gagnheiði 51, 800 Selfoss, Iceland</span>
   </div>
 </footer>
 
-<!-- photo toolbar -->
 <div class="toolbar" id="toolbar">
-  <span><b id="shotCount">0</b> photos placed</span>
-  <button type="button" id="resetShots">Reset photos</button>
+  <span><b id="shotCount">0</b> <span data-i18n="photo.placed">photos placed</span></span>
+  <button type="button" id="resetShots" data-i18n="photo.clear">Clear all</button>
 </div>
 <input type="file" id="picker" accept="image/*" hidden>
 
@@ -726,59 +818,312 @@ h2 .serif{font-family:var(--serif);font-style:italic;font-weight:400;color:var(-
 (function(){
   "use strict";
 
-  /* ── scroll reveal ─────────────────────────────────────────── */
-  var revealables = document.querySelectorAll('.rv');
-  if ('IntersectionObserver' in window) {
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
-      });
-    }, {rootMargin:'0px 0px -8% 0px', threshold:0.08});
-    revealables.forEach(function(el){ io.observe(el); });
-  } else {
-    revealables.forEach(function(el){ el.classList.add('in'); });
+  /* ══════════════ LANGUAGE ══════════════
+     Icelandic is the default. English and Spanish follow.
+     The choice is remembered; <html lang> and the metadata move with it. */
+  var I18N = {
+    is:{
+      "meta.title":"Nord Garage · Bílaþjónusta, bílaþvottur og bílaleiga á Selfossi",
+      "meta.desc":"Nord Garage á Selfossi. Bílaþjónusta, bílaþvottur og bílaleiga. Eitt verkstæði, allar tegundir og gerðir.",
+      "brand.sub":"Þjónusta · Þvottur · Bílaleiga",
+      "nav.home":"Heim","nav.services":"Þjónusta","nav.work":"Verkin okkar","nav.about":"Um okkur","nav.contact":"Hafa samband",
+      "hero.h1":"Bíllinn þinn,<br>eins og <em>okkar eigin.</em>",
+      "hero.lead":"Viðgerðir, bilanagreining, almennilegur þvottur og bílaleigubílar. Eitt verkstæði á Gagnheiði, allar tegundir og gerðir.",
+      "hero.cta1":"Hringdu í verkstæðið","hero.cta2":"Sjáðu verkin okkar",
+      "stat.years":"Ára reynsla","stat.cars":"Bílar í þjónustu","stat.turn":"Afgreiðslutími","stat.makes":"Allar tegundir",
+      "stat.dayUnit":"dagur","stat.allWord":"Allt",
+      "marquee":["Bílaþjónusta","Bílaþvottur","Bílaleiga","Bilanagreining","Dekk og felgur","Bremsur","Olíuskipti","Djúphreinsun"],
+      "svc.kicker":"Hvað við gerum","svc.h2":"Þrennt, gert <em>almennilega.</em>",
+      "svc.note":"Hringdu og við segjum þér strax hvað þarf og hvað það kostar.",
+      "svc1.title":"Bílaþjónusta","svc1.text":"Viðgerðir, viðhald og full bilanagreining fyrir allar tegundir og gerðir.",
+      "svc1.li1":"Bilanagreining","svc1.li2":"Bremsur og fjöðrun","svc1.li3":"Olía og síur",
+      "svc2.title":"Bílaþvottur","svc2.text":"Þvottur að utan og innan. Hreinn bíll, betra skap.",
+      "svc2.li1":"Handþvottur og bón","svc2.li2":"Djúphreinsun að innan","svc2.li3":"Saltþvottur að vetri",
+      "svc3.title":"Bílaleiga","svc3.text":"Þægilegir og vel hirtir bílar, tilbúnir í hvaða ferð sem er.",
+      "svc3.li1":"Dags og vikuverð","svc3.li2":"Vetrardekk innifalin","svc3.li3":"Bíll á meðan viðgerð stendur",
+      "svc.learn":"Sjá meira",
+      "work.kicker":"Verkstæðið","work.h2":"Alvöru bílar, alvöru <em>hendur</em>, alvöru árangur.",
+      "work.note":"Hver reitur hér að neðan er myndarammi. Slepptu mynd á hann til að lífga töfluna við.",
+      "tile1.tag":"01 · Verkstæði","tile1.name":"Inni á gólfi",
+      "tile2.tag":"02 · Þvottur","tile2.name":"Löður og gljái",
+      "tile3.tag":"03 · Dekk","tile3.name":"Dekkjaþjónusta",
+      "tile4.tag":"04 · Bílaleiga","tile4.name":"Lyklar tilbúnir",
+      "tile5.tag":"05 · Þrif","tile5.name":"Umhirða að innan",
+      "tile6.tag":"06 · Selfoss","tile6.name":"Á leiðinni suður",
+      "cta.kicker":"Bókaðu í dag","cta.h2":"Komdu með hann, við <em>kíkjum á hann.</em>",
+      "cta.text":"Hringdu og við finnum tíma í þessari viku. Innlit eru líka velkomin, kaffið er á könnunni.",
+      "foot.visit":"Heimsæktu okkur","foot.call":"Hringdu í okkur","foot.email":"Netfang","foot.hours":"Opnunartími",
+      "foot.week":"Mán til fös","foot.weekH":"08:00 til 18:00","foot.sat":"Lau","foot.satH":"08:00 til 17:00",
+      "legal":"© 2026 Nord Garage · Bílaþjónusta · Bílaþvottur · Bílaleiga",
+      "photo.setHero":"Smelltu eða slepptu mynd fyrir forsíðu","photo.swap":"Skipta um mynd","photo.remove":"Fjarlægja",
+      "photo.drop":"Slepptu mynd","photo.placed":"myndir settar","photo.clear":"Hreinsa allt",
+      "a11y.theme":"Skipta um þema","a11y.lang":"Skipta um tungumál","a11y.menu":"Valmynd",
+      "a11y.swap":"Skipta um mynd","a11y.remove":"Fjarlægja mynd"
+    },
+    en:{
+      "meta.title":"Nord Garage · Car Service, Car Wash and Car Rental in Selfoss",
+      "meta.desc":"Nord Garage, Selfoss. Car service, car wash and car rental. One workshop, all makes and models.",
+      "brand.sub":"Service · Wash · Rental",
+      "nav.home":"Home","nav.services":"Services","nav.work":"Our work","nav.about":"About","nav.contact":"Contact",
+      "hero.h1":"Your car,<br>treated like <em>our own.</em>",
+      "hero.lead":"Service, diagnostics, a proper wash and rental cars. One workshop on Gagnheiði, every make and model, no runaround.",
+      "hero.cta1":"Call the garage","hero.cta2":"See our work",
+      "stat.years":"Years of experience","stat.cars":"Cars serviced","stat.turn":"Turnaround","stat.makes":"Makes & models",
+      "stat.dayUnit":"day","stat.allWord":"All",
+      "marquee":["Car service","Car wash","Car rental","Diagnostics","Tyre & wheel","Brakes","Oil change","Detailing"],
+      "svc.kicker":"What we do","svc.h2":"Three things, done <em>properly.</em>",
+      "svc.note":"Book by phone and we will tell you straight away what it takes and what it costs.",
+      "svc1.title":"Auto service","svc1.text":"Repairs, maintenance and full diagnostics for all makes and models.",
+      "svc1.li1":"Fault diagnostics","svc1.li2":"Brakes & suspension","svc1.li3":"Oil & filters",
+      "svc2.title":"Car wash","svc2.text":"Exterior and interior cleaning. A clean car, a better mood.",
+      "svc2.li1":"Hand wash & wax","svc2.li2":"Interior detailing","svc2.li3":"Winter salt removal",
+      "svc3.title":"Car rental","svc3.text":"Comfortable, well kept cars ready for any journey around Iceland.",
+      "svc3.li1":"Daily & weekly rates","svc3.li2":"Winter tyres included","svc3.li3":"Courtesy car while we work",
+      "svc.learn":"Learn more",
+      "work.kicker":"The workshop","work.h2":"Real cars, real <em>hands</em>, real results.",
+      "work.note":"Every block below is a photo slot. Drop a picture straight onto it to see the board come alive.",
+      "tile1.tag":"01 · Workshop","tile1.name":"Inside the bay",
+      "tile2.tag":"02 · Wash","tile2.name":"Foam and shine",
+      "tile3.tag":"03 · Wheels","tile3.name":"Tyre service",
+      "tile4.tag":"04 · Rental","tile4.name":"Keys ready",
+      "tile5.tag":"05 · Detail","tile5.name":"Interior care",
+      "tile6.tag":"06 · Selfoss","tile6.name":"On the road south",
+      "cta.kicker":"Book today","cta.h2":"Bring it in, we&rsquo;ll <em>have a look.</em>",
+      "cta.text":"Call and we will find you a slot this week. Walk in visits are welcome too, the kettle is on.",
+      "foot.visit":"Visit us","foot.call":"Call us","foot.email":"Email","foot.hours":"Opening hours",
+      "foot.week":"Mon to Fri","foot.weekH":"08:00 to 18:00","foot.sat":"Sat","foot.satH":"08:00 to 17:00",
+      "legal":"© 2026 Nord Garage · Car service · Car wash · Car rental",
+      "photo.setHero":"Click or drop a photo to set the hero image","photo.swap":"Change photo","photo.remove":"Remove",
+      "photo.drop":"Drop photo","photo.placed":"photos placed","photo.clear":"Clear all",
+      "a11y.theme":"Switch theme","a11y.lang":"Change language","a11y.menu":"Menu",
+      "a11y.swap":"Change photo","a11y.remove":"Remove photo"
+    },
+    es:{
+      "meta.title":"Nord Garage · Taller, lavado y alquiler de coches en Selfoss",
+      "meta.desc":"Nord Garage, Selfoss. Mecánica, lavado y alquiler de coches. Un solo taller, todas las marcas y modelos.",
+      "brand.sub":"Taller · Lavado · Alquiler",
+      "nav.home":"Inicio","nav.services":"Servicios","nav.work":"Nuestro trabajo","nav.about":"Sobre nosotros","nav.contact":"Contacto",
+      "hero.h1":"Tu coche,<br>tratado como <em>el nuestro.</em>",
+      "hero.lead":"Mecánica, diagnóstico, un buen lavado y coches de alquiler. Un solo taller en Gagnheiði, todas las marcas y modelos, sin rodeos.",
+      "hero.cta1":"Llamar al taller","hero.cta2":"Ver nuestro trabajo",
+      "stat.years":"Años de experiencia","stat.cars":"Coches atendidos","stat.turn":"Plazo de entrega","stat.makes":"Marcas y modelos",
+      "stat.dayUnit":"día","stat.allWord":"Todas",
+      "marquee":["Mecánica","Lavado","Alquiler","Diagnóstico","Neumáticos","Frenos","Cambio de aceite","Detallado"],
+      "svc.kicker":"Qué hacemos","svc.h2":"Tres cosas, bien <em>hechas.</em>",
+      "svc.note":"Llama y te decimos enseguida qué hace falta y cuánto cuesta.",
+      "svc1.title":"Servicio mecánico","svc1.text":"Reparación, mantenimiento y diagnóstico completo para todas las marcas y modelos.",
+      "svc1.li1":"Diagnóstico de averías","svc1.li2":"Frenos y suspensión","svc1.li3":"Aceite y filtros",
+      "svc2.title":"Lavado de coches","svc2.text":"Limpieza exterior e interior. Coche limpio, mejor ánimo.",
+      "svc2.li1":"Lavado a mano y cera","svc2.li2":"Limpieza interior","svc2.li3":"Retirada de sal en invierno",
+      "svc3.title":"Alquiler de coches","svc3.text":"Coches cómodos y bien cuidados, listos para cualquier viaje por Islandia.",
+      "svc3.li1":"Tarifas por día y semana","svc3.li2":"Neumáticos de invierno incluidos","svc3.li3":"Coche de cortesía mientras trabajamos",
+      "svc.learn":"Ver más",
+      "work.kicker":"El taller","work.h2":"Coches reales, <em>manos</em> reales, resultados reales.",
+      "work.note":"Cada bloque de abajo es un hueco para una foto. Suelta una imagen encima para ver el tablero cobrar vida.",
+      "tile1.tag":"01 · Taller","tile1.name":"Dentro del box",
+      "tile2.tag":"02 · Lavado","tile2.name":"Espuma y brillo",
+      "tile3.tag":"03 · Neumáticos","tile3.name":"Servicio de ruedas",
+      "tile4.tag":"04 · Alquiler","tile4.name":"Llaves listas",
+      "tile5.tag":"05 · Detallado","tile5.name":"Cuidado interior",
+      "tile6.tag":"06 · Selfoss","tile6.name":"Rumbo al sur",
+      "cta.kicker":"Reserva hoy","cta.h2":"Tráelo y le <em>echamos un vistazo.</em>",
+      "cta.text":"Llama y te buscamos hueco esta semana. También atendemos sin cita, el café está puesto.",
+      "foot.visit":"Visítanos","foot.call":"Llámanos","foot.email":"Correo","foot.hours":"Horario",
+      "foot.week":"Lun a vie","foot.weekH":"08:00 a 18:00","foot.sat":"Sáb","foot.satH":"08:00 a 17:00",
+      "legal":"© 2026 Nord Garage · Mecánica · Lavado · Alquiler",
+      "photo.setHero":"Haz clic o suelta una foto para la portada","photo.swap":"Cambiar foto","photo.remove":"Quitar",
+      "photo.drop":"Suelta una foto","photo.placed":"fotos colocadas","photo.clear":"Borrar todo",
+      "a11y.theme":"Cambiar tema","a11y.lang":"Cambiar idioma","a11y.menu":"Menú",
+      "a11y.swap":"Cambiar foto","a11y.remove":"Quitar foto"
+    }
+  };
+
+  var LS = {
+    get:function(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } },
+    set:function(k,v){ try{ localStorage.setItem(k,v); }catch(e){} },
+    del:function(k){ try{ localStorage.removeItem(k); }catch(e){} }
+  };
+
+  /* ══════════════ MOODBOARD MARKUP ══════════════ */
+  var ICONS = {
+    wrench:'<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76Z"/>',
+    drop:'<path d="M12 2.7 17.66 8.36a8 8 0 1 1-11.32 0L12 2.7Z"/><path d="M12 18a4 4 0 0 1-4-4"/>',
+    wheel:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.4"/><path d="M12 3v5.6M20.5 16.5l-5.4-2.4M3.5 16.5l5.4-2.4"/>',
+    key:'<path d="M21 2l-2 2M11.39 11.61a5.5 5.5 0 1 1-7.78 7.78 5.5 5.5 0 0 1 7.78-7.78ZM15.5 7.5l3 3L22 7l-3-3-3.5 3.5Z"/>',
+    car:'<path d="M4 16v-3.5L6 7h12l2 5.5V16M4 16h16M4 16v2.5h3V16M17 16v2.5h3V16"/><circle cx="7.5" cy="12.5" r="1"/><circle cx="16.5" cy="12.5" r="1"/>',
+    land:'<path d="M3 18l5.5-7 4 5 3-3.5L21 18H3Z"/><circle cx="8" cy="7.5" r="2"/>'
+  };
+  var TILES = [
+    {k:'a',cls:'t-a',n:1,icon:'wrench'},{k:'b',cls:'t-b',n:2,icon:'drop'},
+    {k:'c',cls:'t-c',n:3,icon:'wheel'},{k:'d',cls:'t-d',n:4,icon:'key'},
+    {k:'e',cls:'t-e',n:5,icon:'car'},{k:'f',cls:'t-f',n:6,icon:'land'}
+  ];
+  var ARROW='<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>';
+  var UP='<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4m0 0L7 9m5-5 5 5M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>';
+  var SWAP='<svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10a8 8 0 0 0-13.5-4L4 8m0-4v4h4M4 14a8 8 0 0 0 13.5 4L20 16m0 4v-4h-4"/></svg>';
+  var CROSS='<svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></svg>';
+
+  document.getElementById('board').innerHTML = TILES.map(function(t){
+    return '<article class="tile '+t.cls+'" tabindex="0" data-slot="'+t.k+'">'
+      + '<div class="ph"></div>'
+      + '<div class="ph-icon"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">'+ICONS[t.icon]+'</svg></div>'
+      + '<div class="img"></div><div class="scrim"></div>'
+      + '<span class="drop">'+UP+' <span data-i18n="photo.drop">Drop photo</span></span>'
+      + '<div class="acts">'
+      +   '<button type="button" data-act="swap" data-i18n-aria="a11y.swap" aria-label="Change photo">'+SWAP+'</button>'
+      +   '<button type="button" data-act="remove" data-i18n-aria="a11y.remove" aria-label="Remove photo">'+CROSS+'</button>'
+      + '</div>'
+      + '<div class="cap"><div>'
+      +   '<div class="cap-tag" data-i18n="tile'+t.n+'.tag"></div>'
+      +   '<div class="cap-name" data-i18n="tile'+t.n+'.name"></div>'
+      + '</div><span class="cap-arrow">'+ARROW+'</span></div>'
+      + '</article>';
+  }).join('');
+
+  /* ══════════════ APPLY A LANGUAGE ══════════════ */
+  var metaDesc = document.getElementById('metaDesc');
+  var langNow  = document.getElementById('langNow');
+  var lang;
+
+  function applyLang(code){
+    var d = I18N[code] || I18N.is;
+    lang = I18N[code] ? code : 'is';
+
+    document.documentElement.lang = lang;
+    document.title = d['meta.title'];
+    if (metaDesc) metaDesc.setAttribute('content', d['meta.desc']);
+
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      var v = d[el.getAttribute('data-i18n')];
+      if (v != null) el.textContent = v;
+    });
+    document.querySelectorAll('[data-i18n-html]').forEach(function(el){
+      var v = d[el.getAttribute('data-i18n-html')];
+      if (v != null) el.innerHTML = v;
+    });
+    document.querySelectorAll('[data-i18n-aria]').forEach(function(el){
+      var v = d[el.getAttribute('data-i18n-aria')];
+      if (v != null) el.setAttribute('aria-label', v);
+    });
+
+    /* the ticker is a list, so it is built rather than translated in place */
+    var row = d['marquee'].map(function(w){ return w + ' <i></i> '; }).join('');
+    document.getElementById('marquee').innerHTML = '<span>'+row+'</span><span>'+row+'</span>';
+
+    if (langNow) langNow.textContent = lang.toUpperCase();
+    document.querySelectorAll('[data-lang]').forEach(function(b){
+      b.setAttribute('aria-selected', String(b.getAttribute('data-lang') === lang));
+    });
+    LS.set('nordgarage.lang', lang);
   }
 
-  /* ── photo slots: drop, click, remember ────────────────────── */
-  var KEY = 'nordgarage.photos.v1';
-  var MAX_EDGE = 1500;          // downscale so the browser can remember them
+  /* ══════════════ THEME ══════════════ */
+  function applyTheme(name){
+    document.documentElement.setAttribute('data-theme', name === 'light' ? 'light' : 'dark');
+    LS.set('nordgarage.theme', name);
+  }
+  function toggleTheme(){
+    applyTheme(document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
+  }
+  ['themeBtn','themeBtnM'].forEach(function(id){
+    var b = document.getElementById(id);
+    if (b) b.addEventListener('click', toggleTheme);
+  });
+
+  /* ══════════════ LANGUAGE CONTROLS ══════════════ */
+  var langBtn = document.getElementById('langBtn');
+  var langMenu = document.getElementById('langMenu');
+  function closeLang(){ langMenu.classList.remove('open'); langBtn.setAttribute('aria-expanded','false'); }
+  langBtn.addEventListener('click', function(e){
+    e.stopPropagation();
+    var open = langMenu.classList.toggle('open');
+    langBtn.setAttribute('aria-expanded', String(open));
+  });
+  document.addEventListener('click', function(e){ if (!langMenu.contains(e.target)) closeLang(); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape'){ closeLang(); closeMenu(); } });
+  document.querySelectorAll('[data-lang]').forEach(function(b){
+    b.addEventListener('click', function(){ applyLang(b.getAttribute('data-lang')); closeLang(); closeMenu(); });
+  });
+
+  /* ══════════════ MOBILE MENU ══════════════ */
+  var burger = document.getElementById('burger');
+  var mMenu  = document.getElementById('mMenu');
+  function closeMenu(){
+    mMenu.classList.remove('open'); burger.classList.remove('on');
+    burger.setAttribute('aria-expanded','false'); document.body.style.overflow = '';
+  }
+  burger.addEventListener('click', function(){
+    var open = mMenu.classList.toggle('open');
+    burger.classList.toggle('on', open);
+    burger.setAttribute('aria-expanded', String(open));
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  mMenu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeMenu); });
+
+  /* ══════════════ PHOTOS ══════════════
+     Each slot is independent: drop or click to fill it, and once filled
+     it carries its own swap and remove buttons. Nothing else is touched. */
+  var KEY = 'nordgarage.photos.v2';
+  var MAX_EDGE = 1500;
   var picker  = document.getElementById('picker');
   var toolbar = document.getElementById('toolbar');
   var counter = document.getElementById('shotCount');
   var target  = null;
-
   var slots = {};
+
   slots.hero = {
-    el:  document.querySelector('section.hero'),        /* drop zone: the whole hero */
-    img: document.querySelector('#heroSlot .img'),      /* the layer the photo lands on */
-    click: document.getElementById('heroHint')          /* the chip opens the file picker */
+    drop:  document.querySelector('section.hero'),
+    has:   document.getElementById('heroSlot'),
+    img:   document.querySelector('#heroSlot .img'),
+    click: document.getElementById('heroHint'),
+    swap:  document.getElementById('heroSwap'),
+    kill:  document.getElementById('heroDrop')
   };
   document.querySelectorAll('.tile').forEach(function(t){
-    slots[t.dataset.slot] = { el: t, img: t.querySelector('.img') };
+    slots[t.dataset.slot] = {
+      drop:t, has:t, img:t.querySelector('.img'), click:t,
+      swap:t.querySelector('[data-act="swap"]'),
+      kill:t.querySelector('[data-act="remove"]')
+    };
   });
 
-  function store(){
-    var out = {};
-    Object.keys(slots).forEach(function(k){
-      if (slots[k].data) out[k] = slots[k].data;
-    });
-    try { localStorage.setItem(KEY, JSON.stringify(out)); }
-    catch(err){ /* out of quota or blocked — the photos still show this session */ }
-    var n = Object.keys(out).length;
+  function count(){
+    var n = 0;
+    Object.keys(slots).forEach(function(k){ if (slots[k].data) n++; });
     counter.textContent = n;
     toolbar.classList.toggle('show', n > 0);
+    return n;
+  }
+  function store(){
+    var out = {};
+    Object.keys(slots).forEach(function(k){ if (slots[k].data) out[k] = slots[k].data; });
+    LS.set(KEY, JSON.stringify(out));
+    count();
   }
 
-  function apply(key, dataUrl, remember){
-    var s = slots[key];
-    if (!s) return;
-    s.img.style.backgroundImage = 'url("' + dataUrl + '")';
-    s.el.classList.add('has');
+  function fill(key, url, remember){
+    var s = slots[key]; if (!s) return;
+    s.img.style.backgroundImage = 'url("' + url + '")';
+    s.has.classList.add('has');
     if (key === 'hero'){
-      s.img.style.opacity = '.6';
-      if (s.click) s.click.style.display = 'none';
+      if (s.click) s.click.hidden = true;
+      if (s.swap)  s.swap.hidden  = false;
+      if (s.kill)  s.kill.hidden  = false;
     }
-    if (remember){ s.data = dataUrl; store(); }
+    if (remember){ s.data = url; store(); }
+  }
+
+  function clear(key){
+    var s = slots[key]; if (!s) return;
+    delete s.data;
+    s.img.style.backgroundImage = '';
+    s.has.classList.remove('has');
+    if (key === 'hero'){
+      if (s.click) s.click.hidden = false;
+      if (s.swap)  s.swap.hidden  = true;
+      if (s.kill)  s.kill.hidden  = true;
+    }
+    store();
   }
 
   function readFile(file, key){
@@ -787,29 +1132,27 @@ h2 .serif{font-family:var(--serif);font-style:italic;font-weight:400;color:var(-
     fr.onload = function(){
       var im = new Image();
       im.onload = function(){
-        var scale = Math.min(1, MAX_EDGE / Math.max(im.width, im.height));
+        var sc = Math.min(1, MAX_EDGE / Math.max(im.width, im.height));
         var c = document.createElement('canvas');
-        c.width  = Math.round(im.width  * scale);
-        c.height = Math.round(im.height * scale);
+        c.width  = Math.round(im.width  * sc);
+        c.height = Math.round(im.height * sc);
         c.getContext('2d').drawImage(im, 0, 0, c.width, c.height);
         var small;
-        try { small = c.toDataURL('image/jpeg', 0.78); }
-        catch(err){ small = fr.result; }
-        apply(key, small, true);
+        try { small = c.toDataURL('image/jpeg', 0.78); } catch(e){ small = fr.result; }
+        fill(key, small, true);
       };
-      im.onerror = function(){ apply(key, fr.result, true); };
+      im.onerror = function(){ fill(key, fr.result, true); };
       im.src = fr.result;
     };
     fr.readAsDataURL(file);
   }
 
   Object.keys(slots).forEach(function(key){
-    var el = slots[key].el;
+    var s = slots[key], el = s.drop;
     if (!el) return;
 
     el.addEventListener('dragover', function(e){
-      e.preventDefault(); e.dataTransfer.dropEffect = 'copy';
-      el.classList.add('over');
+      e.preventDefault(); e.dataTransfer.dropEffect = 'copy'; el.classList.add('over');
     });
     ['dragleave','dragend'].forEach(function(t){
       el.addEventListener(t, function(){ el.classList.remove('over'); });
@@ -819,16 +1162,20 @@ h2 .serif{font-family:var(--serif);font-style:italic;font-weight:400;color:var(-
       readFile(e.dataTransfer.files && e.dataTransfer.files[0], key);
     });
 
-    /* a tile is clicked anywhere; the hero is clicked on its chip only,
-       so the buttons and links inside the hero keep working */
-    var hit = slots[key].click || (el.classList.contains('tile') ? el : null);
-    if (hit) {
-      hit.setAttribute('tabindex', '0');
-      hit.addEventListener('click', function(){ target = key; picker.click(); });
-      hit.addEventListener('keydown', function(e){
-        if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); target = key; picker.click(); }
+    function pick(e){ if (e) e.stopPropagation(); target = key; picker.click(); }
+
+    if (s.click){
+      s.click.addEventListener('click', function(e){
+        /* on a filled tile the buttons handle it, so ignore clicks that land on them */
+        if (e.target.closest && e.target.closest('.acts')) return;
+        pick();
+      });
+      s.click.addEventListener('keydown', function(e){
+        if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); pick(); }
       });
     }
+    if (s.swap) s.swap.addEventListener('click', pick);
+    if (s.kill) s.kill.addEventListener('click', function(e){ e.stopPropagation(); clear(key); });
   });
 
   picker.addEventListener('change', function(){
@@ -841,27 +1188,42 @@ h2 .serif{font-family:var(--serif);font-style:italic;font-weight:400;color:var(-
       var s = slots[k];
       delete s.data;
       s.img.style.backgroundImage = '';
-      s.el.classList.remove('has');
-      if (s.click) s.click.style.display = '';
+      s.has.classList.remove('has');
+      if (k === 'hero'){
+        if (s.click) s.click.hidden = false;
+        if (s.swap)  s.swap.hidden  = true;
+        if (s.kill)  s.kill.hidden  = true;
+      }
     });
-    try { localStorage.removeItem(KEY); } catch(err){}
-    counter.textContent = '0';
-    toolbar.classList.remove('show');
+    LS.del(KEY);
+    count();
   });
 
-  /* the page never blocks the whole document from accepting a drop */
   ['dragover','drop'].forEach(function(t){
     window.addEventListener(t, function(e){ e.preventDefault(); });
   });
 
-  /* restore whatever was dropped last time */
+  /* ══════════════ BOOT ══════════════ */
+  applyTheme(LS.get('nordgarage.theme') === 'light' ? 'light' : 'dark');   /* dark unless asked otherwise */
+  applyLang(LS.get('nordgarage.lang') || 'is');                            /* Icelandic unless asked otherwise */
+
   try {
-    var saved = JSON.parse(localStorage.getItem(KEY) || '{}');
-    Object.keys(saved).forEach(function(k){ apply(k, saved[k], false); slots[k] && (slots[k].data = saved[k]); });
-    var n = Object.keys(saved).length;
-    counter.textContent = n;
-    if (n) toolbar.classList.add('show');
-  } catch(err){ /* private mode or blocked storage — no photos to restore */ }
+    var saved = JSON.parse(LS.get(KEY) || '{}');
+    Object.keys(saved).forEach(function(k){
+      if (slots[k]){ fill(k, saved[k], false); slots[k].data = saved[k]; }
+    });
+    count();
+  } catch(e){}
+
+  var rev = document.querySelectorAll('.rv');
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(en){
+      en.forEach(function(x){ if (x.isIntersecting){ x.target.classList.add('in'); io.unobserve(x.target); } });
+    }, {rootMargin:'0px 0px -8% 0px', threshold:0.08});
+    rev.forEach(function(el){ io.observe(el); });
+  } else {
+    rev.forEach(function(el){ el.classList.add('in'); });
+  }
 })();
 </script>
 </body>
