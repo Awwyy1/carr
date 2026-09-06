@@ -253,9 +253,9 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
 /* mobile panel */
 .m-menu{
-  position:fixed;inset:0 0 auto;top:0;z-index:55;
+  position:fixed;inset:0;z-index:55;            /* full screen: the page behind is hidden */
   padding:96px 20px 26px;
-  background:var(--bg);border-bottom:1px solid var(--line);
+  background:var(--bg);
   transform:translateY(-102%);transition:transform .4s cubic-bezier(.22,.7,.3,1);
   max-height:100dvh;overflow-y:auto;
 }
@@ -300,9 +300,6 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
 h1{margin:0;max-width:16ch;font-size:clamp(44px,6.6vw,88px);line-height:.98;letter-spacing:-.04em;font-weight:800}
 h1 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--brass);letter-spacing:-.01em}
-.hero-cols{display:block}          /* the stat block is mobile only, so no second column */
-.stats-wrap{display:none}
-@media (max-width:960px){ .stats-wrap{display:block;margin-top:34px} }
 .lede{margin:0;max-width:44ch;font-size:clamp(16px,1.3vw,18px);color:var(--ink-2)}
 .cta{display:flex;flex-wrap:wrap;gap:13px;margin-top:32px}
 .btn{
@@ -316,11 +313,6 @@ h1 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
 .btn-b{border:1px solid var(--line-2);background:var(--glass-2);color:var(--ink)}
 .btn-b:hover{transform:translateY(-2px);background:var(--hover)}
 
-.stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;max-width:440px}
-.stat{background:var(--panel);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:20px}
-.stat b{display:block;font-size:26px;font-weight:800;letter-spacing:-.03em;color:var(--ink);white-space:nowrap}
-.stat b .u{display:inline;font-size:15px;color:var(--brass);margin-left:2px;text-transform:none;letter-spacing:0}
-.stat > span{display:block;margin-top:3px;font-size:11.5px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3)}
 
 .hero-tools{display:flex;flex-wrap:wrap;gap:10px;margin-top:44px}
 .chip{
@@ -649,8 +641,7 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
   <div class="wrap hero-inner">
     <h1 class="rv" data-i18n-html="hero.h1">Your car,<br>treated like <em>our own.</em></h1>
 
-    <div class="hero-cols" style="margin-top:44px">
-      <div class="rv">
+    <div class="hero-copy rv" style="margin-top:44px">
         <p class="lede" data-i18n="hero.lead">Service, diagnostics, a proper wash and rental cars. A workshop with mechanics who have more than 15 years behind them.</p>
         <div class="cta">
           <a class="btn btn-a" href="tel:+3548333370">
@@ -662,14 +653,6 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
             <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
         </div>
-      </div>
-
-      <div class="stats-wrap rv"><div class="stats">
-        <div class="stat"><b>15<span class="u">+</span></b><span data-i18n="stat.years">Years of experience</span></div>
-        <div class="stat"><b>3<span class="u">k</span></b><span data-i18n="stat.cars">Cars serviced</span></div>
-        <div class="stat"><b>1<span class="u" data-i18n="stat.dayUnit">day</span></b><span data-i18n="stat.turn">Turnaround</span></div>
-        <div class="stat"><b data-i18n="stat.allWord">All</b><span data-i18n="stat.makes">Makes &amp; models</span></div>
-      </div></div>
     </div>
 
     <div class="hero-tools">
