@@ -113,8 +113,9 @@
     radial-gradient(48% 58% at 82% 6%,  rgba(72,132,214,.16), transparent 66%),
     radial-gradient(60% 50% at 60% 100%, rgba(237,241,247,.96), transparent 62%),
     linear-gradient(170deg,#FAFCFE 0%, #E3EAF4 44%, #EDF1F7 100%);
-  --veil:linear-gradient(100deg,rgba(237,241,247,.95) 0%,rgba(237,241,247,.9) 42%,rgba(237,241,247,.56) 70%,rgba(237,241,247,.28) 100%);
-  --photo-op:.6;
+  /* heavy enough under the text, then it gets out of the way fast */
+  --veil:linear-gradient(100deg,rgba(237,241,247,.93) 0%,rgba(237,241,247,.88) 40%,rgba(237,241,247,.45) 62%,rgba(237,241,247,.06) 100%);
+  --photo-op:.88;
   --grain-op:.28;
 
   --shadow:0 26px 44px -26px rgba(11,18,32,.3);
@@ -287,7 +288,9 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
 h1{margin:0;max-width:16ch;font-size:clamp(44px,6.6vw,88px);line-height:.98;letter-spacing:-.04em;font-weight:800}
 h1 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--brass);letter-spacing:-.01em}
-.hero-cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,360px);gap:56px;align-items:start}
+.hero-cols{display:block}          /* the stat block is mobile only, so no second column */
+.stats-wrap{display:none}
+@media (max-width:960px){ .stats-wrap{display:block;margin-top:34px} }
 .lede{margin:0;max-width:44ch;font-size:clamp(16px,1.3vw,18px);color:var(--ink-2)}
 .cta{display:flex;flex-wrap:wrap;gap:13px;margin-top:32px}
 .btn{
@@ -301,7 +304,7 @@ h1 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
 .btn-b{border:1px solid var(--line-2);background:var(--glass-2);color:var(--ink)}
 .btn-b:hover{transform:translateY(-2px);background:var(--hover)}
 
-.stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;max-width:440px}
 .stat{background:var(--panel);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:20px}
 .stat b{display:block;font-size:26px;font-weight:800;letter-spacing:-.03em;color:var(--ink);white-space:nowrap}
 .stat b .u{display:inline;font-size:15px;color:var(--brass);margin-left:2px;text-transform:none;letter-spacing:0}
@@ -507,8 +510,6 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
   .header-inner{gap:14px}
 }
 @media (max-width:1080px){
-  .hero-cols{grid-template-columns:1fr;gap:36px}
-  .stats{max-width:420px}
   .svc{grid-template-columns:1fr}
   .board{grid-template-columns:repeat(2,1fr);grid-auto-rows:200px;grid-template-areas:"a a" "b c" "d e" "f f";}
   .strip-inner{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -638,7 +639,7 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
 
     <div class="hero-cols" style="margin-top:44px">
       <div class="rv">
-        <p class="lede" data-i18n="hero.lead">Service, diagnostics, a proper wash and rental cars. One workshop on Gagnheiði, every make and model, no runaround.</p>
+        <p class="lede" data-i18n="hero.lead">Service, diagnostics, a proper wash and rental cars. A workshop with mechanics who have more than 15 years behind them.</p>
         <div class="cta">
           <a class="btn btn-a" href="tel:+3548333370">
             <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
@@ -651,12 +652,12 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
         </div>
       </div>
 
-      <div class="stats rv">
-        <div class="stat"><b>12<span class="u">+</span></b><span data-i18n="stat.years">Years of experience</span></div>
+      <div class="stats-wrap rv"><div class="stats">
+        <div class="stat"><b>15<span class="u">+</span></b><span data-i18n="stat.years">Years of experience</span></div>
         <div class="stat"><b>3<span class="u">k</span></b><span data-i18n="stat.cars">Cars serviced</span></div>
         <div class="stat"><b>1<span class="u" data-i18n="stat.dayUnit">day</span></b><span data-i18n="stat.turn">Turnaround</span></div>
         <div class="stat"><b data-i18n="stat.allWord">All</b><span data-i18n="stat.makes">Makes &amp; models</span></div>
-      </div>
+      </div></div>
     </div>
 
     <div class="hero-tools">
@@ -830,7 +831,7 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
       "brand.sub":"Þjónusta · Þvottur · Bílaleiga",
       "nav.home":"Heim","nav.services":"Þjónusta","nav.work":"Verkin okkar","nav.about":"Um okkur","nav.contact":"Hafa samband",
       "hero.h1":"Bíllinn þinn,<br>eins og <em>okkar eigin.</em>",
-      "hero.lead":"Viðgerðir, bilanagreining, almennilegur þvottur og bílaleigubílar. Eitt verkstæði á Gagnheiði, allar tegundir og gerðir.",
+      "hero.lead":"Viðgerðir, bilanagreining, almennilegur þvottur og bílaleigubílar. Verkstæði með bifvélavirkjum sem hafa yfir 15 ára reynslu.",
       "hero.cta1":"Hringdu í verkstæðið","hero.cta2":"Sjáðu verkin okkar",
       "stat.years":"Ára reynsla","stat.cars":"Bílar í þjónustu","stat.turn":"Afgreiðslutími","stat.makes":"Allar tegundir",
       "stat.dayUnit":"dagur","stat.allWord":"Allt",
@@ -868,7 +869,7 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
       "brand.sub":"Service · Wash · Rental",
       "nav.home":"Home","nav.services":"Services","nav.work":"Our work","nav.about":"About","nav.contact":"Contact",
       "hero.h1":"Your car,<br>treated like <em>our own.</em>",
-      "hero.lead":"Service, diagnostics, a proper wash and rental cars. One workshop on Gagnheiði, every make and model, no runaround.",
+      "hero.lead":"Service, diagnostics, a proper wash and rental cars. A workshop with mechanics who have more than 15 years behind them.",
       "hero.cta1":"Call the garage","hero.cta2":"See our work",
       "stat.years":"Years of experience","stat.cars":"Cars serviced","stat.turn":"Turnaround","stat.makes":"Makes & models",
       "stat.dayUnit":"day","stat.allWord":"All",
@@ -906,7 +907,7 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
       "brand.sub":"Taller · Lavado · Alquiler",
       "nav.home":"Inicio","nav.services":"Servicios","nav.work":"Nuestro trabajo","nav.about":"Sobre nosotros","nav.contact":"Contacto",
       "hero.h1":"Tu coche,<br>tratado como <em>el nuestro.</em>",
-      "hero.lead":"Mecánica, diagnóstico, un buen lavado y coches de alquiler. Un solo taller en Gagnheiði, todas las marcas y modelos, sin rodeos.",
+      "hero.lead":"Mecánica, diagnóstico, un buen lavado y coches de alquiler. Un taller con mecánicos que acumulan más de 15 años de experiencia.",
       "hero.cta1":"Llamar al taller","hero.cta2":"Ver nuestro trabajo",
       "stat.years":"Años de experiencia","stat.cars":"Coches atendidos","stat.turn":"Plazo de entrega","stat.makes":"Marcas y modelos",
       "stat.dayUnit":"día","stat.allWord":"Todas",
