@@ -26,6 +26,7 @@
    LANGUAGE  Icelandic, English, Spanish. Icelandic is the default.
    ═══════════════════════════════════════════════════════════════ */
 :root{
+  --logo:     none;   /* url("photos/logo.png")     round logo: drop one in, or paste a path */
   --ph-hero:  none;   /* url("photos/hero.jpg")     */
   --ph-a:     none;   /* url("photos/workshop.jpg") */
   --ph-b:     none;   /* url("photos/wash.jpg")     */
@@ -35,45 +36,47 @@
   --ph-f:     none;   /* url("photos/selfoss.jpg")  */
 }
 
-/* ── DARK: the default ───────────────────────────────────────── */
+/* ── DARK: brand navy carrying the golden yellow accent ──────── */
 :root{
-  --bg:#080D17;
-  --bg-2:#0B1220;
-  --tile:#0E1728;
-  --card:#121D31;
+  --bg:#000C40;         /* primary navy, kept fully saturated */
+  --bg-2:#000832;
+  --tile:#05134B;
+  --card:#08174F;
 
-  --ink:#F2F5FA;
-  --ink-2:#AEBACB;
-  --ink-3:#7C8AA0;
+  --ink:#F4F6FF;        /* 17.3:1 */
+  --ink-2:#B9C4E4;      /* 10.7:1 */
+  --ink-3:#8A97C4;      /*  6.5:1 */
 
-  --brass:#DDAE5E;              /* accents in small type */
-  --brass-fill:#DDAE5E;         /* button fill           */
-  --brass-fill-2:#EFCE96;
-  --on-brass:#1E1608;           /* label on that fill    */
-  --brass-wash:rgba(221,174,94,.13);
-  --brass-line:rgba(221,174,94,.38);
+  --brass:#FED11E;      /* accent golden yellow · 12.7:1 on the navy */
+  --brass-fill:#FED11E;
+  --brass-fill-2:#FFDE55;
+  --on-brass:#000C40;   /* navy label on yellow · 12.7:1 */
+  --brass-wash:rgba(254,209,30,.14);
+  --brass-line:rgba(254,209,30,.42);
+  --cap-tag:#FFE4A0;
+  --btn-edge:transparent;
 
-  --line:rgba(255,255,255,.08);
-  --line-2:rgba(255,255,255,.15);
-  --hover:rgba(255,255,255,.06);
-  --sheen:rgba(255,255,255,.05);
+  --line:rgba(255,255,255,.11);
+  --line-2:rgba(255,255,255,.2);
+  --hover:rgba(255,255,255,.07);
+  --sheen:rgba(255,255,255,.06);
 
-  --glass:rgba(8,13,23,.78);
-  --glass-2:rgba(255,255,255,.02);
-  --panel:rgba(11,18,32,.6);
+  --glass:rgba(0,9,50,.82);
+  --glass-2:rgba(255,255,255,.03);
+  --panel:rgba(0,9,50,.66);
 
   --hero-grad:
-    radial-gradient(42% 52% at 16% 30%, rgba(221,174,94,.16), transparent 64%),
-    radial-gradient(48% 58% at 82% 6%,  rgba(72,132,214,.18), transparent 66%),
-    radial-gradient(60% 50% at 60% 100%, rgba(8,13,23,.95), transparent 62%),
-    linear-gradient(170deg,#0E1729 0%, #12203a 42%, #0A101C 100%);
-  --veil:linear-gradient(100deg,rgba(8,13,23,.55) 0%,rgba(8,13,23,.35) 45%,rgba(8,13,23,.1) 100%);
+    radial-gradient(42% 52% at 16% 30%, rgba(254,209,30,.16), transparent 64%),
+    radial-gradient(48% 58% at 82% 6%,  rgba(40,80,200,.22), transparent 66%),
+    radial-gradient(60% 50% at 60% 100%, rgba(0,8,40,.95), transparent 62%),
+    linear-gradient(170deg,#001056 0%, #00135F 42%, #000A38 100%);
+  --veil:linear-gradient(100deg,rgba(0,12,64,.55) 0%,rgba(0,12,64,.35) 45%,rgba(0,12,64,.1) 100%);
   --photo-op:.45;
   --photo-filter:none;
   --grain-op:.5;
 
   --shadow:0 34px 60px -34px rgba(0,0,0,.95);
-  --shadow-btn:0 12px 30px -14px rgba(221,174,94,.7);
+  --shadow-btn:0 12px 30px -14px rgba(254,209,30,.55);
 
   --r-lg:20px;
   --r-md:14px;
@@ -82,55 +85,58 @@
   --serif:"Instrument Serif","Iowan Old Style",Georgia,"Times New Roman",serif;
 }
 
-/* ── LIGHT: the same navy and brass, ground and ink swapped ──── */
+/* ── LIGHT: the same two colours, reversed. The navy becomes the ink
+      and the accent for small type, where the yellow measures 1.3:1 and
+      cannot be read; the yellow stays the fill on every button.      */
 [data-theme="light"]{
-  --bg:#EDF1F7;
-  --bg-2:#E7EDF5;
-  --tile:#F4F7FB;
+  --bg:#EEF1FA;
+  --bg-2:#E3E8F6;
+  --tile:#F7F9FD;
   --card:#FFFFFF;
 
-  --ink:#0B1220;
-  --ink-2:#44566E;
-  --ink-3:#5B6A84;
+  --ink:#000C40;        /* the brand navy, now the ink · 16.5:1 */
+  --ink-2:#47506E;      /*  7.0:1 */
+  --ink-3:#5D688E;      /*  4.9:1 */
 
-  --brass:#8E6314;              /* light brass falls to 1.8:1 in small type */
-  --brass-fill:#DDAE5E;         /* fills keep the bright brass             */
-  --brass-fill-2:#EFCE96;
-  --on-brass:#1E1608;
-  --brass-wash:rgba(142,99,20,.10);
-  --brass-line:rgba(142,99,20,.38);
+  --brass:#0A1559;      /* accent in small type · 14.7:1 */
+  --brass-fill:#FED11E; /* buttons keep the golden yellow */
+  --brass-fill-2:#FFDE55;
+  --on-brass:#000C40;
+  --brass-wash:rgba(0,12,64,.08);
+  --brass-line:rgba(0,12,64,.3);
+  --cap-tag:#FFE4A0;
+  --btn-edge:rgba(0,12,64,.35);   /* yellow on a pale ground needs an edge */
 
-  --line:rgba(11,18,32,.10);
-  --line-2:rgba(11,18,32,.18);
-  --hover:rgba(11,18,32,.05);
+  --line:rgba(0,12,64,.12);
+  --line-2:rgba(0,12,64,.2);
+  --hover:rgba(0,12,64,.05);
   --sheen:rgba(255,255,255,.6);
 
-  --glass:rgba(237,241,247,.82);
-  --glass-2:rgba(255,255,255,.55);
-  --panel:rgba(255,255,255,.85);
+  --glass:rgba(238,241,250,.86);
+  --glass-2:rgba(255,255,255,.6);
+  --panel:rgba(255,255,255,.9);
 
   --hero-grad:
-    radial-gradient(42% 52% at 16% 30%, rgba(221,174,94,.22), transparent 64%),
-    radial-gradient(48% 58% at 82% 6%,  rgba(72,132,214,.16), transparent 66%),
-    radial-gradient(60% 50% at 60% 100%, rgba(237,241,247,.96), transparent 62%),
-    linear-gradient(170deg,#FAFCFE 0%, #E3EAF4 44%, #EDF1F7 100%);
-  /* dense to the end of the paragraph, then clear well before the edge */
+    radial-gradient(44% 56% at 14% 26%, rgba(254,209,30,.2), transparent 64%),
+    radial-gradient(50% 58% at 84% 4%,  rgba(0,12,64,.12), transparent 66%),
+    radial-gradient(60% 54% at 58% 104%, rgba(238,241,250,.96), transparent 62%),
+    linear-gradient(170deg,#FBFCFF 0%, #E2E8F7 44%, #EEF1FA 100%);
   /* a long ramp: no visible edge where the veil hands over to the photo */
   --veil:linear-gradient(100deg,
-    rgba(237,241,247,.90) 0%,
-    rgba(237,241,247,.86) 26%,
-    rgba(237,241,247,.80) 42%,
-    rgba(237,241,247,.60) 54%,
-    rgba(237,241,247,.38) 65%,
-    rgba(237,241,247,.20) 75%,
-    rgba(237,241,247,.08) 86%,
-    rgba(237,241,247,0) 96%);
+    rgba(238,241,250,.90) 0%,
+    rgba(238,241,250,.86) 26%,
+    rgba(238,241,250,.80) 42%,
+    rgba(238,241,250,.60) 54%,
+    rgba(238,241,250,.38) 65%,
+    rgba(238,241,250,.20) 75%,
+    rgba(238,241,250,.08) 86%,
+    rgba(238,241,250,0) 96%);
   --photo-op:1;
   --photo-filter:saturate(1.4) contrast(1.2) brightness(.95);
   --grain-op:.16;
 
-  --shadow:0 26px 44px -26px rgba(11,18,32,.3);
-  --shadow-btn:0 10px 24px -12px rgba(11,18,32,.35);
+  --shadow:0 26px 44px -26px rgba(0,12,64,.32);
+  --shadow-btn:0 10px 24px -12px rgba(0,12,64,.4);
 }
 
 *,*::before,*::after{box-sizing:border-box}
@@ -160,9 +166,24 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   border-bottom:1px solid var(--line);
 }
 .header-inner{display:flex;align-items:center;gap:22px;height:80px}
-.brand{display:flex;align-items:center;gap:13px;flex:none}
-.brand .mark{width:42px;height:42px;flex:none}
-.brand .mark path,.brand .mark circle{stroke:var(--brass)}
+.brand{position:relative;display:flex;align-items:center;gap:13px;flex:none}
+.brand .mark{position:relative;display:block;width:42px;height:42px;flex:none;border-radius:50%;overflow:hidden;cursor:pointer}
+.brand .mark-svg{width:100%;height:100%}
+.brand .mark-svg path,.brand .mark-svg circle{stroke:var(--brass)}
+/* a round logo sits straight over the drawn mark */
+.logo-img{position:absolute;inset:0;border-radius:50%;background-image:var(--logo);background-size:cover;background-position:center;opacity:0;transition:opacity .3s}
+.mark.has .logo-img{opacity:1}
+.mark.has .mark-svg{opacity:0}
+.logo-edit{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.55);opacity:0;transition:opacity .25s}
+.mark:hover .logo-edit,.mark:focus-visible .logo-edit{opacity:1}
+.logo-edit svg{width:15px;height:15px;stroke:#fff;fill:none;stroke-width:1.9}
+.logo-x{
+  position:absolute;left:31px;top:-3px;width:19px;height:19px;border-radius:50%;z-index:3;
+  border:1px solid var(--line-2);background:var(--bg);color:var(--ink-2);
+  font-size:13px;line-height:1;align-items:center;justify-content:center;display:none;
+}
+.brand:hover .logo-x:not([hidden]){display:flex}
+.logo-x:hover{color:var(--ink);border-color:var(--ink-3)}
 .brand-text{display:flex;flex-direction:column;line-height:1.12}
 .brand-name{font-size:18px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;white-space:nowrap}
 .brand-name em{font-style:normal;color:var(--brass)}
@@ -308,7 +329,7 @@ h1 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
   transition:transform .25s,box-shadow .25s,background .25s,border-color .25s;
 }
 .btn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.8}
-.btn-a{background:linear-gradient(180deg,var(--brass-fill-2),var(--brass-fill));color:var(--on-brass);box-shadow:var(--shadow-btn)}
+.btn-a{background:linear-gradient(180deg,var(--brass-fill-2),var(--brass-fill));color:var(--on-brass);border:1px solid var(--btn-edge);box-shadow:var(--shadow-btn)}
 .btn-a:hover{transform:translateY(-2px)}
 .btn-b{border:1px solid var(--line-2);background:var(--glass-2);color:var(--ink)}
 .btn-b:hover{transform:translateY(-2px);background:var(--hover)}
@@ -394,18 +415,18 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
              linear-gradient(165deg, var(--c1), var(--c2));}
 .ph::after{content:"";position:absolute;inset:0;
   background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/><feColorMatrix type='saturate' values='0'/></filter><rect width='160' height='160' filter='url(%23n)' opacity='.06'/></svg>");}
-.t-a .ph{--c1:#1B2A46;--c2:#0B1220}
-.t-b .ph{--c1:#16324A;--c2:#0A121F}
-.t-c .ph{--c1:#1E2942;--c2:#0C1119}
-.t-d .ph{--c1:#223349;--c2:#0A111C}
-.t-e .ph{--c1:#14314A;--c2:#090F1A}
-.t-f .ph{--c1:#1A2D3E;--c2:#080D17}
-[data-theme="light"] .t-a .ph{--c1:#DEE6F0;--c2:#C2CEDE}
-[data-theme="light"] .t-b .ph{--c1:#D9E5EC;--c2:#BDCDD8}
-[data-theme="light"] .t-c .ph{--c1:#E0E5EF;--c2:#C6CEDC}
-[data-theme="light"] .t-d .ph{--c1:#DCE4EE;--c2:#C0CBDA}
-[data-theme="light"] .t-e .ph{--c1:#D6E3EB;--c2:#BAC9D6}
-[data-theme="light"] .t-f .ph{--c1:#DFE6ED;--c2:#C3CEDA}
+.t-a .ph{--c1:#12256E;--c2:#000A38}
+.t-b .ph{--c1:#0E2A6B;--c2:#00082F}
+.t-c .ph{--c1:#15236A;--c2:#000933}
+.t-d .ph{--c1:#1A2C74;--c2:#000A3A}
+.t-e .ph{--c1:#0B2A6E;--c2:#00072C}
+.t-f .ph{--c1:#122667;--c2:#000830}
+[data-theme="light"] .t-a .ph{--c1:#D9E1F5;--c2:#B3C1E4}
+[data-theme="light"] .t-b .ph{--c1:#D5DFF3;--c2:#ADBDE0}
+[data-theme="light"] .t-c .ph{--c1:#DBE2F6;--c2:#B7C4E6}
+[data-theme="light"] .t-d .ph{--c1:#D7DFF4;--c2:#B0BFE2}
+[data-theme="light"] .t-e .ph{--c1:#D2DCF2;--c2:#AABADE}
+[data-theme="light"] .t-f .ph{--c1:#D8E0F5;--c2:#B2C0E3}
 
 .ph-icon{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;transition:opacity .4s,transform .6s}
 .ph-icon svg{width:82px;height:82px;stroke:var(--brass);fill:none;opacity:.2;stroke-width:1}
@@ -547,19 +568,24 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
 <!-- ══════════ HEADER ══════════ -->
 <header class="site-header">
   <div class="wrap header-inner">
-    <a class="brand" href="#">
-      <svg class="mark" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+    <div class="brand">
+      <span class="mark" id="logoSlot" tabindex="0" role="button" data-i18n-aria="a11y.logo" aria-label="Set the logo">
+        <svg class="mark-svg" viewBox="0 0 48 48" fill="none" aria-hidden="true">
         <circle cx="24" cy="24" r="22.4" stroke-width="1.4" opacity=".5"/>
         <circle cx="24" cy="24" r="19.2" stroke-width=".9" opacity=".22"/>
         <path d="M24 12.6 33.9 18.3v11.4L24 35.4 14.1 29.7V18.3L24 12.6Z" stroke-width="1.5" stroke-linejoin="round"/>
         <path d="M24 19.4a4.6 4.6 0 1 0 0 9.2 4.6 4.6 0 0 0 0-9.2Z" stroke-width="1.3" opacity=".7"/>
         <path d="M24 5.2v3.4M24 39.4v3.4M8.6 24h3.4M36 24h3.4" stroke-width="1.4" stroke-linecap="round" opacity=".55"/>
       </svg>
-      <span class="brand-text">
-        <span class="brand-name">Nord <em>Garage</em></span>
-        <span class="brand-sub" data-i18n="brand.sub">Service · Wash · Rental</span>
+        <span class="logo-img"></span>
+        <span class="logo-edit" aria-hidden="true"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4m0 0L7 9m5-5 5 5M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg></span>
       </span>
-    </a>
+      <button class="logo-x" id="logoX" type="button" hidden data-i18n-aria="a11y.logoOff" aria-label="Remove the logo">&times;</button>
+      <a class="brand-text" href="#">
+        <span class="brand-name">Nord <em>Garage</em></span>
+        <span class="brand-sub" data-i18n="brand.sub">Service &middot; Wash &middot; Rental</span>
+      </a>
+    </div>
 
     <nav class="nav">
       <a href="#" class="on" data-spy="hero" data-i18n="nav.home">Home</a>
@@ -585,7 +611,6 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
         <div class="lang-menu" id="langMenu" role="listbox">
           <button type="button" role="option" data-lang="is" lang="is">Íslenska</button>
           <button type="button" role="option" data-lang="en" lang="en">English</button>
-          <button type="button" role="option" data-lang="es" lang="es">Español</button>
         </div>
       </div>
 
@@ -612,7 +637,6 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
       <div class="m-langs" id="mLangs">
         <button type="button" data-lang="is" lang="is">Íslenska</button>
         <button type="button" data-lang="en" lang="en">English</button>
-        <button type="button" data-lang="es" lang="es">Español</button>
       </div>
       <button class="theme-switch" id="themeBtnM" type="button" style="display:flex" data-i18n-aria="a11y.theme" aria-label="Switch theme">
         <span class="puck" aria-hidden="true"></span>
@@ -853,7 +877,7 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
       "legal":"© 2026 Nord Garage · Bílaþjónusta · Bílaþvottur · Bílaleiga",
       "photo.setHero":"Smelltu eða slepptu mynd fyrir forsíðu","photo.swap":"Skipta um mynd","photo.remove":"Fjarlægja",
       "photo.drop":"Slepptu mynd","photo.placed":"myndir settar","photo.clear":"Hreinsa allt",
-      "a11y.theme":"Skipta um þema","a11y.lang":"Skipta um tungumál","a11y.menu":"Valmynd",
+      "a11y.theme":"Skipta um þema","a11y.lang":"Skipta um tungumál","a11y.menu":"Valmynd","a11y.logo":"Setja merki","a11y.logoOff":"Fjarlægja merki",
       "a11y.swap":"Skipta um mynd","a11y.remove":"Fjarlægja mynd"
     },
     en:{
@@ -890,7 +914,7 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
       "legal":"© 2026 Nord Garage · Car service · Car wash · Car rental",
       "photo.setHero":"Click or drop a photo to set the hero image","photo.swap":"Change photo","photo.remove":"Remove",
       "photo.drop":"Drop photo","photo.placed":"photos placed","photo.clear":"Clear all",
-      "a11y.theme":"Switch theme","a11y.lang":"Change language","a11y.menu":"Menu",
+      "a11y.theme":"Switch theme","a11y.lang":"Change language","a11y.menu":"Menu","a11y.logo":"Set the logo","a11y.logoOff":"Remove the logo",
       "a11y.swap":"Change photo","a11y.remove":"Remove photo"
     },
     es:{
@@ -927,7 +951,7 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
       "legal":"© 2026 Nord Garage · Mecánica · Lavado · Alquiler",
       "photo.setHero":"Haz clic o suelta una foto para la portada","photo.swap":"Cambiar foto","photo.remove":"Quitar",
       "photo.drop":"Suelta una foto","photo.placed":"fotos colocadas","photo.clear":"Borrar todo",
-      "a11y.theme":"Cambiar tema","a11y.lang":"Cambiar idioma","a11y.menu":"Menú",
+      "a11y.theme":"Cambiar tema","a11y.lang":"Cambiar idioma","a11y.menu":"Menú","a11y.logo":"Poner el logotipo","a11y.logoOff":"Quitar el logotipo",
       "a11y.swap":"Cambiar foto","a11y.remove":"Quitar foto"
     }
   };
@@ -980,8 +1004,11 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
   var lang;
 
   function applyLang(code){
-    var d = I18N[code] || I18N.is;
-    lang = I18N[code] ? code : 'is';
+    /* Spanish is written but switched off; add it to ENABLED to bring it back */
+    var ENABLED = ['is','en'];
+    if (ENABLED.indexOf(code) < 0) code = 'is';
+    var d = I18N[code];
+    lang = code;
 
     document.documentElement.lang = lang;
     document.title = d['meta.title'];
@@ -1101,6 +1128,13 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
     swap:  document.getElementById('heroSwap'),
     kill:  document.getElementById('heroDrop')
   };
+  slots.logo = {
+    drop:  document.querySelector('.brand'),          /* drop anywhere on the wordmark */
+    has:   document.getElementById('logoSlot'),
+    img:   document.querySelector('#logoSlot .logo-img'),
+    click: document.getElementById('logoSlot'),
+    kill:  document.getElementById('logoX')
+  };
   document.querySelectorAll('.tile').forEach(function(t){
     slots[t.dataset.slot] = {
       drop:t, has:t, img:t.querySelector('.img'), click:t,
@@ -1132,6 +1166,7 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
       if (s.swap)  s.swap.hidden  = false;
       if (s.kill)  s.kill.hidden  = false;
     }
+    if (key === 'logo' && s.kill) s.kill.hidden = false;
     if (remember){ s.data = url; store(); }
   }
 
@@ -1145,6 +1180,7 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
       if (s.swap)  s.swap.hidden  = true;
       if (s.kill)  s.kill.hidden  = true;
     }
+    if (key === 'logo' && s.kill) s.kill.hidden = true;
     store();
   }
 
