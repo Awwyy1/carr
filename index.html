@@ -40,6 +40,7 @@
 /* ── DARK: brand navy carrying the golden yellow accent ──────── */
 :root{
   --bg:#000C40;         /* primary navy, kept fully saturated */
+  --bg-rgb:0,12,64;     /* the same colour, for fades that end on the page */
   --bg-2:#000832;
   --tile:#05134B;
   --card:#08174F;
@@ -91,6 +92,7 @@
       cannot be read; the yellow stays the fill on every button.      */
 [data-theme="light"]{
   --bg:#EEF1FA;
+  --bg-rgb:238,241,250;
   --bg-2:#E3E8F6;
   --tile:#F7F9FD;
   --card:#FFFFFF;
@@ -573,6 +575,7 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
   .btn{flex:1 1 auto}
   .strip-inner{grid-template-columns:1fr}
   .toolbar{left:16px;right:16px;justify-content:space-between}
+  .btn-a{box-shadow:none}          /* the yellow halo is too loud on a phone */
 }
 </style>
 </head>
