@@ -40,6 +40,7 @@
 /* ── DARK: brand navy carrying the golden yellow accent ──────── */
 :root{
   --bg:#000C40;         /* primary navy, kept fully saturated */
+  --bg-rgb:0,12,64;     /* the same colour, for fades that end on the page */
   --bg-2:#000832;
   --tile:#05134B;
   --card:#08174F;
@@ -91,6 +92,7 @@
       cannot be read; the yellow stays the fill on every button.      */
 [data-theme="light"]{
   --bg:#EEF1FA;
+  --bg-rgb:238,241,250;
   --bg-2:#E3E8F6;
   --tile:#F7F9FD;
   --card:#FFFFFF;
@@ -559,11 +561,21 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
   border:2px dashed var(--brass);background:var(--brass-wash);border-radius:16px;
 }
 .page-head .hero-tools{margin-top:34px}
+/* once a photo is in place the band would otherwise end on a hard
+   edge, so the last stretch of it fades into the page colour */
+.page-head::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;z-index:-1;pointer-events:none;
+  height:clamp(90px,17vh,200px);
+  background:linear-gradient(180deg,rgba(var(--bg-rgb),0),rgba(var(--bg-rgb),.72) 55%,rgba(var(--bg-rgb),1));
+}
 .page-head-inner{padding-top:88px;padding-bottom:72px}
 .page-head h1{margin:16px 0 0;max-width:28ch;font-size:clamp(38px,5.4vw,68px)}
 .page-head .lede{margin-top:22px}
-.svc-page{grid-template-columns:repeat(3,1fr);gap:16px}
-.svc-page .svc-card h3{margin:0 0 16px}
+.svc-page{grid-template-columns:repeat(3,1fr);gap:22px}
+.svc-page .svc-body{padding:34px 30px 36px}
+.svc-page .svc-head{margin-bottom:24px}
+.svc-page .svc-list{gap:11px}
+.svc-page .svc-card h3{margin:0 0 18px}
 .svc-page .svc-list{margin-bottom:0}
 .svc-page .svc-list li{align-items:flex-start}
 .svc-page .svc-list svg{margin-top:4px}
@@ -633,6 +645,7 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
   .btn{flex:1 1 auto}
   .strip-inner{grid-template-columns:1fr}
   .toolbar{left:16px;right:16px;justify-content:space-between}
+  .btn-a{box-shadow:none}          /* the yellow halo is too loud on a phone */
 }
 </style>
 </head>
