@@ -23,7 +23,7 @@
    THEMES  dark is the default. The switch in the header flips to
            light and the choice is remembered.
 
-   LANGUAGE  Icelandic, English, Spanish. Icelandic is the default.
+   LANGUAGE  Icelandic and English. Icelandic is the default.
    ═══════════════════════════════════════════════════════════════ */
 :root{
   --logo:     none;   /* url("photos/logo.png")     round logo: drop one in, or paste a path */
@@ -850,7 +850,7 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
   "use strict";
 
   /* ══════════════ LANGUAGE ══════════════
-     Icelandic is the default. English and Spanish follow.
+     Icelandic is the default; English follows.
      The choice is remembered; <html lang> and the metadata move with it. */
   var I18N = {
     is:{
@@ -927,43 +927,6 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
       "a11y.theme":"Switch theme","a11y.lang":"Change language","a11y.menu":"Menu","menu.language":"Language","menu.theme":"Theme","a11y.logo":"Set the logo","a11y.logoOff":"Remove the logo",
       "a11y.swap":"Change photo","a11y.remove":"Remove photo"
     },
-    es:{
-      "meta.title":"Nord Garage · Taller, lavado y alquiler de coches en Selfoss",
-      "meta.desc":"Nord Garage, Selfoss. Mecánica, lavado y alquiler de coches. Un solo taller, todas las marcas y modelos.",
-      "brand.sub":"Taller · Lavado · Alquiler",
-      "nav.home":"Inicio","nav.services":"Servicios","nav.work":"Nuestro trabajo","nav.about":"Sobre nosotros","nav.contact":"Contacto",
-      "hero.h1":"Tu coche,<br>tratado como <em>el nuestro.</em>",
-      "hero.lead":"Mecánica, diagnóstico, un buen lavado y coches de alquiler. Un taller con mecánicos que acumulan más de 15 años de experiencia.",
-      "hero.cta1":"Llamar al taller","hero.cta2":"Ver nuestro trabajo",
-      "stat.years":"Años de experiencia","stat.cars":"Coches atendidos","stat.turn":"Plazo de entrega","stat.makes":"Marcas y modelos",
-      "stat.dayUnit":"día","stat.allWord":"Todas",
-      "marquee":["Mecánica","Lavado","Alquiler","Diagnóstico","Neumáticos","Frenos","Cambio de aceite","Detallado"],
-      "svc.kicker":"Qué hacemos","svc.h2":"Tres cosas, bien <em>hechas.</em>",
-      "svc.note":"Llama y te decimos enseguida qué hace falta y cuánto cuesta.",
-      "svc1.title":"Servicio mecánico","svc1.text":"Reparación, mantenimiento y diagnóstico completo para todas las marcas y modelos.",
-      "svc1.li1":"Diagnóstico de averías","svc1.li2":"Frenos y suspensión","svc1.li3":"Aceite y filtros",
-      "svc2.title":"Lavado de coches","svc2.text":"Limpieza exterior e interior. Coche limpio, mejor ánimo.",
-      "svc2.li1":"Lavado a mano y cera","svc2.li2":"Limpieza interior","svc2.li3":"Retirada de sal en invierno",
-      "svc3.title":"Alquiler de coches","svc3.text":"Coches cómodos y bien cuidados, listos para cualquier viaje por Islandia.",
-      "svc3.li1":"Tarifas por día y semana","svc3.li2":"Neumáticos de invierno incluidos","svc3.li3":"Coche de cortesía mientras trabajamos",
-      "svc.learn":"Ver más",
-      "work.kicker":"El taller","work.h2":"Coches reales, <em>manos</em> reales, resultados reales.",
-      "tile1.tag":"01 · Taller","tile1.name":"Dentro del box",
-      "tile2.tag":"02 · Lavado","tile2.name":"Espuma y brillo",
-      "tile3.tag":"03 · Neumáticos","tile3.name":"Servicio de ruedas",
-      "tile4.tag":"04 · Alquiler","tile4.name":"Llaves listas",
-      "tile5.tag":"05 · Detallado","tile5.name":"Cuidado interior",
-      "tile6.tag":"06 · Exterior","tile6.name":"El taller en Gagnheiði",
-      "cta.kicker":"Reserva hoy","cta.h2":"Tráelo y le <em>echamos un vistazo.</em>",
-      "cta.text":"Llama y te buscamos hueco esta semana. También atendemos sin cita, el café está puesto.",
-      "foot.visit":"Visítanos","foot.call":"Llámanos","foot.email":"Correo","foot.hours":"Horario",
-      "foot.week":"Lun a vie","foot.weekH":"08:00 a 18:00","foot.sat":"Sáb","foot.satH":"08:00 a 17:00",
-      "legal":"© 2026 Nord Garage · Mecánica · Lavado · Alquiler",
-      "photo.setHero":"Haz clic o suelta una foto para la portada","photo.swap":"Cambiar foto","photo.remove":"Quitar",
-      "photo.drop":"Suelta una foto","photo.placed":"fotos colocadas","photo.clear":"Borrar todo",
-      "a11y.theme":"Cambiar tema","a11y.lang":"Cambiar idioma","a11y.menu":"Menú","menu.language":"Idioma","menu.theme":"Tema","a11y.logo":"Poner el logotipo","a11y.logoOff":"Quitar el logotipo",
-      "a11y.swap":"Cambiar foto","a11y.remove":"Quitar foto"
-    }
   };
 
   var LS = {
@@ -1015,7 +978,6 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
   var lang;
 
   function applyLang(code){
-    /* Spanish is written but switched off; add it to ENABLED to bring it back */
     var ENABLED = ['is','en'];
     if (ENABLED.indexOf(code) < 0) code = 'is';
     var d = I18N[code];
@@ -1039,8 +1001,11 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
     });
 
     /* the ticker is a list, so it is built rather than translated in place */
-    var row = d['marquee'].map(function(w){ return w + ' <i></i> '; }).join('');
-    document.getElementById('marquee').innerHTML = '<span>'+row+'</span><span>'+row+'</span>';
+    var mq = document.getElementById('marquee');
+    if (mq){
+      var row = d['marquee'].map(function(w){ return w + ' <i></i> '; }).join('');
+      mq.innerHTML = '<span>'+row+'</span><span>'+row+'</span>';
+    }
 
     if (langNow) langNow.textContent = lang.toUpperCase();
     document.querySelectorAll('[data-lang]').forEach(function(b){
