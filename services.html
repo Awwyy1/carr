@@ -539,9 +539,15 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
 .page-bg{position:absolute;inset:0;z-index:-3;background:var(--bg-2)}
 .page-bg .fallback{position:absolute;inset:0;background:var(--hero-grad)}
 .page-head-inner{padding-top:88px;padding-bottom:72px}
-.page-head h1{margin:16px 0 0;max-width:19ch;font-size:clamp(38px,5.4vw,68px)}
+.page-head h1{margin:16px 0 0;max-width:28ch;font-size:clamp(38px,5.4vw,68px)}
 .page-head .lede{margin-top:22px}
 .svc-page{grid-template-columns:repeat(3,1fr);gap:16px}
+/* the number, its rule and the trade icon share one row, so each card
+   sits lower and the six of them line up more tightly */
+.svc-page .svc-head{display:flex;align-items:center;gap:18px;margin-bottom:20px}
+.svc-page .svc-head .svc-num{margin:0;flex:1;min-width:0}
+.svc-page .svc-head .svc-icon{margin:0;flex:none;width:44px;height:44px;border-radius:12px}
+.svc-page .svc-head .svc-icon svg{width:20px;height:20px}
 .svc-page .svc-card h3{margin:0 0 16px}
 .svc-page .svc-list{margin-bottom:0}
 .svc-page .svc-list li{align-items:flex-start}
@@ -550,9 +556,8 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
    leaving two empty columns beside it */
 .svc-page .svc-card:last-child{grid-column:1/-1}
 .svc-page .svc-card:last-child .svc-body{display:flex;align-items:center;gap:26px;flex-wrap:wrap}
-.svc-page .svc-card:last-child .svc-num{margin:0;flex:none;width:52px}
+.svc-page .svc-card:last-child .svc-head{flex:none;margin:0;gap:16px}
 .svc-page .svc-card:last-child .svc-num .bar{display:none}
-.svc-page .svc-card:last-child .svc-icon{margin:0}
 .svc-page .svc-card:last-child h3{margin:0}
 .svc-page .svc-card:last-child .svc-list{margin:0}
 
@@ -714,8 +719,7 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
   <div class="grain"></div>
   <div class="wrap page-head-inner">
     <p class="kicker rv"><span class="bar"></span> <span data-i18n="sp.kicker">Car service</span></p>
-    <h1 class="rv" data-i18n-html="sp.h1">Everything your car needs,<br><em>under one roof.</em></h1>
-    <p class="lede rv" data-i18n="sp.lead">A workshop with mechanics who have more than 15 years behind them.</p>
+    <h1 class="rv" data-i18n-html="sp.h1">Everything your car needs,<br><em>at our workshop.</em></h1>
   </div>
 </section>
 
@@ -725,8 +729,10 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
     <div class="svc svc-page rv">
       <article class="svc-card">
         <div class="svc-body">
-          <div class="svc-num">01 <span class="bar"></span></div>
-          <div class="svc-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76Z"/></svg></div>
+          <div class="svc-head">
+            <div class="svc-num">01 <span class="bar"></span></div>
+            <div class="svc-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76Z"/></svg></div>
+          </div>
           <h3 data-i18n="sp.g1.title"></h3>
           <ul class="svc-list">
             <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L19 7"/></svg><span data-i18n="sp.g1.i1"></span></li>
@@ -738,8 +744,10 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
       </article>
       <article class="svc-card">
         <div class="svc-body">
-          <div class="svc-num">02 <span class="bar"></span></div>
-          <div class="svc-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4.2l-3 8.5L9.3 3.5l-3 8.5H2"/></svg></div>
+          <div class="svc-head">
+            <div class="svc-num">02 <span class="bar"></span></div>
+            <div class="svc-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4.2l-3 8.5L9.3 3.5l-3 8.5H2"/></svg></div>
+          </div>
           <h3 data-i18n="sp.g2.title"></h3>
           <ul class="svc-list">
             <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L19 7"/></svg><span data-i18n="sp.g2.i1"></span></li>
@@ -749,8 +757,10 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
       </article>
       <article class="svc-card">
         <div class="svc-body">
-          <div class="svc-num">03 <span class="bar"></span></div>
-          <div class="svc-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.4"/><path d="M12 3v5.6M12 15.4V21M3 12h5.6M15.4 12H21"/></svg></div>
+          <div class="svc-head">
+            <div class="svc-num">03 <span class="bar"></span></div>
+            <div class="svc-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.4"/><path d="M12 3v5.6M12 15.4V21M3 12h5.6M15.4 12H21"/></svg></div>
+          </div>
           <h3 data-i18n="sp.g3.title"></h3>
           <ul class="svc-list">
             <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L19 7"/></svg><span data-i18n="sp.g3.i1"></span></li>
@@ -760,8 +770,10 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
       </article>
       <article class="svc-card">
         <div class="svc-body">
-          <div class="svc-num">04 <span class="bar"></span></div>
-          <div class="svc-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><path d="M12 3v6M4.3 16.6l5.1-3M19.7 16.6l-5.1-3"/></svg></div>
+          <div class="svc-head">
+            <div class="svc-num">04 <span class="bar"></span></div>
+            <div class="svc-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><path d="M12 3v6M4.3 16.6l5.1-3M19.7 16.6l-5.1-3"/></svg></div>
+          </div>
           <h3 data-i18n="sp.g4.title"></h3>
           <ul class="svc-list">
             <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L19 7"/></svg><span data-i18n="sp.g4.i1"></span></li>
@@ -771,8 +783,10 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
       </article>
       <article class="svc-card">
         <div class="svc-body">
-          <div class="svc-num">05 <span class="bar"></span></div>
-          <div class="svc-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.6v2.6M12 18.8v2.6M4.5 12H1.9M22.1 12h-2.6M6.3 6.3 4.5 4.5M19.5 19.5l-1.8-1.8M17.7 6.3l1.8-1.8M4.5 19.5l1.8-1.8"/></svg></div>
+          <div class="svc-head">
+            <div class="svc-num">05 <span class="bar"></span></div>
+            <div class="svc-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.6v2.6M12 18.8v2.6M4.5 12H1.9M22.1 12h-2.6M6.3 6.3 4.5 4.5M19.5 19.5l-1.8-1.8M17.7 6.3l1.8-1.8M4.5 19.5l1.8-1.8"/></svg></div>
+          </div>
           <h3 data-i18n="sp.g5.title"></h3>
           <ul class="svc-list">
             <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L19 7"/></svg><span data-i18n="sp.g5.i1"></span></li>
@@ -783,8 +797,10 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
       </article>
       <article class="svc-card">
         <div class="svc-body">
-          <div class="svc-num">06 <span class="bar"></span></div>
-          <div class="svc-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 13.5h7L10 22l9-11.5h-7L13 2Z"/></svg></div>
+          <div class="svc-head">
+            <div class="svc-num">06 <span class="bar"></span></div>
+            <div class="svc-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 13.5h7L10 22l9-11.5h-7L13 2Z"/></svg></div>
+          </div>
           <h3 data-i18n="sp.g6.title"></h3>
           <ul class="svc-list">
             <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L19 7"/></svg><span data-i18n="sp.g6.i1"></span></li>
@@ -795,8 +811,10 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
       </article>
       <article class="svc-card">
         <div class="svc-body">
-          <div class="svc-num">07 <span class="bar"></span></div>
-          <div class="svc-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8.2v7.6M8.2 12h7.6"/></svg></div>
+          <div class="svc-head">
+            <div class="svc-num">07 <span class="bar"></span></div>
+            <div class="svc-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8.2v7.6M8.2 12h7.6"/></svg></div>
+          </div>
           <h3 data-i18n="sp.g7.title"></h3>
           <ul class="svc-list">
             <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L19 7"/></svg><span data-i18n="sp.g7.i1"></span></li>
@@ -817,10 +835,10 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
         <p class="rate-unit" data-i18n="sp.rateUnit">plus VAT, per hour</p>
       </div>
       <div class="rate-note">
-        <p data-i18n="sp.rateNote">The final cost depends on the model of the car.</p>
+        <p data-i18n="sp.rateNote">Call us and we will go through the details.</p>
         <a class="btn btn-a" href="tel:+3548333370">
           <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
-          <span data-i18n="sp.cta">Ask for a quote</span>
+          <span data-i18n="sp.cta">Call the garage</span>
         </a>
       </div>
     </div>
@@ -914,13 +932,12 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
       "a11y.theme":"Skipta um þema","a11y.lang":"Skipta um tungumál","a11y.menu":"Valmynd","menu.language":"Tungumál","menu.theme":"Þema","a11y.logo":"Setja merki","a11y.logoOff":"Fjarlægja merki",
       "a11y.swap":"Skipta um mynd","a11y.remove":"Fjarlægja mynd",
       "sp.kicker":"Bílaþjónusta",
-      "sp.h1":"Allt sem bíllinn þarf,<br><em>á einum stað.</em>",
-      "sp.lead":"Verkstæði með bifvélavirkjum sem hafa yfir 15 ára reynslu. Allar tegundir og gerðir.",
+      "sp.h1":"Allt sem bíllinn þarf,<br><em>á verkstæðinu okkar.</em>",
       "sp.g1.title":"Viðhald",
       "sp.g1.i1":"Reglubundið viðhald bílsins",
       "sp.g1.i2":"Skipt um mótorolíu og síur",
       "sp.g1.i3":"Árstíðabundin þjónusta",
-      "sp.g1.i4":"Undirbúningur fyrir skoðun",
+      "sp.g1.i4":"Undirbúningur bílsins fyrir bifreiðaskoðun",
       "sp.g2.title":"Bilanagreining",
       "sp.g2.i1":"Tölvugreining bílsins",
       "sp.g2.i2":"Almenn greining og bilanaleit",
@@ -943,8 +960,8 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
       "sp.rateLabel":"Tímagjald",
       "sp.rateCur":"ISK",
       "sp.rateUnit":"auk VSK, á klukkustund",
-      "sp.rateNote":"Endanlegt verð fer eftir tegund bílsins, varahlutunum sem þarf og umfangi verksins.",
-      "sp.cta":"Fáðu verðmat"
+      "sp.rateNote":"Hringdu í okkur og við förum yfir smáatriðin.",
+      "sp.cta":"Hringdu í verkstæðið"
     },
     en:{
       "meta.title":"Services · Nord Garage, car workshop in Selfoss",
@@ -983,13 +1000,12 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
       "a11y.theme":"Switch theme","a11y.lang":"Change language","a11y.menu":"Menu","menu.language":"Language","menu.theme":"Theme","a11y.logo":"Set the logo","a11y.logoOff":"Remove the logo",
       "a11y.swap":"Change photo","a11y.remove":"Remove photo",
       "sp.kicker":"Car service",
-      "sp.h1":"Everything your car needs,<br><em>under one roof.</em>",
-      "sp.lead":"A workshop with mechanics who have more than 15 years behind them. All makes and models.",
+      "sp.h1":"Everything your car needs,<br><em>at our workshop.</em>",
       "sp.g1.title":"Servicing",
       "sp.g1.i1":"Scheduled vehicle servicing",
       "sp.g1.i2":"Engine oil and filter change",
       "sp.g1.i3":"Seasonal servicing",
-      "sp.g1.i4":"Preparation for the annual inspection",
+      "sp.g1.i4":"Preparing the car for its technical inspection",
       "sp.g2.title":"Diagnostics",
       "sp.g2.i1":"Computer diagnostics",
       "sp.g2.i2":"General diagnostics and fault finding",
@@ -1012,8 +1028,8 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
       "sp.rateLabel":"Labour rate",
       "sp.rateCur":"ISK",
       "sp.rateUnit":"plus VAT, per hour",
-      "sp.rateNote":"The final cost of a repair depends on the model of the car, the parts it needs and the scope of the work.",
-      "sp.cta":"Ask for a quote"
+      "sp.rateNote":"Call us and we will go through the details.",
+      "sp.cta":"Call the garage"
     },
   };
 
