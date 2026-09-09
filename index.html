@@ -28,7 +28,6 @@
 :root{
   --logo:     none;   /* url("photos/logo.png")     round logo: drop one in, or paste a path */
   --ph-hero:  none;   /* url("photos/hero.jpg")     */
-  --ph-svc:   none;   /* url("photos/services.jpg") */
   --ph-a:     none;   /* url("photos/workshop.jpg") */
   --ph-b:     none;   /* url("photos/wash.jpg")     */
   --ph-c:     none;   /* url("photos/wheels.jpg")   */
@@ -545,9 +544,17 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
 .toolbar button:hover{background:var(--brass-fill);color:var(--on-brass)}
 
 /* ══ RESPONSIVE ══════════════════════════════════════════════ */
-@media (max-width:1140px){
-  .nav a{padding:10px 10px;font-size:13px}
+/* seven links plus the tools need the header to give ground early */
+@media (max-width:1320px){
+  .nav a{padding:10px 9px;font-size:13.5px}
   .header-inner{gap:14px}
+}
+@media (max-width:1180px){
+  .nav{gap:0}
+  .nav a{padding:10px 6px;font-size:12.5px}
+  .nav a.on::after{left:6px;right:6px}
+  .brand-sub{display:none}
+  .header-inner{gap:12px}
 }
 @media (max-width:1080px){
   .svc{grid-template-columns:1fr}
@@ -555,7 +562,7 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
   .strip-inner{grid-template-columns:repeat(2,minmax(0,1fr))}
   .socials{grid-column:1/-1;align-self:start}
 }
-@media (max-width:960px){
+@media (max-width:1080px){        /* seven links stop fitting before the old 960 */
   .nav{display:none}
   .lang,.theme-switch{display:none}       /* they live in the panel instead */
   .tools{margin-left:auto}                /* .nav used to do this; it is gone here */
@@ -606,6 +613,8 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
     <nav class="nav">
       <a href="#" class="on" data-spy="hero" data-i18n="nav.home">Home</a>
       <a href="services.html" data-spy="services" data-i18n="nav.services">Services</a>
+      <a href="index.html#wash" data-i18n="nav.wash">Car wash</a>
+      <a href="index.html#rental" data-i18n="nav.rental">Car rental</a>
       <a href="#work" data-spy="work" data-i18n="nav.work">Our work</a>
       <a href="#" data-i18n="nav.about">About</a>
       <a href="#contact" data-spy="contact" data-i18n="nav.contact">Contact</a>
@@ -645,6 +654,8 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
   <div class="wrap" style="padding:0">
     <a class="m-link" href="#" data-spy="hero" data-i18n="nav.home">Home</a>
     <a class="m-link" href="services.html" data-spy="services" data-i18n="nav.services">Services</a>
+    <a class="m-link" href="index.html#wash" data-i18n="nav.wash">Car wash</a>
+    <a class="m-link" href="index.html#rental" data-i18n="nav.rental">Car rental</a>
     <a class="m-link" href="#work" data-spy="work" data-i18n="nav.work">Our work</a>
     <a class="m-link" href="#" data-i18n="nav.about">About</a>
     <a class="m-link" href="#contact" data-spy="contact" data-i18n="nav.contact">Contact</a>
@@ -751,7 +762,7 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
         </div>
       </article>
 
-      <article class="svc-card">
+      <article class="svc-card" id="wash">
         <div class="svc-body">
           <div class="svc-head">
             <div class="svc-num">02 <span class="bar"></span></div>
@@ -768,7 +779,7 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
         </div>
       </article>
 
-      <article class="svc-card">
+      <article class="svc-card" id="rental">
         <div class="svc-body">
           <div class="svc-head">
             <div class="svc-num">03 <span class="bar"></span></div>
@@ -875,7 +886,7 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
       "meta.title":"Nord Garage · Bílaþjónusta, bílaþvottur og bílaleiga á Selfossi",
       "meta.desc":"Nord Garage á Selfossi. Bílaþjónusta, bílaþvottur og bílaleiga. Eitt verkstæði, allar tegundir og gerðir.",
       "brand.sub":"Þjónusta · Þvottur · Bílaleiga",
-      "nav.home":"Heim","nav.services":"Þjónusta","nav.work":"Verkin okkar","nav.about":"Um okkur","nav.contact":"Hafa samband",
+      "nav.home":"Heim","nav.services":"Þjónusta","nav.wash":"Bílaþvottur","nav.rental":"Bílaleiga","nav.work":"Verkin okkar","nav.about":"Um okkur","nav.contact":"Hafa samband",
       "hero.h1":"Bíllinn þinn,<br>eins og <em>okkar eigin.</em>",
       "hero.lead":"Viðgerðir, bilanagreining, almennilegur þvottur og bílaleigubílar. Verkstæði með bifvélavirkjum sem hafa yfir 15 ára reynslu.",
       "hero.cta1":"Hringdu í verkstæðið","hero.cta2":"Sjáðu verkin okkar",
@@ -903,7 +914,7 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
       "foot.visit":"Heimsæktu okkur","foot.call":"Hringdu í okkur","foot.email":"Netfang","foot.hours":"Opnunartími",
       "foot.week":"Mán til fös","foot.weekH":"08:00 til 18:00","foot.sat":"Lau","foot.satH":"08:00 til 17:00",
       "legal":"© 2026 Nord Garage · Bílaþjónusta · Bílaþvottur · Bílaleiga",
-      "photo.setHero":"Smelltu eða slepptu mynd fyrir forsíðu","photo.setSvc":"Smelltu eða slepptu mynd fyrir þessa síðu","photo.swap":"Skipta um mynd","photo.remove":"Fjarlægja",
+      "photo.setHero":"Smelltu eða slepptu mynd fyrir forsíðu","photo.swap":"Skipta um mynd","photo.remove":"Fjarlægja",
       "photo.drop":"Slepptu mynd","photo.placed":"myndir settar","photo.clear":"Hreinsa allt",
       "a11y.theme":"Skipta um þema","a11y.lang":"Skipta um tungumál","a11y.menu":"Valmynd","menu.language":"Tungumál","menu.theme":"Þema","a11y.logo":"Setja merki","a11y.logoOff":"Fjarlægja merki",
       "a11y.swap":"Skipta um mynd","a11y.remove":"Fjarlægja mynd"
@@ -912,7 +923,7 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
       "meta.title":"Nord Garage · Car Service, Car Wash and Car Rental in Selfoss",
       "meta.desc":"Nord Garage, Selfoss. Car service, car wash and car rental. One workshop, all makes and models.",
       "brand.sub":"Service · Wash · Rental",
-      "nav.home":"Home","nav.services":"Services","nav.work":"Our work","nav.about":"About","nav.contact":"Contact",
+      "nav.home":"Home","nav.services":"Services","nav.wash":"Car wash","nav.rental":"Car rental","nav.work":"Our work","nav.about":"About","nav.contact":"Contact",
       "hero.h1":"Your car,<br>treated like <em>our own.</em>",
       "hero.lead":"Service, diagnostics, a proper wash and rental cars. A workshop with mechanics who have more than 15 years behind them.",
       "hero.cta1":"Call the garage","hero.cta2":"See our work",
@@ -940,7 +951,7 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
       "foot.visit":"Visit us","foot.call":"Call us","foot.email":"Email","foot.hours":"Opening hours",
       "foot.week":"Mon to Fri","foot.weekH":"08:00 to 18:00","foot.sat":"Sat","foot.satH":"08:00 to 17:00",
       "legal":"© 2026 Nord Garage · Car service · Car wash · Car rental",
-      "photo.setHero":"Click or drop a photo to set the hero image","photo.setSvc":"Click or drop a photo for this page","photo.swap":"Change photo","photo.remove":"Remove",
+      "photo.setHero":"Click or drop a photo to set the hero image","photo.swap":"Change photo","photo.remove":"Remove",
       "photo.drop":"Drop photo","photo.placed":"photos placed","photo.clear":"Clear all",
       "a11y.theme":"Switch theme","a11y.lang":"Change language","a11y.menu":"Menu","menu.language":"Language","menu.theme":"Theme","a11y.logo":"Set the logo","a11y.logoOff":"Remove the logo",
       "a11y.swap":"Change photo","a11y.remove":"Remove photo"
@@ -1122,14 +1133,6 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
     swap:  document.getElementById('heroSwap'),
     kill:  document.getElementById('heroDrop')
   };
-  if (document.querySelector('.page-head')) slots.svc = {
-    drop:  document.querySelector('.page-head'),
-    has:   document.getElementById('svcSlot'),
-    img:   document.querySelector('#svcSlot .img'),
-    click: document.getElementById('svcHint'),
-    swap:  document.getElementById('svcSwap'),
-    kill:  document.getElementById('svcDrop')
-  };
   slots.logo = {
     drop:  document.querySelector('.brand'),          /* drop anywhere on the wordmark */
     has:   document.getElementById('logoSlot'),
@@ -1281,11 +1284,20 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
   } catch(e){}
 
   var rev = document.querySelectorAll('.rv');
+  function onFirstScreen(el){
+    var r = el.getBoundingClientRect();
+    return r.top < window.innerHeight - 30 && r.bottom > 0;
+  }
   if ('IntersectionObserver' in window){
+    /* a tall block only crosses a percentage threshold well into the scroll,
+       which left the page looking empty on arrival - so anything already in
+       view is shown straight away and only what is below it animates in */
     var io = new IntersectionObserver(function(en){
       en.forEach(function(x){ if (x.isIntersecting){ x.target.classList.add('in'); io.unobserve(x.target); } });
-    }, {rootMargin:'0px 0px -8% 0px', threshold:0.08});
-    rev.forEach(function(el){ io.observe(el); });
+    }, {rootMargin:'0px 0px -6% 0px', threshold:0});
+    rev.forEach(function(el){
+      if (onFirstScreen(el)) el.classList.add('in'); else io.observe(el);
+    });
   } else {
     rev.forEach(function(el){ el.classList.add('in'); });
   }
