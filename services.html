@@ -172,9 +172,11 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .brand .mark-svg{width:100%;height:100%}
 .brand .mark-svg path,.brand .mark-svg circle{stroke:var(--brass)}
 /* a round logo sits straight over the drawn mark */
-.logo-img{position:absolute;inset:0;width:100%;height:100%;border-radius:50%;object-fit:cover;opacity:0;transition:opacity .3s}
-.mark.has .logo-img{opacity:1}
-.mark.has .mark-svg{opacity:0}
+.logo-img{position:absolute;inset:0;width:100%;height:100%;border-radius:50%;object-fit:cover}
+/* the drawn mark is only a stand-in, so it stays hidden unless the file is
+   missing - otherwise it would flash on every reload before the logo paints */
+.brand .mark-svg{opacity:0}
+.mark.nologo .mark-svg{opacity:1}
 .brand-text{display:flex;flex-direction:column;line-height:1.12}
 .brand-name{font-size:18px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;white-space:nowrap;color:var(--brass)}
 .brand-name em{font-style:normal}
@@ -266,30 +268,30 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 /* mobile panel */
 .m-menu{
   position:fixed;inset:0;z-index:55;            /* full screen: the page behind is hidden */
-  padding:96px 20px 26px;
+  padding:96px 20px 20px;
   background:var(--bg);
   transform:translateY(-102%);transition:transform .4s cubic-bezier(.22,.7,.3,1);
   max-height:100dvh;overflow-y:auto;
 }
 .m-menu.open{transform:none}
 .m-menu a.m-link{
-  display:block;padding:15px 4px;border-bottom:1px solid var(--line);
-  font-size:19px;font-weight:700;letter-spacing:-.01em;
+  display:block;padding:11px 4px;border-bottom:1px solid var(--line);
+  font-size:17px;font-weight:700;letter-spacing:-.01em;
 }
 .m-menu a.m-link.on{color:var(--brass)}
 .m-row{
   display:flex;align-items:center;justify-content:space-between;gap:14px;
-  padding:16px 4px;border-bottom:1px solid var(--line);   /* reads as another menu row */
+  padding:11px 4px;border-bottom:1px solid var(--line);   /* reads as another menu row */
 }
 .m-row:last-of-type{border-bottom:0}
-.m-row-label{font-size:17px;font-weight:600;color:var(--ink-2);letter-spacing:-.01em}
+.m-row-label{font-size:16px;font-weight:600;color:var(--ink-2);letter-spacing:-.01em}
 .m-langs{display:flex;gap:6px}
 .m-langs button{
-  padding:9px 14px;border:1px solid var(--line-2);border-radius:999px;
+  padding:8px 13px;border:1px solid var(--line-2);border-radius:999px;
   font-size:12.5px;font-weight:700;color:var(--ink-2);
 }
 .m-langs button[aria-selected="true"]{background:var(--brass-wash);border-color:var(--brass-line);color:var(--brass)}
-.m-menu .call{display:inline-flex;width:100%;justify-content:center;margin-top:34px;padding:16px 18px;font-size:15px}
+.m-menu .call{display:inline-flex;width:100%;justify-content:center;margin-top:18px;padding:13px 18px;font-size:15px}
 .m-menu .call i{font-style:normal;opacity:.55}
 .m-menu .call b{font-weight:800;letter-spacing:.01em}
 
@@ -542,6 +544,7 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
 .page-head-inner{padding-top:88px;padding-bottom:40px}
 .page-head h1{margin:16px 0 0;max-width:28ch;font-size:clamp(38px,5.4vw,68px)}
 .page-head .lede{margin-top:22px}
+#prices h2{max-width:34ch}      /* the line is meant to hold together */
 #list{padding-top:52px}                    /* the cards ride close under the photo */
 .svc-page{grid-template-columns:repeat(3,1fr);gap:22px}
 .svc-page .svc-body{padding:34px 30px 36px}
@@ -587,33 +590,37 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
 .price-rows i{font-style:normal;font-size:.62em;font-weight:700;color:var(--brass);margin-left:4px}
 .price-rows .from{font-size:.6em;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-3);margin-right:5px}
 
-.rate{
-  display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.3fr);gap:44px;align-items:center;
-  border:1px solid var(--line-2);border-radius:24px;padding:44px 46px;position:relative;overflow:hidden;
-  background:linear-gradient(150deg,var(--card),var(--bg-2) 62%);
+/* the hourly rate rides in the closing card, behind a hairline */
+.hourly{
+  margin-left:auto;padding-left:34px;border-left:1px solid var(--line-2);
+  display:flex;flex-direction:column;gap:4px;flex:none;
 }
-.rate::before{content:"";position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(60% 120% at 88% 10%, var(--brass-wash), transparent 62%)}
-.rate > *{position:relative}
-.rate-label{margin:0 0 10px;font-size:11.5px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--brass)}
-.rate-value{margin:0;font-size:clamp(38px,5vw,60px);line-height:1;letter-spacing:-.04em;font-weight:800;color:var(--ink)}
-.rate-value span{font-size:.45em;letter-spacing:-.01em;color:var(--brass);margin-left:6px}
-.rate-unit{margin:12px 0 0;font-size:14px;color:var(--ink-3)}
-.rate-note p{margin:0 0 24px;font-size:15.5px;color:var(--ink-2);max-width:46ch}
+.hourly-label{font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--brass)}
+.hourly-value{font-size:34px;line-height:1.05;letter-spacing:-.04em;font-weight:800;color:var(--ink)}
+.hourly-value span{font-size:.42em;letter-spacing:-.01em;color:var(--brass);margin-left:5px}
+.hourly-unit{font-size:13.5px;color:var(--ink-3)}
+
+/* the call sits on its own quiet line under the prices */
+.cta-strip{
+  display:flex;align-items:center;justify-content:space-between;gap:26px;flex-wrap:wrap;
+  margin-top:30px;padding-top:28px;border-top:1px solid var(--line);
+}
+.cta-strip p{margin:0;font-size:15.5px;color:var(--ink-2);max-width:46ch}
+
 @media (max-width:1080px){
   .svc-page{grid-template-columns:1fr 1fr}
   .prices{grid-template-columns:1fr}
-  .rate{grid-template-columns:1fr;gap:30px;padding:36px 32px}
 }
 @media (max-width:620px){
   .svc-page{grid-template-columns:1fr}
   .page-head-inner{padding-top:54px;padding-bottom:34px}
   #list{padding-top:36px}
-  /* the panel reads better centred than left-aligned on one column */
   .price-card{padding:28px 24px 30px}
-  .rate{justify-items:center;text-align:center;padding:34px 24px}
-  .rate-value{justify-content:center}
-  .rate-note p{margin-left:auto;margin-right:auto}
+  /* on one column the rate drops below the card instead of beside it */
+  .hourly{margin:22px 0 0;padding:20px 0 0;border-left:0;border-top:1px solid var(--line-2);width:100%}
+  .cta-strip{justify-content:center;text-align:center}
+  .cta-strip p{margin:0 auto}
+  .cta-strip .btn{width:100%;justify-content:center}
 }
 
 /* ══ RESPONSIVE ══════════════════════════════════════════════ */
@@ -647,7 +654,7 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
   .header-inner{height:70px;gap:12px}
   .brand-sub{display:none}
   .brand-name{font-size:16px;letter-spacing:.1em}
-  .m-menu{padding-top:86px}
+  .m-menu{padding-top:70px}
   .hero-inner{padding-top:58px;padding-bottom:56px}
   .sec{padding:64px 0}
   .board{grid-template-columns:1fr;grid-auto-rows:210px;grid-template-areas:"a" "b" "c" "d" "e" "f"}
@@ -683,8 +690,8 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
     <nav class="nav">
       <a href="index.html" data-i18n="nav.home">Home</a>
       <a href="services.html" class="on" data-i18n="nav.services">Services</a>
-      <a href="index.html#wash" data-i18n="nav.wash">Car wash</a>
-      <a href="index.html#rental" data-i18n="nav.rental">Car rental</a>
+      <a href="index.html#wash" data-i18n="nav.wash">Wash</a>
+      <a href="index.html#rental" data-i18n="nav.rental">Rental</a>
       <a href="index.html#work" data-i18n="nav.work">Our work</a>
       <a href="#" data-i18n="nav.about">About</a>
       <a href="#contact" data-i18n="nav.contact">Contact</a>
@@ -724,8 +731,8 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
   <div class="wrap" style="padding:0">
     <a class="m-link" href="index.html" data-i18n="nav.home">Home</a>
     <a class="m-link on" href="services.html" data-i18n="nav.services">Services</a>
-    <a class="m-link" href="index.html#wash" data-i18n="nav.wash">Car wash</a>
-    <a class="m-link" href="index.html#rental" data-i18n="nav.rental">Car rental</a>
+    <a class="m-link" href="index.html#wash" data-i18n="nav.wash">Wash</a>
+    <a class="m-link" href="index.html#rental" data-i18n="nav.rental">Rental</a>
     <a class="m-link" href="index.html#work" data-i18n="nav.work">Our work</a>
     <a class="m-link" href="#" data-i18n="nav.about">About</a>
     <a class="m-link" href="#contact" data-i18n="nav.contact">Contact</a>
@@ -866,6 +873,12 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
           <ul class="svc-list">
             <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L19 7"/></svg><span data-i18n="sp.g7.i1"></span></li>
           </ul>
+
+          <div class="hourly">
+            <span class="hourly-label" data-i18n="sp.rateLabel">Labour rate</span>
+            <span class="hourly-value"><b>18 800</b> <span data-i18n="sp.rateCur">ISK</span></span>
+            <span class="hourly-unit" data-i18n="sp.rateUnit">plus VAT, per hour</span>
+          </div>
         </div>
       </article>
     </div>
@@ -901,25 +914,13 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
         </ul>
       </article>
     </div>
-  </div>
-</section>
 
-<!-- ══════════ RATE ══════════ -->
-<section class="sec" style="padding-top:0">
-  <div class="wrap">
-    <div class="rate rv">
-      <div class="rate-figure">
-        <p class="rate-label" data-i18n="sp.rateLabel">Labour rate</p>
-        <p class="rate-value"><b>18 800</b> <span data-i18n="sp.rateCur">ISK</span></p>
-        <p class="rate-unit" data-i18n="sp.rateUnit">plus VAT, per hour</p>
-      </div>
-      <div class="rate-note">
-        <p data-i18n="sp.rateNote">Call us and we will go through the details.</p>
-        <a class="btn btn-a" href="tel:+3548333370">
-          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
-          <span data-i18n="sp.cta">Call the garage</span>
-        </a>
-      </div>
+    <div class="cta-strip rv">
+      <p data-i18n="sp.rateNote">Call us and we will go through the details.</p>
+      <a class="btn btn-a" href="tel:+3548333370">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+        <span data-i18n="sp.cta">Call the garage</span>
+      </a>
     </div>
   </div>
 </section>
@@ -973,7 +974,7 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
       "meta.title":"Þjónusta · Nord Garage, bílaverkstæði á Selfossi",
       "meta.desc":"Bílaþjónusta hjá Nord Garage á Selfossi. Viðhald, bilanagreining, bremsur, fjöðrun, vél og drifrás, dekk og fleira. Tímagjald 18 800 ISK auk VSK.",
       "brand.sub":"Þjónusta · Þvottur · Bílaleiga",
-      "nav.home":"Heim","nav.services":"Þjónusta","nav.wash":"Bílaþvottur","nav.rental":"Bílaleiga","nav.work":"Verkin okkar","nav.about":"Um okkur","nav.contact":"Hafa samband",
+      "nav.home":"Heim","nav.services":"Þjónusta","nav.wash":"Þvottur","nav.rental":"Bílaleiga","nav.work":"Verkin okkar","nav.about":"Um okkur","nav.contact":"Hafa samband",
       "hero.h1":"Bíllinn þinn,<br>eins og <em>okkar eigin.</em>",
       "hero.lead":"Viðgerðir, bilanagreining, almennilegur þvottur og bílaleigubílar. Verkstæði með bifvélavirkjum sem hafa yfir 15 ára reynslu.",
       "hero.cta1":"Hringdu í verkstæðið","hero.cta2":"Sjáðu verkin okkar",
@@ -1053,7 +1054,7 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
       "meta.title":"Services · Nord Garage, car workshop in Selfoss",
       "meta.desc":"Car servicing at Nord Garage in Selfoss. Maintenance, diagnostics, brakes, suspension, engine and drivetrain, wheels and more. Labour rate 18 800 ISK plus VAT.",
       "brand.sub":"Service · Wash · Rental",
-      "nav.home":"Home","nav.services":"Services","nav.wash":"Car wash","nav.rental":"Car rental","nav.work":"Our work","nav.about":"About","nav.contact":"Contact",
+      "nav.home":"Home","nav.services":"Services","nav.wash":"Wash","nav.rental":"Rental","nav.work":"Our work","nav.about":"About","nav.contact":"Contact",
       "hero.h1":"Your car,<br>treated like <em>our own.</em>",
       "hero.lead":"Service, diagnostics, a proper wash and rental cars. A workshop with mechanics who have more than 15 years behind them.",
       "hero.cta1":"Call the garage","hero.cta2":"See our work",
@@ -1302,14 +1303,12 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
   });
   var logoImg = document.querySelector('.logo-img');
   if (logoImg){
-    var showLogo = function(){ logoImg.parentNode.classList.add('has'); };
-    var dropLogo = function(){ logoImg.remove(); };
-    if (logoImg.complete){                       /* it may already have settled */
-      if (logoImg.naturalWidth) showLogo(); else dropLogo();
-    } else {
-      logoImg.addEventListener('load',  showLogo);
-      logoImg.addEventListener('error', dropLogo);
-    }
+    var dropLogo = function(){
+      logoImg.parentNode.classList.add('nologo');   /* fall back to the drawing */
+      logoImg.remove();
+    };
+    if (logoImg.complete){ if (!logoImg.naturalWidth) dropLogo(); }
+    else logoImg.addEventListener('error', dropLogo);
   }
 
   /* ══════════════ BOOT ══════════════ */
