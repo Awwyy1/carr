@@ -14,11 +14,10 @@
 /* ═══════════════════════════════════════════════════════════════
    NORD GARAGE
 
-   PHOTOS  every dark block is a photo slot. Drag a picture onto it,
-           or click it. Once a photo is in, two small buttons appear
-           on the block: swap it, or remove just that one.
-           To set photos permanently, put files next to this page and
-           paste the paths into the block below.
+   PHOTOS  every picture on the page is a file in the /photos folder.
+           Replace the file, keep the name; the paths are listed in the
+           block below. A placeholder simply does not load, and the drawn
+           fallback shows instead.
 
    THEMES  dark is the default. The switch in the header flips to
            light and the choice is remembered.
@@ -27,12 +26,13 @@
    ═══════════════════════════════════════════════════════════════ */
 :root{
   --ph-hero:  url("photos/hero.jpg");      /* swap the file, not the code */
-  --ph-a:     none;   /* url("photos/workshop.jpg") */
-  --ph-b:     none;   /* url("photos/wash.jpg")     */
-  --ph-c:     none;   /* url("photos/wheels.jpg")   */
-  --ph-d:     none;   /* url("photos/rental.jpg")   */
-  --ph-e:     none;   /* url("photos/detail.jpg")   */
-  --ph-f:     none;   /* url("photos/selfoss.jpg")  */
+  /* the six tiles under "our work", in the order they are numbered */
+  --ph-a:     url("photos/work-1.jpg");    /* 01 - inside the bay        */
+  --ph-b:     url("photos/work-2.jpg");    /* 02 - foam and shine        */
+  --ph-c:     url("photos/work-3.jpg");    /* 03 - tyre service          */
+  --ph-d:     url("photos/work-4.jpg");    /* 04 - keys ready            */
+  --ph-e:     url("photos/work-5.jpg");    /* 05 - interior care         */
+  --ph-f:     url("photos/work-6.jpg");    /* 06 - the workshop outside  */
 }
 
 /* ── DARK: brand navy carrying the golden yellow accent ──────── */
@@ -172,9 +172,11 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .brand .mark-svg{width:100%;height:100%}
 .brand .mark-svg path,.brand .mark-svg circle{stroke:var(--brass)}
 /* a round logo sits straight over the drawn mark */
-.logo-img{position:absolute;inset:0;width:100%;height:100%;border-radius:50%;object-fit:cover;opacity:0;transition:opacity .3s}
-.mark.has .logo-img{opacity:1}
-.mark.has .mark-svg{opacity:0}
+.logo-img{position:absolute;inset:0;width:100%;height:100%;border-radius:50%;object-fit:cover}
+/* the drawn mark is only a stand-in, so it stays hidden unless the file is
+   missing - otherwise it would flash on every reload before the logo paints */
+.brand .mark-svg{opacity:0}
+.mark.nologo .mark-svg{opacity:1}
 .brand-text{display:flex;flex-direction:column;line-height:1.12}
 .brand-name{font-size:18px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;white-space:nowrap;color:var(--brass)}
 .brand-name em{font-style:normal}
@@ -266,30 +268,30 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 /* mobile panel */
 .m-menu{
   position:fixed;inset:0;z-index:55;            /* full screen: the page behind is hidden */
-  padding:96px 20px 26px;
+  padding:96px 20px 20px;
   background:var(--bg);
   transform:translateY(-102%);transition:transform .4s cubic-bezier(.22,.7,.3,1);
   max-height:100dvh;overflow-y:auto;
 }
 .m-menu.open{transform:none}
 .m-menu a.m-link{
-  display:block;padding:15px 4px;border-bottom:1px solid var(--line);
-  font-size:19px;font-weight:700;letter-spacing:-.01em;
+  display:block;padding:11px 4px;border-bottom:1px solid var(--line);
+  font-size:17px;font-weight:700;letter-spacing:-.01em;
 }
 .m-menu a.m-link.on{color:var(--brass)}
 .m-row{
   display:flex;align-items:center;justify-content:space-between;gap:14px;
-  padding:16px 4px;border-bottom:1px solid var(--line);   /* reads as another menu row */
+  padding:11px 4px;border-bottom:1px solid var(--line);   /* reads as another menu row */
 }
 .m-row:last-of-type{border-bottom:0}
-.m-row-label{font-size:17px;font-weight:600;color:var(--ink-2);letter-spacing:-.01em}
+.m-row-label{font-size:16px;font-weight:600;color:var(--ink-2);letter-spacing:-.01em}
 .m-langs{display:flex;gap:6px}
 .m-langs button{
-  padding:9px 14px;border:1px solid var(--line-2);border-radius:999px;
+  padding:8px 13px;border:1px solid var(--line-2);border-radius:999px;
   font-size:12.5px;font-weight:700;color:var(--ink-2);
 }
 .m-langs button[aria-selected="true"]{background:var(--brass-wash);border-color:var(--brass-line);color:var(--brass)}
-.m-menu .call{display:inline-flex;width:100%;justify-content:center;margin-top:34px;padding:16px 18px;font-size:15px}
+.m-menu .call{display:inline-flex;width:100%;justify-content:center;margin-top:18px;padding:13px 18px;font-size:15px}
 .m-menu .call i{font-style:normal;opacity:.55}
 .m-menu .call b{font-weight:800;letter-spacing:.01em}
 
@@ -407,11 +409,10 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
 
 .tile{
   position:relative;overflow:hidden;border-radius:var(--r-lg);
-  border:1px solid var(--line);background:var(--tile);cursor:pointer;isolation:isolate;
+  border:1px solid var(--line);background:var(--tile);isolation:isolate;
   transition:border-color .35s,transform .45s cubic-bezier(.22,.7,.3,1),box-shadow .45s;
 }
 .tile:hover{transform:translateY(-4px);border-color:var(--line-2);box-shadow:var(--shadow)}
-.tile:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
 .ph{position:absolute;inset:0;
   background:linear-gradient(150deg,var(--sheen),transparent 46%),
              radial-gradient(80% 70% at 25% 15%, var(--c1), transparent 70%),
@@ -434,9 +435,12 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
 .ph-icon{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;transition:opacity .4s,transform .6s}
 .ph-icon svg{width:82px;height:82px;stroke:var(--brass);fill:none;opacity:.2;stroke-width:1}
 .tile:hover .ph-icon{transform:scale(1.06)}
+.t-a .img{background-image:var(--ph-a)}.t-b .img{background-image:var(--ph-b)}
+.t-c .img{background-image:var(--ph-c)}.t-d .img{background-image:var(--ph-d)}
+.t-e .img{background-image:var(--ph-e)}.t-f .img{background-image:var(--ph-f)}
 .tile .img{position:absolute;inset:0;background-size:cover;background-position:center;transform:scale(1.015);transition:transform .9s cubic-bezier(.22,.7,.3,1);opacity:0}
 .tile.has .img{opacity:1}
-.tile.has .ph-icon,.tile.has .drop{opacity:0}
+.tile.has .ph-icon{opacity:0}
 .tile:hover .img{transform:scale(1.07)}
 .tile .scrim{position:absolute;inset:0;opacity:0;transition:opacity .4s;
   background:linear-gradient(0deg,rgba(6,10,18,.88) 0%,rgba(6,10,18,.25) 42%,transparent 72%);}
@@ -452,35 +456,6 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
 .tile.has .cap-tag{color:#EFCE96}
 .tile.has .cap-arrow{border-color:rgba(255,255,255,.5)}
 .tile.has .cap-arrow svg{stroke:#FFFFFF}
-
-.drop{
-  position:absolute;top:16px;left:16px;
-  display:inline-flex;align-items:center;gap:7px;padding:7px 12px;border-radius:999px;
-  background:var(--bg);border:1px dashed var(--brass-line);
-  font-size:10.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--brass);
-  opacity:0;transform:translateY(-5px);transition:opacity .3s,transform .3s;pointer-events:none;
-}
-.tile:hover .drop{opacity:1;transform:none}
-.drop svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:1.8}
-.tile.over{border-color:var(--brass);transform:translateY(-4px)}
-.tile.over .drop{opacity:1;transform:none;background:var(--brass-fill);color:var(--on-brass);border-style:solid}
-
-/* per photo controls: swap this one, or remove just this one */
-.acts{position:absolute;top:14px;right:14px;z-index:3;display:none;gap:8px}
-.tile.has .acts{display:flex}
-.acts button{
-  width:34px;height:34px;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  background:rgba(6,10,18,.72);border:1px solid rgba(255,255,255,.28);
-  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
-  opacity:0;transform:translateY(-4px);
-  transition:opacity .3s,transform .3s,background .25s,border-color .25s;
-}
-.tile:hover .acts button,.tile:focus-within .acts button{opacity:1;transform:none}
-.acts button:hover{background:var(--brass-fill);border-color:var(--brass-fill)}
-.acts svg{width:15px;height:15px;stroke:#FFFFFF;fill:none;stroke-width:1.9}
-.acts button:hover svg{stroke:var(--on-brass)}
-@media (hover:none){.acts button{opacity:1;transform:none}}
 
 /* ══ CTA BAND ════════════════════════════════════════════════ */
 .band{
@@ -515,22 +490,6 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
 .legal{border-top:1px solid var(--line);padding-top:18px;padding-bottom:18px;font-size:12px;color:var(--ink-3);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 
 /* ══ TOOLBAR ═════════════════════════════════════════════════ */
-.toolbar{
-  position:fixed;right:20px;bottom:20px;z-index:80;
-  display:flex;align-items:center;gap:10px;padding:10px 12px 10px 16px;border-radius:999px;
-  background:var(--card);border:1px solid var(--line-2);
-  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
-  box-shadow:var(--shadow);font-size:12px;color:var(--ink-2);
-  transform:translateY(140%);transition:transform .5s cubic-bezier(.22,.7,.3,1);
-}
-.toolbar.show{transform:none}
-.toolbar b{color:var(--ink);font-weight:700}
-.toolbar button{
-  font-weight:700;color:var(--brass);background:var(--brass-wash);
-  border:1px solid var(--brass-line);padding:7px 14px;border-radius:999px;
-  transition:background .25s,color .25s;
-}
-.toolbar button:hover{background:var(--brass-fill);color:var(--on-brass)}
 
 /* ══ RESPONSIVE ══════════════════════════════════════════════ */
 /* seven links plus the tools need the header to give ground early */
@@ -563,14 +522,13 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
   .header-inner{height:70px;gap:12px}
   .brand-sub{display:none}
   .brand-name{font-size:16px;letter-spacing:.1em}
-  .m-menu{padding-top:86px}
+  .m-menu{padding-top:70px}
   .hero-inner{padding-top:58px;padding-bottom:56px}
   .sec{padding:64px 0}
   .board{grid-template-columns:1fr;grid-auto-rows:210px;grid-template-areas:"a" "b" "c" "d" "e" "f"}
   .band{padding:38px 26px}
   .btn{flex:1 1 auto}
   .strip-inner{grid-template-columns:1fr}
-  .toolbar{left:16px;right:16px;justify-content:space-between}
   .btn-a{box-shadow:none}          /* the yellow halo is too loud on a phone */
 }
 </style>
@@ -600,8 +558,8 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
     <nav class="nav">
       <a href="#" class="on" data-spy="hero" data-i18n="nav.home">Home</a>
       <a href="services.html" data-spy="services" data-i18n="nav.services">Services</a>
-      <a href="index.html#wash" data-i18n="nav.wash">Car wash</a>
-      <a href="index.html#rental" data-i18n="nav.rental">Car rental</a>
+      <a href="index.html#wash" data-i18n="nav.wash">Wash</a>
+      <a href="index.html#rental" data-i18n="nav.rental">Rental</a>
       <a href="#work" data-spy="work" data-i18n="nav.work">Our work</a>
       <a href="#" data-i18n="nav.about">About</a>
       <a href="#contact" data-spy="contact" data-i18n="nav.contact">Contact</a>
@@ -641,8 +599,8 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
   <div class="wrap" style="padding:0">
     <a class="m-link" href="#" data-spy="hero" data-i18n="nav.home">Home</a>
     <a class="m-link" href="services.html" data-spy="services" data-i18n="nav.services">Services</a>
-    <a class="m-link" href="index.html#wash" data-i18n="nav.wash">Car wash</a>
-    <a class="m-link" href="index.html#rental" data-i18n="nav.rental">Car rental</a>
+    <a class="m-link" href="index.html#wash" data-i18n="nav.wash">Wash</a>
+    <a class="m-link" href="index.html#rental" data-i18n="nav.rental">Rental</a>
     <a class="m-link" href="#work" data-spy="work" data-i18n="nav.work">Our work</a>
     <a class="m-link" href="#" data-i18n="nav.about">About</a>
     <a class="m-link" href="#contact" data-spy="contact" data-i18n="nav.contact">Contact</a>
@@ -839,11 +797,6 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
   </div>
 </footer>
 
-<div class="toolbar" id="toolbar">
-  <span><b id="shotCount">0</b> <span data-i18n="photo.placed">photos placed</span></span>
-  <button type="button" id="resetShots" data-i18n="photo.clear">Clear all</button>
-</div>
-<input type="file" id="picker" accept="image/*" hidden>
 
 <script>
 (function(){
@@ -857,7 +810,7 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
       "meta.title":"Nord Garage · Bílaþjónusta, bílaþvottur og bílaleiga á Selfossi",
       "meta.desc":"Nord Garage á Selfossi. Bílaþjónusta, bílaþvottur og bílaleiga. Eitt verkstæði, allar tegundir og gerðir.",
       "brand.sub":"Þjónusta · Þvottur · Bílaleiga",
-      "nav.home":"Heim","nav.services":"Þjónusta","nav.wash":"Bílaþvottur","nav.rental":"Bílaleiga","nav.work":"Verkin okkar","nav.about":"Um okkur","nav.contact":"Hafa samband",
+      "nav.home":"Heim","nav.services":"Þjónusta","nav.wash":"Þvottur","nav.rental":"Bílaleiga","nav.work":"Verkin okkar","nav.about":"Um okkur","nav.contact":"Hafa samband",
       "hero.h1":"Bíllinn þinn,<br>eins og <em>okkar eigin.</em>",
       "hero.lead":"Viðgerðir, bilanagreining, almennilegur þvottur og bílaleigubílar. Verkstæði með bifvélavirkjum sem hafa yfir 15 ára reynslu.",
       "hero.cta1":"Hringdu í verkstæðið","hero.cta2":"Sjáðu verkin okkar",
@@ -885,16 +838,13 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
       "foot.visit":"Heimsæktu okkur","foot.call":"Hringdu í okkur","foot.email":"Netfang","foot.hours":"Opnunartími",
       "foot.week":"Mán til fös","foot.weekH":"08:00 til 18:00","foot.sat":"Lau","foot.satH":"08:00 til 17:00",
       "legal":"© 2026 Nord Garage · Bílaþjónusta · Bílaþvottur · Bílaleiga",
-      "photo.swap":"Skipta um mynd","photo.remove":"Fjarlægja",
-      "photo.drop":"Slepptu mynd","photo.placed":"myndir settar","photo.clear":"Hreinsa allt",
-      "a11y.theme":"Skipta um þema","a11y.lang":"Skipta um tungumál","a11y.menu":"Valmynd","menu.language":"Tungumál","menu.theme":"Þema",
-      "a11y.swap":"Skipta um mynd","a11y.remove":"Fjarlægja mynd"
+      "a11y.theme":"Skipta um þema","a11y.lang":"Skipta um tungumál","a11y.menu":"Valmynd","menu.language":"Tungumál","menu.theme":"Þema"
     },
     en:{
       "meta.title":"Nord Garage · Car Service, Car Wash and Car Rental in Selfoss",
       "meta.desc":"Nord Garage, Selfoss. Car service, car wash and car rental. One workshop, all makes and models.",
       "brand.sub":"Service · Wash · Rental",
-      "nav.home":"Home","nav.services":"Services","nav.wash":"Car wash","nav.rental":"Car rental","nav.work":"Our work","nav.about":"About","nav.contact":"Contact",
+      "nav.home":"Home","nav.services":"Services","nav.wash":"Wash","nav.rental":"Rental","nav.work":"Our work","nav.about":"About","nav.contact":"Contact",
       "hero.h1":"Your car,<br>treated like <em>our own.</em>",
       "hero.lead":"Service, diagnostics, a proper wash and rental cars. A workshop with mechanics who have more than 15 years behind them.",
       "hero.cta1":"Call the garage","hero.cta2":"See our work",
@@ -922,10 +872,7 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
       "foot.visit":"Visit us","foot.call":"Call us","foot.email":"Email","foot.hours":"Opening hours",
       "foot.week":"Mon to Fri","foot.weekH":"08:00 to 18:00","foot.sat":"Sat","foot.satH":"08:00 to 17:00",
       "legal":"© 2026 Nord Garage · Car service · Car wash · Car rental",
-      "photo.swap":"Change photo","photo.remove":"Remove",
-      "photo.drop":"Drop photo","photo.placed":"photos placed","photo.clear":"Clear all",
-      "a11y.theme":"Switch theme","a11y.lang":"Change language","a11y.menu":"Menu","menu.language":"Language","menu.theme":"Theme",
-      "a11y.swap":"Change photo","a11y.remove":"Remove photo"
+      "a11y.theme":"Switch theme","a11y.lang":"Change language","a11y.menu":"Menu","menu.language":"Language","menu.theme":"Theme"
     },
   };
 
@@ -950,21 +897,13 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
     {k:'e',cls:'t-e',n:5,icon:'car'},{k:'f',cls:'t-f',n:6,icon:'land'}
   ];
   var ARROW='<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>';
-  var UP='<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4m0 0L7 9m5-5 5 5M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>';
-  var SWAP='<svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10a8 8 0 0 0-13.5-4L4 8m0-4v4h4M4 14a8 8 0 0 0 13.5 4L20 16m0 4v-4h-4"/></svg>';
-  var CROSS='<svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></svg>';
 
   var board = document.getElementById('board');
   if (board) board.innerHTML = TILES.map(function(t){
-    return '<article class="tile '+t.cls+'" tabindex="0" data-slot="'+t.k+'">'
+    return '<article class="tile '+t.cls+'" data-photo>'
       + '<div class="ph"></div>'
       + '<div class="ph-icon"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">'+ICONS[t.icon]+'</svg></div>'
       + '<div class="img"></div><div class="scrim"></div>'
-      + '<span class="drop">'+UP+' <span data-i18n="photo.drop">Drop photo</span></span>'
-      + '<div class="acts">'
-      +   '<button type="button" data-act="swap" data-i18n-aria="a11y.swap" aria-label="Change photo">'+SWAP+'</button>'
-      +   '<button type="button" data-act="remove" data-i18n-aria="a11y.remove" aria-label="Remove photo">'+CROSS+'</button>'
-      + '</div>'
       + '<div class="cap"><div>'
       +   '<div class="cap-tag" data-i18n="tile'+t.n+'.tag"></div>'
       +   '<div class="cap-name" data-i18n="tile'+t.n+'.name"></div>'
@@ -1085,132 +1024,6 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
   });
   mMenu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeMenu); });
 
-  /* ══════════════ PHOTOS ══════════════
-     Each slot is independent: drop or click to fill it, and once filled
-     it carries its own swap and remove buttons. Nothing else is touched. */
-  var KEY = 'nordgarage.photos.v2';
-  var MAX_EDGE = 1500;
-  var picker  = document.getElementById('picker');
-  var toolbar = document.getElementById('toolbar');
-  var counter = document.getElementById('shotCount');
-  var target  = null;
-  var slots = {};
-
-  document.querySelectorAll('.tile').forEach(function(t){
-    slots[t.dataset.slot] = {
-      drop:t, has:t, img:t.querySelector('.img'), click:t,
-      swap:t.querySelector('[data-act="swap"]'),
-      kill:t.querySelector('[data-act="remove"]')
-    };
-  });
-
-  function count(){
-    var n = 0;
-    Object.keys(slots).forEach(function(k){ if (slots[k].data) n++; });
-    counter.textContent = n;
-    toolbar.classList.toggle('show', n > 0);
-    return n;
-  }
-  function store(){
-    /* each page registers only its own slots, so the stored blob is merged
-       rather than replaced - otherwise one page would wipe another's photos */
-    var out = {};
-    try { out = JSON.parse(LS.get(KEY) || '{}'); } catch(e){ out = {}; }
-    Object.keys(slots).forEach(function(k){
-      if (slots[k].data) out[k] = slots[k].data; else delete out[k];
-    });
-    LS.set(KEY, JSON.stringify(out));
-    count();
-  }
-
-  function fill(key, url, remember){
-    var s = slots[key]; if (!s) return;
-    s.img.style.backgroundImage = 'url("' + url + '")';
-    s.has.classList.add('has');
-    if (remember){ s.data = url; store(); }
-  }
-
-  function clear(key){
-    var s = slots[key]; if (!s) return;
-    delete s.data;
-    s.img.style.backgroundImage = '';
-    s.has.classList.remove('has');
-    store();
-  }
-
-  function readFile(file, key){
-    if (!file || !/^image\//.test(file.type)) return;
-    var fr = new FileReader();
-    fr.onload = function(){
-      var im = new Image();
-      im.onload = function(){
-        var sc = Math.min(1, MAX_EDGE / Math.max(im.width, im.height));
-        var c = document.createElement('canvas');
-        c.width  = Math.round(im.width  * sc);
-        c.height = Math.round(im.height * sc);
-        c.getContext('2d').drawImage(im, 0, 0, c.width, c.height);
-        var small;
-        try { small = c.toDataURL('image/jpeg', 0.78); } catch(e){ small = fr.result; }
-        fill(key, small, true);
-      };
-      im.onerror = function(){ fill(key, fr.result, true); };
-      im.src = fr.result;
-    };
-    fr.readAsDataURL(file);
-  }
-
-  Object.keys(slots).forEach(function(key){
-    var s = slots[key], el = s.drop;
-    if (!el) return;
-
-    el.addEventListener('dragover', function(e){
-      e.preventDefault(); e.dataTransfer.dropEffect = 'copy'; el.classList.add('over');
-    });
-    ['dragleave','dragend'].forEach(function(t){
-      el.addEventListener(t, function(){ el.classList.remove('over'); });
-    });
-    el.addEventListener('drop', function(e){
-      e.preventDefault(); el.classList.remove('over');
-      readFile(e.dataTransfer.files && e.dataTransfer.files[0], key);
-    });
-
-    function pick(e){ if (e) e.stopPropagation(); target = key; picker.click(); }
-
-    if (s.click){
-      s.click.addEventListener('click', function(e){
-        /* on a filled tile the buttons handle it, so ignore clicks that land on them */
-        if (e.target.closest && e.target.closest('.acts')) return;
-        pick();
-      });
-      s.click.addEventListener('keydown', function(e){
-        if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); pick(); }
-      });
-    }
-    if (s.swap) s.swap.addEventListener('click', pick);
-    if (s.kill) s.kill.addEventListener('click', function(e){ e.stopPropagation(); clear(key); });
-  });
-
-  picker.addEventListener('change', function(){
-    if (target) readFile(picker.files[0], target);
-    picker.value = '';
-  });
-
-  document.getElementById('resetShots').addEventListener('click', function(){
-    Object.keys(slots).forEach(function(k){
-      var s = slots[k];
-      delete s.data;
-      s.img.style.backgroundImage = '';
-      s.has.classList.remove('has');
-    });
-    LS.del(KEY);
-    count();
-  });
-
-  ['dragover','drop'].forEach(function(t){
-    window.addEventListener(t, function(e){ e.preventDefault(); });
-  });
-
-
   /* ══════════════ PICTURES FROM THE REPOSITORY ══════════════
      The hero band, the services band and the logo are files in /photos.
      A file that is still an empty placeholder never loads, and the drawn
@@ -1226,27 +1039,17 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
   });
   var logoImg = document.querySelector('.logo-img');
   if (logoImg){
-    var showLogo = function(){ logoImg.parentNode.classList.add('has'); };
-    var dropLogo = function(){ logoImg.remove(); };
-    if (logoImg.complete){                       /* it may already have settled */
-      if (logoImg.naturalWidth) showLogo(); else dropLogo();
-    } else {
-      logoImg.addEventListener('load',  showLogo);
-      logoImg.addEventListener('error', dropLogo);
-    }
+    var dropLogo = function(){
+      logoImg.parentNode.classList.add('nologo');   /* fall back to the drawing */
+      logoImg.remove();
+    };
+    if (logoImg.complete){ if (!logoImg.naturalWidth) dropLogo(); }
+    else logoImg.addEventListener('error', dropLogo);
   }
 
   /* ══════════════ BOOT ══════════════ */
   applyTheme(LS.get('nordgarage.theme') === 'light' ? 'light' : 'dark');   /* dark unless asked otherwise */
   applyLang(LS.get('nordgarage.lang') || 'is');                            /* Icelandic unless asked otherwise */
-
-  try {
-    var saved = JSON.parse(LS.get(KEY) || '{}');
-    Object.keys(saved).forEach(function(k){
-      if (slots[k] && slots[k].img){ fill(k, saved[k], false); slots[k].data = saved[k]; }
-    });
-    count();
-  } catch(e){}
 
   var rev = document.querySelectorAll('.rv');
   function onFirstScreen(el){
