@@ -12,12 +12,12 @@
 
 <style>
 /* ═══════════════════════════════════════════════════════════════
-   NORD GARAGE
+   NORD GARAGE - car wash
 
-   PHOTOS  every picture on the page is a file in the /photos folder.
-           Replace the file, keep the name; the paths are listed in the
-           block below. A placeholder simply does not load, and the drawn
-           fallback shows instead.
+   PHOTOS  the band behind the heading and the logo are files in the
+           /photos folder. Replace the file, keep the name; nothing here
+           needs to change. A placeholder simply does not load, and the
+           drawn fallback shows instead.
 
    THEMES  dark is the default. The switch in the header flips to
            light and the choice is remembered.
@@ -25,14 +25,14 @@
    LANGUAGE  Icelandic and English. Icelandic is the default.
    ═══════════════════════════════════════════════════════════════ */
 :root{
-  --ph-hero:  url("photos/hero.jpg");      /* swap the file, not the code */
-  /* the six tiles under "our work", in the order they are numbered */
-  --ph-a:     url("photos/work-1.jpg");    /* 01 - inside the bay        */
-  --ph-b:     url("photos/work-2.jpg");    /* 02 - foam and shine        */
-  --ph-c:     url("photos/work-3.jpg");    /* 03 - tyre service          */
-  --ph-d:     url("photos/work-4.jpg");    /* 04 - keys ready            */
-  --ph-e:     url("photos/work-5.jpg");    /* 05 - interior care         */
-  --ph-f:     url("photos/work-6.jpg");    /* 06 - the workshop outside  */
+  --ph-hero:  none;   /* url("photos/hero.jpg")     */
+  --ph-svc:   url("photos/wash.jpg");      /* swap the file, not the code */
+  --ph-a:     none;   /* url("photos/workshop.jpg") */
+  --ph-b:     none;   /* url("photos/wash.jpg")     */
+  --ph-c:     none;   /* url("photos/wheels.jpg")   */
+  --ph-d:     none;   /* url("photos/rental.jpg")   */
+  --ph-e:     none;   /* url("photos/detail.jpg")   */
+  --ph-f:     none;   /* url("photos/selfoss.jpg")  */
 }
 
 /* ── DARK: brand navy carrying the golden yellow accent ──────── */
@@ -409,10 +409,11 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
 
 .tile{
   position:relative;overflow:hidden;border-radius:var(--r-lg);
-  border:1px solid var(--line);background:var(--tile);isolation:isolate;
+  border:1px solid var(--line);background:var(--tile);cursor:pointer;isolation:isolate;
   transition:border-color .35s,transform .45s cubic-bezier(.22,.7,.3,1),box-shadow .45s;
 }
 .tile:hover{transform:translateY(-4px);border-color:var(--line-2);box-shadow:var(--shadow)}
+.tile:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
 .ph{position:absolute;inset:0;
   background:linear-gradient(150deg,var(--sheen),transparent 46%),
              radial-gradient(80% 70% at 25% 15%, var(--c1), transparent 70%),
@@ -435,12 +436,9 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
 .ph-icon{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;transition:opacity .4s,transform .6s}
 .ph-icon svg{width:82px;height:82px;stroke:var(--brass);fill:none;opacity:.2;stroke-width:1}
 .tile:hover .ph-icon{transform:scale(1.06)}
-.t-a .img{background-image:var(--ph-a)}.t-b .img{background-image:var(--ph-b)}
-.t-c .img{background-image:var(--ph-c)}.t-d .img{background-image:var(--ph-d)}
-.t-e .img{background-image:var(--ph-e)}.t-f .img{background-image:var(--ph-f)}
 .tile .img{position:absolute;inset:0;background-size:cover;background-position:center;transform:scale(1.015);transition:transform .9s cubic-bezier(.22,.7,.3,1);opacity:0}
 .tile.has .img{opacity:1}
-.tile.has .ph-icon{opacity:0}
+.tile.has .ph-icon,.tile.has .drop{opacity:0}
 .tile:hover .img{transform:scale(1.07)}
 .tile .scrim{position:absolute;inset:0;opacity:0;transition:opacity .4s;
   background:linear-gradient(0deg,rgba(6,10,18,.88) 0%,rgba(6,10,18,.25) 42%,transparent 72%);}
@@ -456,6 +454,35 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
 .tile.has .cap-tag{color:#EFCE96}
 .tile.has .cap-arrow{border-color:rgba(255,255,255,.5)}
 .tile.has .cap-arrow svg{stroke:#FFFFFF}
+
+.drop{
+  position:absolute;top:16px;left:16px;
+  display:inline-flex;align-items:center;gap:7px;padding:7px 12px;border-radius:999px;
+  background:var(--bg);border:1px dashed var(--brass-line);
+  font-size:10.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--brass);
+  opacity:0;transform:translateY(-5px);transition:opacity .3s,transform .3s;pointer-events:none;
+}
+.tile:hover .drop{opacity:1;transform:none}
+.drop svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:1.8}
+.tile.over{border-color:var(--brass);transform:translateY(-4px)}
+.tile.over .drop{opacity:1;transform:none;background:var(--brass-fill);color:var(--on-brass);border-style:solid}
+
+/* per photo controls: swap this one, or remove just this one */
+.acts{position:absolute;top:14px;right:14px;z-index:3;display:none;gap:8px}
+.tile.has .acts{display:flex}
+.acts button{
+  width:34px;height:34px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(6,10,18,.72);border:1px solid rgba(255,255,255,.28);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  opacity:0;transform:translateY(-4px);
+  transition:opacity .3s,transform .3s,background .25s,border-color .25s;
+}
+.tile:hover .acts button,.tile:focus-within .acts button{opacity:1;transform:none}
+.acts button:hover{background:var(--brass-fill);border-color:var(--brass-fill)}
+.acts svg{width:15px;height:15px;stroke:#FFFFFF;fill:none;stroke-width:1.9}
+.acts button:hover svg{stroke:var(--on-brass)}
+@media (hover:none){.acts button{opacity:1;transform:none}}
 
 /* ══ CTA BAND ════════════════════════════════════════════════ */
 .band{
@@ -490,6 +517,100 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
 .legal{border-top:1px solid var(--line);padding-top:18px;padding-bottom:18px;font-size:12px;color:var(--ink-3);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 
 /* ══ TOOLBAR ═════════════════════════════════════════════════ */
+
+
+/* ══ SERVICES PAGE ═══════════════════════════════════════════ */
+.page-head{position:relative;overflow:hidden;isolation:isolate}
+.page-bg{position:absolute;inset:0;z-index:-3;background:var(--bg-2)}
+.page-bg .fallback{position:absolute;inset:0;background:var(--hero-grad)}
+.page-bg .img{
+  position:absolute;inset:0;
+  background-image:var(--ph-svc);background-size:cover;background-position:center;
+  opacity:var(--photo-op);filter:var(--photo-filter);
+}
+.page-bg::after{content:"";position:absolute;inset:0;pointer-events:none;background:var(--veil);opacity:0;transition:opacity .4s}
+.page-bg.has::after{opacity:1}
+.page-head.over::before{
+  content:"";position:absolute;inset:10px;z-index:5;pointer-events:none;
+  border:2px dashed var(--brass);background:var(--brass-wash);border-radius:16px;
+}
+/* once a photo is in place the band would otherwise end on a hard
+   edge, so the last stretch of it fades into the page colour */
+.page-head::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;z-index:-1;pointer-events:none;
+  height:clamp(90px,17vh,200px);
+  background:linear-gradient(180deg,rgba(var(--bg-rgb),0),rgba(var(--bg-rgb),.72) 55%,rgba(var(--bg-rgb),1));
+}
+.page-head-inner{padding-top:88px;padding-bottom:40px}
+.page-head h1{margin:16px 0 0;max-width:28ch;font-size:clamp(38px,5.4vw,68px)}
+.page-head .lede{margin-top:22px}
+#prices h2{max-width:34ch}      /* the line is meant to hold together */
+#list{padding-top:52px}                    /* the cards ride close under the photo */
+.svc-page{grid-template-columns:repeat(3,1fr);gap:22px}
+.svc-page .svc-body{padding:34px 30px 36px}
+.svc-page .svc-head{margin-bottom:24px}
+.svc-page .svc-list{gap:11px}
+.svc-page .svc-card h3{margin:0 0 18px}
+.svc-page .svc-list{margin-bottom:0}
+.svc-page .svc-list li{align-items:flex-start}
+.svc-page .svc-list svg{margin-top:4px}
+/* the closing card has a single line, so it runs the width instead of
+   leaving two empty columns beside it */
+
+/* ── fixed prices ── */
+.prices{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:22px;margin-top:34px}
+.prices.even{grid-template-columns:1fr 1fr}
+.price-foot{margin:26px 0 0;font-size:14px;color:var(--ink-3);max-width:62ch}
+.price-card{
+  border:1px solid var(--line);border-radius:var(--r-lg);padding:32px 32px 34px;
+  background:linear-gradient(170deg,var(--card),var(--tile) 55%,var(--bg-2));
+  display:flex;flex-direction:column;
+}
+.price-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:18px}
+.price-card h3{margin:0;font-size:19px;font-weight:700;letter-spacing:-.02em;max-width:20ch}
+.vat{
+  flex:none;font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--brass);
+  padding:5px 11px;border-radius:999px;background:var(--brass-wash);border:1px solid var(--brass-line);
+}
+.price-one{margin:auto 0 0;font-size:clamp(34px,4.2vw,50px);line-height:1;letter-spacing:-.04em;font-weight:800;color:var(--ink)}
+.price-one span{font-size:.42em;letter-spacing:-.01em;color:var(--brass);margin-left:6px}
+.price-sub{margin:0 0 20px;font-size:14.5px;color:var(--ink-3)}
+.price-rows{list-style:none;margin:auto 0 0;padding:0;display:flex;flex-direction:column}
+.price-rows li{
+  display:flex;align-items:baseline;justify-content:space-between;gap:18px;
+  padding:13px 0;border-top:1px solid var(--line);font-size:15px;color:var(--ink-2);
+}
+.price-rows li:first-child{border-top:0;padding-top:0}
+.price-rows li:last-child{padding-bottom:0}
+.price-rows b{flex:none;font-size:19px;font-weight:800;letter-spacing:-.02em;color:var(--ink);white-space:nowrap}
+.price-rows i{font-style:normal;font-size:.62em;font-weight:700;color:var(--brass);margin-left:4px}
+.price-rows .from{font-size:.6em;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-3);margin-right:5px}
+
+
+/* the call sits on its own quiet line under the prices */
+.cta-strip{
+  display:flex;align-items:center;justify-content:space-between;gap:26px;flex-wrap:wrap;
+  margin-top:30px;padding-top:28px;border-top:1px solid var(--line);
+}
+.cta-strip p{margin:0;font-size:15.5px;color:var(--ink-2);max-width:46ch}
+
+@media (max-width:1080px){
+  .svc-page{grid-template-columns:1fr 1fr}
+  .prices,.prices.even{grid-template-columns:1fr}
+}
+@media (max-width:620px){
+  .svc-page{grid-template-columns:1fr}
+  .page-head-inner{padding-top:54px;padding-bottom:34px}
+  #list{padding-top:36px}
+  .price-card{padding:28px 24px 30px}
+  /* a long line keeps its price, and drops it to its own row */
+  .price-rows li{flex-wrap:wrap;gap:2px 14px}
+  .price-rows b{margin-left:auto}
+  /* on one column the rate drops below the card instead of beside it */
+  .cta-strip{justify-content:center;text-align:center}
+  .cta-strip p{margin:0 auto}
+  .cta-strip .btn{width:100%;justify-content:center}
+}
 
 /* ══ RESPONSIVE ══════════════════════════════════════════════ */
 /* seven links plus the tools need the header to give ground early */
@@ -556,13 +677,13 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
     </div>
 
     <nav class="nav">
-      <a href="#" class="on" data-spy="hero" data-i18n="nav.home">Home</a>
-      <a href="services.html" data-spy="services" data-i18n="nav.services">Services</a>
-      <a href="wash.html" data-i18n="nav.wash">Wash</a>
+      <a href="index.html" data-i18n="nav.home">Home</a>
+      <a href="services.html" data-i18n="nav.services">Services</a>
+      <a href="wash.html" class="on" data-i18n="nav.wash">Wash</a>
       <a href="index.html#rental" data-i18n="nav.rental">Rental</a>
-      <a href="#work" data-spy="work" data-i18n="nav.work">Our work</a>
+      <a href="index.html#work" data-i18n="nav.work">Our work</a>
       <a href="about.html" data-i18n="nav.about">About</a>
-      <a href="#contact" data-spy="contact" data-i18n="nav.contact">Contact</a>
+      <a href="#contact" data-i18n="nav.contact">Contact</a>
     </nav>
 
     <div class="tools">
@@ -597,13 +718,13 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
 <!-- ══════════ MOBILE PANEL ══════════ -->
 <div class="m-menu" id="mMenu">
   <div class="wrap" style="padding:0">
-    <a class="m-link" href="#" data-spy="hero" data-i18n="nav.home">Home</a>
-    <a class="m-link" href="services.html" data-spy="services" data-i18n="nav.services">Services</a>
-    <a class="m-link" href="wash.html" data-i18n="nav.wash">Wash</a>
+    <a class="m-link" href="index.html" data-i18n="nav.home">Home</a>
+    <a class="m-link" href="services.html" data-i18n="nav.services">Services</a>
+    <a class="m-link on" href="wash.html" data-i18n="nav.wash">Wash</a>
     <a class="m-link" href="index.html#rental" data-i18n="nav.rental">Rental</a>
-    <a class="m-link" href="#work" data-spy="work" data-i18n="nav.work">Our work</a>
+    <a class="m-link" href="index.html#work" data-i18n="nav.work">Our work</a>
     <a class="m-link" href="about.html" data-i18n="nav.about">About</a>
-    <a class="m-link" href="#contact" data-spy="contact" data-i18n="nav.contact">Contact</a>
+    <a class="m-link" href="#contact" data-i18n="nav.contact">Contact</a>
 
     <div class="m-row">
       <span class="m-row-label" data-i18n="menu.language">Language</span>
@@ -631,132 +752,62 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
   </div>
 </div>
 
-<!-- ══════════ HERO ══════════ -->
-<section class="hero" id="hero">
-  <div class="hero-slot" data-photo>
+<!-- ══════════ PAGE HEAD ══════════ -->
+<section class="page-head">
+  <div class="page-bg" data-photo>
     <div class="fallback"></div>
     <div class="img"></div>
   </div>
   <div class="grain"></div>
-
-  <div class="wrap hero-inner">
-    <h1 class="rv" data-i18n-html="hero.h1">Your car,<br>treated like <em>our own.</em></h1>
-
-    <div class="hero-copy rv" style="margin-top:44px">
-        <p class="lede" data-i18n="hero.lead">Service, diagnostics, a proper wash and rental cars. A workshop with mechanics who have more than 15 years behind them.</p>
-        <div class="cta">
-          <a class="btn btn-a" href="tel:+3548333370">
-            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
-            <span data-i18n="hero.cta1">Call the garage</span>
-          </a>
-          <a class="btn btn-b" href="#work">
-            <span data-i18n="hero.cta2">See our work</span>
-            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
-        </div>
-    </div>
-</section>
-
-<!-- ══════════ MARQUEE ══════════ -->
-<div class="marquee" aria-hidden="true">
-  <div class="marquee-track" id="marquee"></div>
-</div>
-
-<!-- ══════════ SERVICES ══════════ -->
-<section class="sec" id="services">
-  <div class="wrap">
-    <div class="sec-head rv">
-      <div>
-        <p class="kicker"><span class="bar"></span> <span data-i18n="svc.kicker">What we do</span></p>
-        <h2 data-i18n-html="svc.h2">Three things, done <em>properly.</em></h2>
-      </div>
-      <p class="sec-note" data-i18n="svc.note">Book by phone and we will tell you straight away what it takes and what it costs.</p>
-    </div>
-
-    <div class="svc rv">
-      <article class="svc-card">
-        <div class="svc-body">
-          <div class="svc-head">
-            <div class="svc-num">01 <span class="bar"></span></div>
-            <div class="svc-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76Z"/></svg></div>
-        </div>
-          <h3 data-i18n="svc1.title">Auto service</h3>
-          <p data-i18n="svc1.text">Repairs, maintenance and full diagnostics for all makes and models.</p>
-          <ul class="svc-list">
-            <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L19 7"/></svg><span data-i18n="svc1.li1">Fault diagnostics</span></li>
-            <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L19 7"/></svg><span data-i18n="svc1.li2">Brakes &amp; suspension</span></li>
-            <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L19 7"/></svg><span data-i18n="svc1.li3">Oil &amp; filters</span></li>
-          </ul>
-          <a class="svc-link" href="services.html"><span data-i18n="svc.learn">Learn more</span> <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        </div>
-      </article>
-
-      <article class="svc-card" id="wash">
-        <div class="svc-body">
-          <div class="svc-head">
-            <div class="svc-num">02 <span class="bar"></span></div>
-            <div class="svc-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7 17.66 8.36a8 8 0 1 1-11.32 0L12 2.7Z"/><path d="M12 18a4 4 0 0 1-4-4"/></svg></div>
-        </div>
-          <h3 data-i18n="svc2.title">Car wash</h3>
-          <p data-i18n="svc2.text">Exterior and interior cleaning. A clean car, a better mood.</p>
-          <ul class="svc-list">
-            <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L19 7"/></svg><span data-i18n="svc2.li1">Hand wash &amp; wax</span></li>
-            <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L19 7"/></svg><span data-i18n="svc2.li2">Interior detailing</span></li>
-            <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L19 7"/></svg><span data-i18n="svc2.li3">Winter salt removal</span></li>
-          </ul>
-          <a class="svc-link" href="wash.html"><span data-i18n="svc.learn">Learn more</span> <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        </div>
-      </article>
-
-      <article class="svc-card" id="rental">
-        <div class="svc-body">
-          <div class="svc-head">
-            <div class="svc-num">03 <span class="bar"></span></div>
-            <div class="svc-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2M11.39 11.61a5.5 5.5 0 1 1-7.78 7.78 5.5 5.5 0 0 1 7.78-7.78ZM15.5 7.5l3 3L22 7l-3-3-3.5 3.5Z"/></svg></div>
-        </div>
-          <h3 data-i18n="svc3.title">Car rental</h3>
-          <p data-i18n="svc3.text">Comfortable, well kept cars ready for any journey around Iceland.</p>
-          <ul class="svc-list">
-            <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L19 7"/></svg><span data-i18n="svc3.li1">Daily &amp; weekly rates</span></li>
-            <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L19 7"/></svg><span data-i18n="svc3.li2">Winter tyres included</span></li>
-            <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L19 7"/></svg><span data-i18n="svc3.li3">Courtesy car while we work</span></li>
-          </ul>
-          <a class="svc-link" href="services.html"><span data-i18n="svc.learn">Learn more</span> <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        </div>
-      </article>
-    </div>
+  <div class="wrap page-head-inner">
+    <p class="kicker rv"><span class="bar"></span> <span data-i18n="sp.kicker">Car wash</span></p>
+    <h1 class="rv" data-i18n-html="sp.h1">A clean car,<br><em>inside and out.</em></h1>
+    <p class="lede rv" data-i18n="sp.lead">Washing by hand and cleaning inside, from a quick rinse to a deep clean of the seats.</p>
   </div>
 </section>
 
-<!-- ══════════ MOODBOARD ══════════ -->
-<section class="sec" id="work" style="padding-top:0">
+<!-- ══════════ WASH PRICES ══════════ -->
+<section class="sec" id="prices" style="padding-top:0">
   <div class="wrap">
-    <div class="sec-head rv">
-      <div>
-        <p class="kicker"><span class="bar"></span> <span data-i18n="work.kicker">The workshop</span></p>
-        <h2 data-i18n-html="work.h2">Real cars, real <em>hands</em>, real results.</h2>
-      </div>
+    <p class="kicker rv"><span class="bar"></span> <span data-i18n="sp.priceKicker">Price list</span></p>
+    <h2 class="rv" data-i18n-html="sp.priceH2">What a wash <em>costs.</em></h2>
+
+    <div class="prices even rv">
+      <article class="price-card">
+        <div class="price-head">
+          <h3 data-i18n="sp.fullTitle">Full wash</h3>
+        </div>
+        <p class="price-sub" data-i18n="sp.fullNote">Outside and inside, priced by the size of the car.</p>
+        <ul class="price-rows">
+          <li><span data-i18n="sp.full1">Passenger car</span><b><span class="from" data-i18n="sp.from">from</span>22 000 <i data-i18n="sp.rateCur">ISK</i></b></li>
+          <li><span data-i18n="sp.full2">Crossover</span><b><span class="from" data-i18n="sp.from">from</span>24 000 <i data-i18n="sp.rateCur">ISK</i></b></li>
+          <li><span data-i18n="sp.full3">Four-wheel drive</span><b><span class="from" data-i18n="sp.from">from</span>26 000 <i data-i18n="sp.rateCur">ISK</i></b></li>
+          <li><span data-i18n="sp.full4">Large pickup</span><b><span class="from" data-i18n="sp.from">from</span>30 000 <i data-i18n="sp.rateCur">ISK</i></b></li>
+        </ul>
+      </article>
+
+      <article class="price-card">
+        <div class="price-head">
+          <h3 data-i18n="sp.singleTitle">On its own</h3>
+        </div>
+        <p class="price-sub" data-i18n="sp.singleNote">When the car only needs one of them.</p>
+        <ul class="price-rows">
+          <li><span data-i18n="sp.single1">Outside wash</span><b><span class="from" data-i18n="sp.from">from</span>10 000 <i data-i18n="sp.rateCur">ISK</i></b></li>
+          <li><span data-i18n="sp.single2">Interior cleaning</span><b><span class="from" data-i18n="sp.from">from</span>15 000 <i data-i18n="sp.rateCur">ISK</i></b></li>
+          <li><span data-i18n="sp.single3">Deep clean, seats</span><b><span class="from" data-i18n="sp.from">from</span>30 000 <i data-i18n="sp.rateCur">ISK</i></b></li>
+          <li><span data-i18n="sp.single4">Deep clean, seats and carpets</span><b><span class="from" data-i18n="sp.from">from</span>40 000 <i data-i18n="sp.rateCur">ISK</i></b></li>
+        </ul>
+      </article>
     </div>
 
-    <div class="board rv" id="board"></div>
-  </div>
-</section>
+    <p class="price-foot rv" data-i18n="sp.priceFoot">Every price is a starting point: how long a car takes depends on the state it arrives in.</p>
 
-<!-- ══════════ CTA BAND ══════════ -->
-<section class="sec" style="padding-top:0">
-  <div class="wrap">
-    <div class="band rv">
-      <div>
-        <p class="kicker"><span class="bar"></span> <span data-i18n="cta.kicker">Book today</span></p>
-        <h2 data-i18n-html="cta.h2">Bring it in, we&rsquo;ll <em>have a look.</em></h2>
-        <p data-i18n="cta.text">Call and we will find you a slot this week. Walk in visits are welcome too, the kettle is on.</p>
-      </div>
-      <div class="cta" style="margin:0">
-        <a class="btn btn-a" href="tel:+3548333370">
-          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
-          833 3370
-        </a>
-      </div>
+    <div class="cta-strip rv">
+      <p data-i18n="sp.rateNote">Call us and we will go through the details.</p>
+      <a class="btn btn-a" href="tel:+3548333370">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+        <span data-i18n="sp.cta">Call the garage</span>
+      </a>
     </div>
   </div>
 </section>
@@ -807,8 +858,8 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
      The choice is remembered; <html lang> and the metadata move with it. */
   var I18N = {
     is:{
-      "meta.title":"Nord Garage · Bílaþjónusta, bílaþvottur og bílaleiga á Selfossi",
-      "meta.desc":"Nord Garage á Selfossi. Bílaþjónusta, bílaþvottur og bílaleiga. Eitt verkstæði, allar tegundir og gerðir.",
+      "meta.title":"Bílaþvottur · Nord Garage á Selfossi",
+      "meta.desc":"Bílaþvottur hjá Nord Garage á Selfossi. Alþrif frá 22 000 ISK, þvottur að utan frá 10 000 ISK, djúphreinsun á sætum frá 30 000 ISK.",
       "brand.sub":"Þjónusta · Þvottur · Bílaleiga",
       "nav.home":"Heim","nav.services":"Þjónusta","nav.wash":"Þvottur","nav.rental":"Bílaleiga","nav.work":"Verkin okkar","nav.about":"Um okkur","nav.contact":"Hafa samband",
       "hero.h1":"Bíllinn þinn,<br>eins og <em>okkar eigin.</em>",
@@ -838,11 +889,36 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
       "foot.visit":"Heimsæktu okkur","foot.call":"Hringdu í okkur","foot.email":"Netfang","foot.hours":"Opnunartími",
       "foot.week":"Mán til fös","foot.weekH":"08:00 til 18:00","foot.sat":"Lau","foot.satH":"08:00 til 17:00",
       "legal":"© 2026 Nord Garage · Bílaþjónusta · Bílaþvottur · Bílaleiga",
-      "a11y.theme":"Skipta um þema","a11y.lang":"Skipta um tungumál","a11y.menu":"Valmynd","menu.language":"Tungumál","menu.theme":"Þema"
+      
+      
+      "a11y.theme":"Skipta um þema","a11y.lang":"Skipta um tungumál","a11y.menu":"Valmynd","menu.language":"Tungumál","menu.theme":"Þema",
+      "a11y.swap":"Skipta um mynd","a11y.remove":"Fjarlægja mynd",
+      "sp.kicker":"Bílaþvottur",
+      "sp.h1":"Hreinn bíll,<br><em>að innan og utan.</em>",
+      "sp.lead":"Handþvottur og þrif að innan, allt frá fljótlegum þvotti upp í djúphreinsun á sætum.",
+      "sp.priceKicker":"Verðskrá",
+      "sp.priceH2":"Hvað <em>þvotturinn kostar.</em>",
+      "sp.fullTitle":"Alþrif",
+      "sp.fullNote":"Að utan og innan, verðið fer eftir stærð bílsins.",
+      "sp.full1":"Fólksbíll",
+      "sp.full2":"Jepplingur",
+      "sp.full3":"Jeppi",
+      "sp.full4":"Stór pallbíll",
+      "sp.singleTitle":"Stakir liðir",
+      "sp.singleNote":"Þegar bíllinn þarf bara annað hvort.",
+      "sp.single1":"Þvottur að utan",
+      "sp.single2":"Þrif að innan",
+      "sp.single3":"Djúphreinsun á sætum",
+      "sp.single4":"Djúphreinsun á sætum og teppum",
+      "sp.priceFoot":"Verðin eru upphafspunktur: tíminn fer eftir því í hvaða ástandi bíllinn kemur.",
+      "sp.from":"frá",
+      "sp.rateCur":"ISK",
+      "sp.rateNote":"Hringdu í okkur og við förum yfir smáatriðin.",
+      "sp.cta":"Hringdu í verkstæðið"
     },
     en:{
-      "meta.title":"Nord Garage · Car Service, Car Wash and Car Rental in Selfoss",
-      "meta.desc":"Nord Garage, Selfoss. Car service, car wash and car rental. One workshop, all makes and models.",
+      "meta.title":"Car wash · Nord Garage in Selfoss",
+      "meta.desc":"Car wash at Nord Garage in Selfoss. Full wash from 22 000 ISK, outside wash from 10 000 ISK, deep clean of the seats from 30 000 ISK.",
       "brand.sub":"Service · Wash · Rental",
       "nav.home":"Home","nav.services":"Services","nav.wash":"Wash","nav.rental":"Rental","nav.work":"Our work","nav.about":"About","nav.contact":"Contact",
       "hero.h1":"Your car,<br>treated like <em>our own.</em>",
@@ -872,7 +948,32 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
       "foot.visit":"Visit us","foot.call":"Call us","foot.email":"Email","foot.hours":"Opening hours",
       "foot.week":"Mon to Fri","foot.weekH":"08:00 to 18:00","foot.sat":"Sat","foot.satH":"08:00 to 17:00",
       "legal":"© 2026 Nord Garage · Car service · Car wash · Car rental",
-      "a11y.theme":"Switch theme","a11y.lang":"Change language","a11y.menu":"Menu","menu.language":"Language","menu.theme":"Theme"
+      
+      
+      "a11y.theme":"Switch theme","a11y.lang":"Change language","a11y.menu":"Menu","menu.language":"Language","menu.theme":"Theme",
+      "a11y.swap":"Change photo","a11y.remove":"Remove photo",
+      "sp.kicker":"Car wash",
+      "sp.h1":"A clean car,<br><em>inside and out.</em>",
+      "sp.lead":"Washing by hand and cleaning inside, from a quick rinse to a deep clean of the seats.",
+      "sp.priceKicker":"Price list",
+      "sp.priceH2":"What a <em>wash costs.</em>",
+      "sp.fullTitle":"Full wash",
+      "sp.fullNote":"Outside and inside, priced by the size of the car.",
+      "sp.full1":"Passenger car",
+      "sp.full2":"Crossover",
+      "sp.full3":"Four-wheel drive",
+      "sp.full4":"Large pickup",
+      "sp.singleTitle":"On its own",
+      "sp.singleNote":"When the car only needs one of them.",
+      "sp.single1":"Outside wash",
+      "sp.single2":"Interior cleaning",
+      "sp.single3":"Deep clean, seats",
+      "sp.single4":"Deep clean, seats and carpets",
+      "sp.priceFoot":"Every price is a starting point: how long a car takes depends on the state it arrives in.",
+      "sp.from":"from",
+      "sp.rateCur":"ISK",
+      "sp.rateNote":"Call us and we will go through the details.",
+      "sp.cta":"Call the garage"
     },
   };
 
@@ -897,13 +998,21 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
     {k:'e',cls:'t-e',n:5,icon:'car'},{k:'f',cls:'t-f',n:6,icon:'land'}
   ];
   var ARROW='<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>';
+  var UP='<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4m0 0L7 9m5-5 5 5M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>';
+  var SWAP='<svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10a8 8 0 0 0-13.5-4L4 8m0-4v4h4M4 14a8 8 0 0 0 13.5 4L20 16m0 4v-4h-4"/></svg>';
+  var CROSS='<svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></svg>';
 
   var board = document.getElementById('board');
   if (board) board.innerHTML = TILES.map(function(t){
-    return '<article class="tile '+t.cls+'" data-photo>'
+    return '<article class="tile '+t.cls+'" tabindex="0" data-slot="'+t.k+'">'
       + '<div class="ph"></div>'
       + '<div class="ph-icon"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">'+ICONS[t.icon]+'</svg></div>'
       + '<div class="img"></div><div class="scrim"></div>'
+      + '<span class="drop">'+UP+' <span data-i18n="photo.drop">Drop photo</span></span>'
+      + '<div class="acts">'
+      +   '<button type="button" data-act="swap" data-i18n-aria="a11y.swap" aria-label="Change photo">'+SWAP+'</button>'
+      +   '<button type="button" data-act="remove" data-i18n-aria="a11y.remove" aria-label="Remove photo">'+CROSS+'</button>'
+      + '</div>'
       + '<div class="cap"><div>'
       +   '<div class="cap-tag" data-i18n="tile'+t.n+'.tag"></div>'
       +   '<div class="cap-name" data-i18n="tile'+t.n+'.name"></div>'
@@ -988,7 +1097,7 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
      Underline the section you are actually looking at, rather than
      leaving Home lit for the whole page. */
   var spyLinks = document.querySelectorAll('[data-spy]');
-  var spyIds = ['hero','services','work','contact'];
+  var spyIds = ['hero','work','contact'];
   var spySecs = spyIds.map(function(id){ return document.getElementById(id); }).filter(Boolean);
   var header = document.querySelector('.site-header');
 
