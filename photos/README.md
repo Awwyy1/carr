@@ -7,6 +7,8 @@ straight from here — nothing in the code needs to change when you swap one.
 |----------------|----------------------------------------------------------|
 | `hero.jpg`     | the big picture behind the heading on the home page      |
 | `services.jpg` | the band behind the heading on the services page         |
+| `wash.jpg`     | the band behind the heading on the car wash page        |
+| `about.jpg`    | the band behind the heading on the about page           |
 | `logo.png`     | the round logo in the header, on every page              |
 | `work-1.jpg`   | our work, tile **01** — inside the bay                   |
 | `work-2.jpg`   | our work, tile **02** — foam and shine                   |
@@ -32,8 +34,9 @@ instead — so a tile you have not filled yet still looks finished.
 **hero.jpg** — landscape, roughly 3:2 (for example 2400 × 1600). The heading
 sits over the left half, so leave that side calm and keep the subject right.
 
-**services.jpg** — a short, wide band, roughly 3:1 (for example 2400 × 800).
-Its bottom edge fades into the page colour.
+**services.jpg**, **wash.jpg**, **about.jpg** — short, wide bands, roughly
+3:1 (for example 2400 × 800). The heading sits on the left, and the bottom
+edge fades into the page colour.
 
 **logo.png** — square, at least 200 × 200. It is masked into a circle, so keep
 the important part away from the corners. A transparent background works.
