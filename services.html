@@ -14,11 +14,10 @@
 /* ═══════════════════════════════════════════════════════════════
    NORD GARAGE
 
-   PHOTOS  every dark block is a photo slot. Drag a picture onto it,
-           or click it. Once a photo is in, two small buttons appear
-           on the block: swap it, or remove just that one.
-           To set photos permanently, put files next to this page and
-           paste the paths into the block below.
+   PHOTOS  the band behind the heading and the logo are files in the
+           /photos folder. Replace the file, keep the name; nothing here
+           needs to change. A placeholder simply does not load, and the
+           drawn fallback shows instead.
 
    THEMES  dark is the default. The switch in the header flips to
            light and the choice is remembered.
@@ -26,7 +25,6 @@
    LANGUAGE  Icelandic and English. Icelandic is the default.
    ═══════════════════════════════════════════════════════════════ */
 :root{
-  --logo:     none;   /* url("photos/logo.png")     round logo: drop one in, or paste a path */
   --ph-hero:  none;   /* url("photos/hero.jpg")     */
   --ph-svc:   url("photos/services.jpg");   /* swap the file, not the code */
   --ph-a:     none;   /* url("photos/workshop.jpg") */
@@ -174,19 +172,9 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .brand .mark-svg{width:100%;height:100%}
 .brand .mark-svg path,.brand .mark-svg circle{stroke:var(--brass)}
 /* a round logo sits straight over the drawn mark */
-.logo-img{position:absolute;inset:0;border-radius:50%;background-image:var(--logo);background-size:cover;background-position:center;opacity:0;transition:opacity .3s}
+.logo-img{position:absolute;inset:0;width:100%;height:100%;border-radius:50%;object-fit:cover;opacity:0;transition:opacity .3s}
 .mark.has .logo-img{opacity:1}
 .mark.has .mark-svg{opacity:0}
-.logo-edit{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.55);opacity:0;transition:opacity .25s}
-.mark:hover .logo-edit,.mark:focus-visible .logo-edit{opacity:1}
-.logo-edit svg{width:15px;height:15px;stroke:#fff;fill:none;stroke-width:1.9}
-.logo-x{
-  position:absolute;left:31px;top:-3px;width:19px;height:19px;border-radius:50%;z-index:3;
-  border:1px solid var(--line-2);background:var(--bg);color:var(--ink-2);
-  font-size:13px;line-height:1;align-items:center;justify-content:center;display:none;
-}
-.brand:hover .logo-x:not([hidden]){display:flex}
-.logo-x:hover{color:var(--ink);border-color:var(--ink-3)}
 .brand-text{display:flex;flex-direction:column;line-height:1.12}
 .brand-name{font-size:18px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;white-space:nowrap;color:var(--brass)}
 .brand-name em{font-style:normal}
@@ -527,22 +515,6 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
 .legal{border-top:1px solid var(--line);padding-top:18px;padding-bottom:18px;font-size:12px;color:var(--ink-3);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 
 /* ══ TOOLBAR ═════════════════════════════════════════════════ */
-.toolbar{
-  position:fixed;right:20px;bottom:20px;z-index:80;
-  display:flex;align-items:center;gap:10px;padding:10px 12px 10px 16px;border-radius:999px;
-  background:var(--card);border:1px solid var(--line-2);
-  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
-  box-shadow:var(--shadow);font-size:12px;color:var(--ink-2);
-  transform:translateY(140%);transition:transform .5s cubic-bezier(.22,.7,.3,1);
-}
-.toolbar.show{transform:none}
-.toolbar b{color:var(--ink);font-weight:700}
-.toolbar button{
-  font-weight:700;color:var(--brass);background:var(--brass-wash);
-  border:1px solid var(--brass-line);padding:7px 14px;border-radius:999px;
-  transition:background .25s,color .25s;
-}
-.toolbar button:hover{background:var(--brass-fill);color:var(--on-brass)}
 
 
 /* ══ SERVICES PAGE ═══════════════════════════════════════════ */
@@ -588,6 +560,33 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
 .svc-page .svc-card:last-child h3{margin:0}
 .svc-page .svc-card:last-child .svc-list{margin:0}
 
+/* ── fixed prices ── */
+.prices{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:22px;margin-top:34px}
+.price-card{
+  border:1px solid var(--line);border-radius:var(--r-lg);padding:32px 32px 34px;
+  background:linear-gradient(170deg,var(--card),var(--tile) 55%,var(--bg-2));
+  display:flex;flex-direction:column;
+}
+.price-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:18px}
+.price-card h3{margin:0;font-size:19px;font-weight:700;letter-spacing:-.02em;max-width:20ch}
+.vat{
+  flex:none;font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--brass);
+  padding:5px 11px;border-radius:999px;background:var(--brass-wash);border:1px solid var(--brass-line);
+}
+.price-one{margin:auto 0 0;font-size:clamp(34px,4.2vw,50px);line-height:1;letter-spacing:-.04em;font-weight:800;color:var(--ink)}
+.price-one span{font-size:.42em;letter-spacing:-.01em;color:var(--brass);margin-left:6px}
+.price-sub{margin:0 0 20px;font-size:14.5px;color:var(--ink-3)}
+.price-rows{list-style:none;margin:auto 0 0;padding:0;display:flex;flex-direction:column}
+.price-rows li{
+  display:flex;align-items:baseline;justify-content:space-between;gap:18px;
+  padding:13px 0;border-top:1px solid var(--line);font-size:15px;color:var(--ink-2);
+}
+.price-rows li:first-child{border-top:0;padding-top:0}
+.price-rows li:last-child{padding-bottom:0}
+.price-rows b{flex:none;font-size:19px;font-weight:800;letter-spacing:-.02em;color:var(--ink);white-space:nowrap}
+.price-rows i{font-style:normal;font-size:.62em;font-weight:700;color:var(--brass);margin-left:4px}
+.price-rows .from{font-size:.6em;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-3);margin-right:5px}
+
 .rate{
   display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.3fr);gap:44px;align-items:center;
   border:1px solid var(--line-2);border-radius:24px;padding:44px 46px;position:relative;overflow:hidden;
@@ -603,6 +602,7 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
 .rate-note p{margin:0 0 24px;font-size:15.5px;color:var(--ink-2);max-width:46ch}
 @media (max-width:1080px){
   .svc-page{grid-template-columns:1fr 1fr}
+  .prices{grid-template-columns:1fr}
   .rate{grid-template-columns:1fr;gap:30px;padding:36px 32px}
 }
 @media (max-width:620px){
@@ -610,6 +610,7 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
   .page-head-inner{padding-top:54px;padding-bottom:34px}
   #list{padding-top:36px}
   /* the panel reads better centred than left-aligned on one column */
+  .price-card{padding:28px 24px 30px}
   .rate{justify-items:center;text-align:center;padding:34px 24px}
   .rate-value{justify-content:center}
   .rate-note p{margin-left:auto;margin-right:auto}
@@ -653,7 +654,6 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
   .band{padding:38px 26px}
   .btn{flex:1 1 auto}
   .strip-inner{grid-template-columns:1fr}
-  .toolbar{left:16px;right:16px;justify-content:space-between}
   .btn-a{box-shadow:none}          /* the yellow halo is too loud on a phone */
 }
 </style>
@@ -664,7 +664,7 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
 <header class="site-header">
   <div class="wrap header-inner">
     <div class="brand">
-      <span class="mark" id="logoSlot" tabindex="0" role="button" data-i18n-aria="a11y.logo" aria-label="Set the logo">
+      <span class="mark" aria-hidden="true">
         <svg class="mark-svg" viewBox="0 0 48 48" fill="none" aria-hidden="true">
         <circle cx="24" cy="24" r="22.4" stroke-width="1.4" opacity=".5"/>
         <circle cx="24" cy="24" r="19.2" stroke-width=".9" opacity=".22"/>
@@ -672,10 +672,8 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
         <path d="M24 19.4a4.6 4.6 0 1 0 0 9.2 4.6 4.6 0 0 0 0-9.2Z" stroke-width="1.3" opacity=".7"/>
         <path d="M24 5.2v3.4M24 39.4v3.4M8.6 24h3.4M36 24h3.4" stroke-width="1.4" stroke-linecap="round" opacity=".55"/>
       </svg>
-        <span class="logo-img"></span>
-        <span class="logo-edit" aria-hidden="true"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4m0 0L7 9m5-5 5 5M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg></span>
+        <img class="logo-img" src="photos/logo.png" alt="" width="42" height="42">
       </span>
-      <button class="logo-x" id="logoX" type="button" hidden data-i18n-aria="a11y.logoOff" aria-label="Remove the logo">&times;</button>
       <a class="brand-text" href="#">
         <span class="brand-name">Nord <em>Garage</em></span>
         <span class="brand-sub" data-i18n="brand.sub">Service &middot; Wash &middot; Rental</span>
@@ -760,7 +758,7 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
 
 <!-- ══════════ PAGE HEAD ══════════ -->
 <section class="page-head">
-  <div class="page-bg has">
+  <div class="page-bg" data-photo>
     <div class="fallback"></div>
     <div class="img"></div>
   </div>
@@ -874,6 +872,38 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
   </div>
 </section>
 
+<!-- ══════════ FIXED PRICES ══════════ -->
+<section class="sec" id="prices" style="padding-top:0">
+  <div class="wrap">
+    <p class="kicker rv"><span class="bar"></span> <span data-i18n="sp.priceKicker">Price list</span></p>
+    <h2 class="rv" data-i18n-html="sp.priceH2">Some jobs come at a <em>set price.</em></h2>
+
+    <div class="prices rv">
+      <article class="price-card">
+        <div class="price-head">
+          <h3 data-i18n="sp.oilTitle">Engine oil and filter change</h3>
+          <span class="vat" data-i18n="sp.vatIncl">VAT included</span>
+        </div>
+        <p class="price-sub" data-i18n="sp.oilNote">Oil, filter and the work of fitting them.</p>
+        <p class="price-one"><b>13 000</b> <span data-i18n="sp.rateCur">ISK</span></p>
+      </article>
+
+      <article class="price-card">
+        <div class="price-head">
+          <h3 data-i18n="sp.tyreTitle">Tyre and wheel fitting</h3>
+          <span class="vat" data-i18n="sp.vatIncl">VAT included</span>
+        </div>
+        <p class="price-sub" data-i18n="sp.tyreNote">We work with wheels up to 21 inches.</p>
+        <ul class="price-rows">
+          <li><span data-i18n="sp.tyre1">Passenger cars</span><b>12 700 <i data-i18n="sp.rateCur">ISK</i></b></li>
+          <li><span data-i18n="sp.tyre2">Crossovers and vans</span><b>15 600 <i data-i18n="sp.rateCur">ISK</i></b></li>
+          <li><span data-i18n="sp.tyre3">Jeeps and large 4x4s</span><b><span class="from" data-i18n="sp.from">from</span>18 500 <i data-i18n="sp.rateCur">ISK</i></b></li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
 <!-- ══════════ RATE ══════════ -->
 <section class="sec" style="padding-top:0">
   <div class="wrap">
@@ -930,11 +960,6 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
   </div>
 </footer>
 
-<div class="toolbar" id="toolbar">
-  <span><b id="shotCount">0</b> <span data-i18n="photo.placed">photos placed</span></span>
-  <button type="button" id="resetShots" data-i18n="photo.clear">Clear all</button>
-</div>
-<input type="file" id="picker" accept="image/*" hidden>
 
 <script>
 (function(){
@@ -976,9 +1001,9 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
       "foot.visit":"Heimsæktu okkur","foot.call":"Hringdu í okkur","foot.email":"Netfang","foot.hours":"Opnunartími",
       "foot.week":"Mán til fös","foot.weekH":"08:00 til 18:00","foot.sat":"Lau","foot.satH":"08:00 til 17:00",
       "legal":"© 2026 Nord Garage · Bílaþjónusta · Bílaþvottur · Bílaleiga",
-      "photo.setHero":"Smelltu eða slepptu mynd fyrir forsíðu","photo.swap":"Skipta um mynd","photo.remove":"Fjarlægja",
-      "photo.drop":"Slepptu mynd","photo.placed":"myndir settar","photo.clear":"Hreinsa allt",
-      "a11y.theme":"Skipta um þema","a11y.lang":"Skipta um tungumál","a11y.menu":"Valmynd","menu.language":"Tungumál","menu.theme":"Þema","a11y.logo":"Setja merki","a11y.logoOff":"Fjarlægja merki",
+      
+      
+      "a11y.theme":"Skipta um þema","a11y.lang":"Skipta um tungumál","a11y.menu":"Valmynd","menu.language":"Tungumál","menu.theme":"Þema",
       "a11y.swap":"Skipta um mynd","a11y.remove":"Fjarlægja mynd",
       "sp.kicker":"Bílaþjónusta",
       "sp.h1":"Allt sem bíllinn þarf,<br><em>á verkstæðinu okkar.</em>",
@@ -1007,6 +1032,17 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
       "sp.g6.i3":"Skipt um rafgeyma og mæling",
       "sp.g7.title":"Annað",
       "sp.g7.i1":"Aðrar viðgerðir og þjónusta við bíla",
+      "sp.priceKicker":"Verðskrá",
+      "sp.priceH2":"Sum verk eru á <em>föstu verði.</em>",
+      "sp.oilTitle":"Olíu- og síuskipti",
+      "sp.oilNote":"Olía, sía og vinnan við skiptin.",
+      "sp.vatIncl":"Með VSK",
+      "sp.tyreTitle":"Dekkja- og felguskipti",
+      "sp.tyreNote":"Við vinnum með felgur allt að 21 tommu.",
+      "sp.tyre1":"Fólksbílar",
+      "sp.tyre2":"Jepplingar og sendibílar",
+      "sp.tyre3":"Jeppar",
+      "sp.from":"frá",
       "sp.rateLabel":"Tímagjald",
       "sp.rateCur":"ISK",
       "sp.rateUnit":"auk VSK, á klukkustund",
@@ -1045,9 +1081,9 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
       "foot.visit":"Visit us","foot.call":"Call us","foot.email":"Email","foot.hours":"Opening hours",
       "foot.week":"Mon to Fri","foot.weekH":"08:00 to 18:00","foot.sat":"Sat","foot.satH":"08:00 to 17:00",
       "legal":"© 2026 Nord Garage · Car service · Car wash · Car rental",
-      "photo.setHero":"Click or drop a photo to set the hero image","photo.swap":"Change photo","photo.remove":"Remove",
-      "photo.drop":"Drop photo","photo.placed":"photos placed","photo.clear":"Clear all",
-      "a11y.theme":"Switch theme","a11y.lang":"Change language","a11y.menu":"Menu","menu.language":"Language","menu.theme":"Theme","a11y.logo":"Set the logo","a11y.logoOff":"Remove the logo",
+      
+      
+      "a11y.theme":"Switch theme","a11y.lang":"Change language","a11y.menu":"Menu","menu.language":"Language","menu.theme":"Theme",
       "a11y.swap":"Change photo","a11y.remove":"Remove photo",
       "sp.kicker":"Car service",
       "sp.h1":"Everything your car needs,<br><em>at our workshop.</em>",
@@ -1076,6 +1112,17 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
       "sp.g6.i3":"Battery replacement and testing",
       "sp.g7.title":"Anything else",
       "sp.g7.i1":"Other vehicle repairs and servicing",
+      "sp.priceKicker":"Price list",
+      "sp.priceH2":"Some jobs come at a <em>set price.</em>",
+      "sp.oilTitle":"Engine oil and filter change",
+      "sp.oilNote":"Oil, filter and the work of fitting them.",
+      "sp.vatIncl":"VAT included",
+      "sp.tyreTitle":"Tyre and wheel fitting",
+      "sp.tyreNote":"We work with wheels up to 21 inches.",
+      "sp.tyre1":"Passenger cars",
+      "sp.tyre2":"Crossovers and vans",
+      "sp.tyre3":"Jeeps and large 4x4s",
+      "sp.from":"from",
       "sp.rateLabel":"Labour rate",
       "sp.rateCur":"ISK",
       "sp.rateUnit":"plus VAT, per hour",
@@ -1240,174 +1287,34 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
   });
   mMenu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeMenu); });
 
-  /* ══════════════ PHOTOS ══════════════
-     Each slot is independent: drop or click to fill it, and once filled
-     it carries its own swap and remove buttons. Nothing else is touched. */
-  var KEY = 'nordgarage.photos.v2';
-  var MAX_EDGE = 1500;
-  var picker  = document.getElementById('picker');
-  var toolbar = document.getElementById('toolbar');
-  var counter = document.getElementById('shotCount');
-  var target  = null;
-  var slots = {};
-
-  if (document.querySelector('section.hero')) slots.hero = {
-    drop:  document.querySelector('section.hero'),
-    has:   document.getElementById('heroSlot'),
-    img:   document.querySelector('#heroSlot .img'),
-    click: document.getElementById('heroHint'),
-    swap:  document.getElementById('heroSwap'),
-    kill:  document.getElementById('heroDrop')
-  };
-  slots.logo = {
-    drop:  document.querySelector('.brand'),          /* drop anywhere on the wordmark */
-    has:   document.getElementById('logoSlot'),
-    img:   document.querySelector('#logoSlot .logo-img'),
-    click: document.getElementById('logoSlot'),
-    kill:  document.getElementById('logoX')
-  };
-  document.querySelectorAll('.tile').forEach(function(t){
-    slots[t.dataset.slot] = {
-      drop:t, has:t, img:t.querySelector('.img'), click:t,
-      swap:t.querySelector('[data-act="swap"]'),
-      kill:t.querySelector('[data-act="remove"]')
-    };
+  /* ══════════════ PICTURES FROM THE REPOSITORY ══════════════
+     The hero band, the services band and the logo are files in /photos.
+     A file that is still an empty placeholder never loads, and the drawn
+     fallback underneath stays in place - so the page never shows a hole. */
+  document.querySelectorAll('[data-photo]').forEach(function(band){
+    var img = band.querySelector('.img');
+    if (!img) return;
+    var m = getComputedStyle(img).backgroundImage.match(/url\(["']?(.*?)["']?\)/);
+    if (!m) return;
+    var probe = new Image();
+    probe.onload = function(){ band.classList.add('has'); };   /* the veil follows the picture */
+    probe.src = m[1];
   });
-
-  function count(){
-    var n = 0;
-    Object.keys(slots).forEach(function(k){ if (slots[k].data) n++; });
-    counter.textContent = n;
-    toolbar.classList.toggle('show', n > 0);
-    return n;
-  }
-  function store(){
-    /* each page registers only its own slots, so the stored blob is merged
-       rather than replaced - otherwise one page would wipe another's photos */
-    var out = {};
-    try { out = JSON.parse(LS.get(KEY) || '{}'); } catch(e){ out = {}; }
-    Object.keys(slots).forEach(function(k){
-      if (slots[k].data) out[k] = slots[k].data; else delete out[k];
-    });
-    LS.set(KEY, JSON.stringify(out));
-    count();
-  }
-
-  function fill(key, url, remember){
-    var s = slots[key]; if (!s) return;
-    s.img.style.backgroundImage = 'url("' + url + '")';
-    s.has.classList.add('has');
-    if (key === 'hero' || key === 'svc'){
-      if (s.click) s.click.hidden = true;
-      if (s.swap)  s.swap.hidden  = false;
-      if (s.kill)  s.kill.hidden  = false;
+  var logoImg = document.querySelector('.logo-img');
+  if (logoImg){
+    var showLogo = function(){ logoImg.parentNode.classList.add('has'); };
+    var dropLogo = function(){ logoImg.remove(); };
+    if (logoImg.complete){                       /* it may already have settled */
+      if (logoImg.naturalWidth) showLogo(); else dropLogo();
+    } else {
+      logoImg.addEventListener('load',  showLogo);
+      logoImg.addEventListener('error', dropLogo);
     }
-    if (key === 'logo' && s.kill) s.kill.hidden = false;
-    if (remember){ s.data = url; store(); }
   }
-
-  function clear(key){
-    var s = slots[key]; if (!s) return;
-    delete s.data;
-    s.img.style.backgroundImage = '';
-    s.has.classList.remove('has');
-    if (key === 'hero' || key === 'svc'){
-      if (s.click) s.click.hidden = false;
-      if (s.swap)  s.swap.hidden  = true;
-      if (s.kill)  s.kill.hidden  = true;
-    }
-    if (key === 'logo' && s.kill) s.kill.hidden = true;
-    store();
-  }
-
-  function readFile(file, key){
-    if (!file || !/^image\//.test(file.type)) return;
-    var fr = new FileReader();
-    fr.onload = function(){
-      var im = new Image();
-      im.onload = function(){
-        var sc = Math.min(1, MAX_EDGE / Math.max(im.width, im.height));
-        var c = document.createElement('canvas');
-        c.width  = Math.round(im.width  * sc);
-        c.height = Math.round(im.height * sc);
-        c.getContext('2d').drawImage(im, 0, 0, c.width, c.height);
-        var small;
-        try { small = c.toDataURL('image/jpeg', 0.78); } catch(e){ small = fr.result; }
-        fill(key, small, true);
-      };
-      im.onerror = function(){ fill(key, fr.result, true); };
-      im.src = fr.result;
-    };
-    fr.readAsDataURL(file);
-  }
-
-  Object.keys(slots).forEach(function(key){
-    var s = slots[key], el = s.drop;
-    if (!el) return;
-
-    el.addEventListener('dragover', function(e){
-      e.preventDefault(); e.dataTransfer.dropEffect = 'copy'; el.classList.add('over');
-    });
-    ['dragleave','dragend'].forEach(function(t){
-      el.addEventListener(t, function(){ el.classList.remove('over'); });
-    });
-    el.addEventListener('drop', function(e){
-      e.preventDefault(); el.classList.remove('over');
-      readFile(e.dataTransfer.files && e.dataTransfer.files[0], key);
-    });
-
-    function pick(e){ if (e) e.stopPropagation(); target = key; picker.click(); }
-
-    if (s.click){
-      s.click.addEventListener('click', function(e){
-        /* on a filled tile the buttons handle it, so ignore clicks that land on them */
-        if (e.target.closest && e.target.closest('.acts')) return;
-        pick();
-      });
-      s.click.addEventListener('keydown', function(e){
-        if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); pick(); }
-      });
-    }
-    if (s.swap) s.swap.addEventListener('click', pick);
-    if (s.kill) s.kill.addEventListener('click', function(e){ e.stopPropagation(); clear(key); });
-  });
-
-  picker.addEventListener('change', function(){
-    if (target) readFile(picker.files[0], target);
-    picker.value = '';
-  });
-
-  document.getElementById('resetShots').addEventListener('click', function(){
-    Object.keys(slots).forEach(function(k){
-      var s = slots[k];
-      delete s.data;
-      s.img.style.backgroundImage = '';
-      s.has.classList.remove('has');
-      if (k === 'hero' || k === 'svc'){
-        if (s.click) s.click.hidden = false;
-        if (s.swap)  s.swap.hidden  = true;
-        if (s.kill)  s.kill.hidden  = true;
-      }
-    });
-    LS.del(KEY);
-    count();
-  });
-
-  ['dragover','drop'].forEach(function(t){
-    window.addEventListener(t, function(e){ e.preventDefault(); });
-  });
 
   /* ══════════════ BOOT ══════════════ */
   applyTheme(LS.get('nordgarage.theme') === 'light' ? 'light' : 'dark');   /* dark unless asked otherwise */
   applyLang(LS.get('nordgarage.lang') || 'is');                            /* Icelandic unless asked otherwise */
-
-  try {
-    var saved = JSON.parse(LS.get(KEY) || '{}');
-    Object.keys(saved).forEach(function(k){
-      if (slots[k] && slots[k].img){ fill(k, saved[k], false); slots[k].data = saved[k]; }
-    });
-    count();
-  } catch(e){}
 
   var rev = document.querySelectorAll('.rv');
   function onFirstScreen(el){

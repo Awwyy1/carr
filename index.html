@@ -26,8 +26,7 @@
    LANGUAGE  Icelandic and English. Icelandic is the default.
    ═══════════════════════════════════════════════════════════════ */
 :root{
-  --logo:     none;   /* url("photos/logo.png")     round logo: drop one in, or paste a path */
-  --ph-hero:  none;   /* url("photos/hero.jpg")     */
+  --ph-hero:  url("photos/hero.jpg");      /* swap the file, not the code */
   --ph-a:     none;   /* url("photos/workshop.jpg") */
   --ph-b:     none;   /* url("photos/wash.jpg")     */
   --ph-c:     none;   /* url("photos/wheels.jpg")   */
@@ -173,19 +172,9 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .brand .mark-svg{width:100%;height:100%}
 .brand .mark-svg path,.brand .mark-svg circle{stroke:var(--brass)}
 /* a round logo sits straight over the drawn mark */
-.logo-img{position:absolute;inset:0;border-radius:50%;background-image:var(--logo);background-size:cover;background-position:center;opacity:0;transition:opacity .3s}
+.logo-img{position:absolute;inset:0;width:100%;height:100%;border-radius:50%;object-fit:cover;opacity:0;transition:opacity .3s}
 .mark.has .logo-img{opacity:1}
 .mark.has .mark-svg{opacity:0}
-.logo-edit{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.55);opacity:0;transition:opacity .25s}
-.mark:hover .logo-edit,.mark:focus-visible .logo-edit{opacity:1}
-.logo-edit svg{width:15px;height:15px;stroke:#fff;fill:none;stroke-width:1.9}
-.logo-x{
-  position:absolute;left:31px;top:-3px;width:19px;height:19px;border-radius:50%;z-index:3;
-  border:1px solid var(--line-2);background:var(--bg);color:var(--ink-2);
-  font-size:13px;line-height:1;align-items:center;justify-content:center;display:none;
-}
-.brand:hover .logo-x:not([hidden]){display:flex}
-.logo-x:hover{color:var(--ink);border-color:var(--ink-3)}
 .brand-text{display:flex;flex-direction:column;line-height:1.12}
 .brand-name{font-size:18px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;white-space:nowrap;color:var(--brass)}
 .brand-name em{font-style:normal}
@@ -592,7 +581,7 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
 <header class="site-header">
   <div class="wrap header-inner">
     <div class="brand">
-      <span class="mark" id="logoSlot" tabindex="0" role="button" data-i18n-aria="a11y.logo" aria-label="Set the logo">
+      <span class="mark" aria-hidden="true">
         <svg class="mark-svg" viewBox="0 0 48 48" fill="none" aria-hidden="true">
         <circle cx="24" cy="24" r="22.4" stroke-width="1.4" opacity=".5"/>
         <circle cx="24" cy="24" r="19.2" stroke-width=".9" opacity=".22"/>
@@ -600,10 +589,8 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
         <path d="M24 19.4a4.6 4.6 0 1 0 0 9.2 4.6 4.6 0 0 0 0-9.2Z" stroke-width="1.3" opacity=".7"/>
         <path d="M24 5.2v3.4M24 39.4v3.4M8.6 24h3.4M36 24h3.4" stroke-width="1.4" stroke-linecap="round" opacity=".55"/>
       </svg>
-        <span class="logo-img"></span>
-        <span class="logo-edit" aria-hidden="true"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4m0 0L7 9m5-5 5 5M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg></span>
+        <img class="logo-img" src="photos/logo.png" alt="" width="42" height="42">
       </span>
-      <button class="logo-x" id="logoX" type="button" hidden data-i18n-aria="a11y.logoOff" aria-label="Remove the logo">&times;</button>
       <a class="brand-text" href="#">
         <span class="brand-name">Nord <em>Garage</em></span>
         <span class="brand-sub" data-i18n="brand.sub">Service &middot; Wash &middot; Rental</span>
@@ -688,7 +675,7 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
 
 <!-- ══════════ HERO ══════════ -->
 <section class="hero" id="hero">
-  <div class="hero-slot" id="heroSlot">
+  <div class="hero-slot" data-photo>
     <div class="fallback"></div>
     <div class="img"></div>
   </div>
@@ -710,22 +697,6 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
           </a>
         </div>
     </div>
-
-    <div class="hero-tools">
-      <button class="chip" id="heroHint" type="button">
-        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4m0 0L7 9m5-5 5 5M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
-        <span data-i18n="photo.setHero">Click or drop a photo to set the hero image</span>
-      </button>
-      <button class="chip solid" id="heroSwap" type="button" hidden>
-        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10a8 8 0 0 0-13.5-4L4 8m0-4v4h4M4 14a8 8 0 0 0 13.5 4L20 16m0 4v-4h-4"/></svg>
-        <span data-i18n="photo.swap">Change photo</span>
-      </button>
-      <button class="chip solid" id="heroDrop" type="button" hidden>
-        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
-        <span data-i18n="photo.remove">Remove</span>
-      </button>
-    </div>
-  </div>
 </section>
 
 <!-- ══════════ MARQUEE ══════════ -->
@@ -914,9 +885,9 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
       "foot.visit":"Heimsæktu okkur","foot.call":"Hringdu í okkur","foot.email":"Netfang","foot.hours":"Opnunartími",
       "foot.week":"Mán til fös","foot.weekH":"08:00 til 18:00","foot.sat":"Lau","foot.satH":"08:00 til 17:00",
       "legal":"© 2026 Nord Garage · Bílaþjónusta · Bílaþvottur · Bílaleiga",
-      "photo.setHero":"Smelltu eða slepptu mynd fyrir forsíðu","photo.swap":"Skipta um mynd","photo.remove":"Fjarlægja",
+      "photo.swap":"Skipta um mynd","photo.remove":"Fjarlægja",
       "photo.drop":"Slepptu mynd","photo.placed":"myndir settar","photo.clear":"Hreinsa allt",
-      "a11y.theme":"Skipta um þema","a11y.lang":"Skipta um tungumál","a11y.menu":"Valmynd","menu.language":"Tungumál","menu.theme":"Þema","a11y.logo":"Setja merki","a11y.logoOff":"Fjarlægja merki",
+      "a11y.theme":"Skipta um þema","a11y.lang":"Skipta um tungumál","a11y.menu":"Valmynd","menu.language":"Tungumál","menu.theme":"Þema",
       "a11y.swap":"Skipta um mynd","a11y.remove":"Fjarlægja mynd"
     },
     en:{
@@ -951,9 +922,9 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
       "foot.visit":"Visit us","foot.call":"Call us","foot.email":"Email","foot.hours":"Opening hours",
       "foot.week":"Mon to Fri","foot.weekH":"08:00 to 18:00","foot.sat":"Sat","foot.satH":"08:00 to 17:00",
       "legal":"© 2026 Nord Garage · Car service · Car wash · Car rental",
-      "photo.setHero":"Click or drop a photo to set the hero image","photo.swap":"Change photo","photo.remove":"Remove",
+      "photo.swap":"Change photo","photo.remove":"Remove",
       "photo.drop":"Drop photo","photo.placed":"photos placed","photo.clear":"Clear all",
-      "a11y.theme":"Switch theme","a11y.lang":"Change language","a11y.menu":"Menu","menu.language":"Language","menu.theme":"Theme","a11y.logo":"Set the logo","a11y.logoOff":"Remove the logo",
+      "a11y.theme":"Switch theme","a11y.lang":"Change language","a11y.menu":"Menu","menu.language":"Language","menu.theme":"Theme",
       "a11y.swap":"Change photo","a11y.remove":"Remove photo"
     },
   };
@@ -1125,21 +1096,6 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
   var target  = null;
   var slots = {};
 
-  if (document.querySelector('section.hero')) slots.hero = {
-    drop:  document.querySelector('section.hero'),
-    has:   document.getElementById('heroSlot'),
-    img:   document.querySelector('#heroSlot .img'),
-    click: document.getElementById('heroHint'),
-    swap:  document.getElementById('heroSwap'),
-    kill:  document.getElementById('heroDrop')
-  };
-  slots.logo = {
-    drop:  document.querySelector('.brand'),          /* drop anywhere on the wordmark */
-    has:   document.getElementById('logoSlot'),
-    img:   document.querySelector('#logoSlot .logo-img'),
-    click: document.getElementById('logoSlot'),
-    kill:  document.getElementById('logoX')
-  };
   document.querySelectorAll('.tile').forEach(function(t){
     slots[t.dataset.slot] = {
       drop:t, has:t, img:t.querySelector('.img'), click:t,
@@ -1171,12 +1127,6 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
     var s = slots[key]; if (!s) return;
     s.img.style.backgroundImage = 'url("' + url + '")';
     s.has.classList.add('has');
-    if (key === 'hero' || key === 'svc'){
-      if (s.click) s.click.hidden = true;
-      if (s.swap)  s.swap.hidden  = false;
-      if (s.kill)  s.kill.hidden  = false;
-    }
-    if (key === 'logo' && s.kill) s.kill.hidden = false;
     if (remember){ s.data = url; store(); }
   }
 
@@ -1185,12 +1135,6 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
     delete s.data;
     s.img.style.backgroundImage = '';
     s.has.classList.remove('has');
-    if (key === 'hero' || key === 'svc'){
-      if (s.click) s.click.hidden = false;
-      if (s.swap)  s.swap.hidden  = true;
-      if (s.kill)  s.kill.hidden  = true;
-    }
-    if (key === 'logo' && s.kill) s.kill.hidden = true;
     store();
   }
 
@@ -1257,11 +1201,6 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
       delete s.data;
       s.img.style.backgroundImage = '';
       s.has.classList.remove('has');
-      if (k === 'hero' || k === 'svc'){
-        if (s.click) s.click.hidden = false;
-        if (s.swap)  s.swap.hidden  = true;
-        if (s.kill)  s.kill.hidden  = true;
-      }
     });
     LS.del(KEY);
     count();
@@ -1270,6 +1209,32 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
   ['dragover','drop'].forEach(function(t){
     window.addEventListener(t, function(e){ e.preventDefault(); });
   });
+
+
+  /* ══════════════ PICTURES FROM THE REPOSITORY ══════════════
+     The hero band, the services band and the logo are files in /photos.
+     A file that is still an empty placeholder never loads, and the drawn
+     fallback underneath stays in place - so the page never shows a hole. */
+  document.querySelectorAll('[data-photo]').forEach(function(band){
+    var img = band.querySelector('.img');
+    if (!img) return;
+    var m = getComputedStyle(img).backgroundImage.match(/url\(["']?(.*?)["']?\)/);
+    if (!m) return;
+    var probe = new Image();
+    probe.onload = function(){ band.classList.add('has'); };   /* the veil follows the picture */
+    probe.src = m[1];
+  });
+  var logoImg = document.querySelector('.logo-img');
+  if (logoImg){
+    var showLogo = function(){ logoImg.parentNode.classList.add('has'); };
+    var dropLogo = function(){ logoImg.remove(); };
+    if (logoImg.complete){                       /* it may already have settled */
+      if (logoImg.naturalWidth) showLogo(); else dropLogo();
+    } else {
+      logoImg.addEventListener('load',  showLogo);
+      logoImg.addEventListener('error', dropLogo);
+    }
+  }
 
   /* ══════════════ BOOT ══════════════ */
   applyTheme(LS.get('nordgarage.theme') === 'light' ? 'light' : 'dark');   /* dark unless asked otherwise */
