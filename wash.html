@@ -560,7 +560,8 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
 /* ── fixed prices ── */
 .prices{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:22px;margin-top:34px}
 .prices.even{grid-template-columns:1fr 1fr}
-.price-foot{margin:26px 0 0;font-size:14px;color:var(--ink-3);max-width:62ch}
+.price-foot{margin:26px 0 0;font-size:14px;color:var(--ink-3)}
+.price-foot .ast{color:var(--brass);font-weight:700;margin-right:7px}
 .price-card{
   border:1px solid var(--line);border-radius:var(--r-lg);padding:32px 32px 34px;
   background:linear-gradient(170deg,var(--card),var(--tile) 55%,var(--bg-2));
@@ -800,7 +801,7 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
       </article>
     </div>
 
-    <p class="price-foot rv" data-i18n="sp.priceFoot">We use professional car care products only, chosen so that they clean the car without harming its paint, trim or upholstery.</p>
+    <p class="price-foot rv"><span class="ast" aria-hidden="true">*</span><span data-i18n="sp.priceFoot">We use professional car care products only, chosen so they do not harm paint, trim or upholstery.</span></p>
 
     <div class="cta-strip rv">
       <p data-i18n="sp.rateNote">Call us and we will go through the details.</p>
@@ -910,7 +911,7 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
       "sp.single2":"Þrif að innan",
       "sp.single3":"Djúphreinsun á sætum",
       "sp.single4":"Djúphreinsun á sætum og teppum",
-      "sp.priceFoot":"Við notum eingöngu fagleg bílaþrifaefni, valin þannig að þau hreinsi bílinn án þess að skaða lakk, innréttingu eða áklæði.",
+      "sp.priceFoot":"Við notum eingöngu fagleg bílaþrifaefni sem skaða hvorki lakk, innréttingu né áklæði.",
       "sp.from":"frá",
       "sp.rateCur":"ISK",
       "sp.rateNote":"Hringdu í okkur og við förum yfir smáatriðin.",
@@ -969,7 +970,7 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
       "sp.single2":"Interior cleaning",
       "sp.single3":"Deep clean, seats",
       "sp.single4":"Deep clean, seats and carpets",
-      "sp.priceFoot":"We use professional car care products only, chosen so that they clean the car without harming its paint, trim or upholstery.",
+      "sp.priceFoot":"We use professional car care products only, chosen so they do not harm paint, trim or upholstery.",
       "sp.from":"from",
       "sp.rateCur":"ISK",
       "sp.rateNote":"Call us and we will go through the details.",
