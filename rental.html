@@ -12,7 +12,7 @@
 
 <style>
 /* ═══════════════════════════════════════════════════════════════
-   NORD GARAGE - car wash
+   NORD GARAGE - car rental
 
    PHOTOS  the band behind the heading and the logo are files in the
            /photos folder. Replace the file, keep the name; nothing here
@@ -26,7 +26,9 @@
    ═══════════════════════════════════════════════════════════════ */
 :root{
   --ph-hero:  none;   /* url("photos/hero.jpg")     */
-  --ph-svc:   url("photos/wash.jpg");      /* swap the file, not the code */
+  --ph-svc:   url("photos/rental.jpg");    /* swap the file, not the code */
+  --ph-car1:  url("photos/rental-1.jpg");  /* Kia Rio                    */
+  --ph-car2:  url("photos/rental-2.jpg");  /* Mitsubishi Outlander PHEV  */
   --ph-a:     none;   /* url("photos/workshop.jpg") */
   --ph-b:     none;   /* url("photos/wash.jpg")     */
   --ph-c:     none;   /* url("photos/wheels.jpg")   */
@@ -558,23 +560,11 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
    leaving two empty columns beside it */
 
 /* ── fixed prices ── */
-.prices{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:22px;margin-top:34px}
-.prices.even{grid-template-columns:1fr 1fr}
 .price-foot{margin:26px 0 0;font-size:14px;color:var(--ink-3);max-width:62ch}
-.price-card{
-  border:1px solid var(--line);border-radius:var(--r-lg);padding:32px 32px 34px;
-  background:linear-gradient(170deg,var(--card),var(--tile) 55%,var(--bg-2));
-  display:flex;flex-direction:column;
-}
-.price-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:18px}
-.price-card h3{margin:0;font-size:19px;font-weight:700;letter-spacing:-.02em;max-width:20ch}
 .vat{
   flex:none;font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--brass);
   padding:5px 11px;border-radius:999px;background:var(--brass-wash);border:1px solid var(--brass-line);
 }
-.price-one{margin:auto 0 0;font-size:clamp(34px,4.2vw,50px);line-height:1;letter-spacing:-.04em;font-weight:800;color:var(--ink)}
-.price-one span{font-size:.42em;letter-spacing:-.01em;color:var(--brass);margin-left:6px}
-.price-sub{margin:0 0 20px;font-size:14.5px;color:var(--ink-3)}
 .price-rows{list-style:none;margin:auto 0 0;padding:0;display:flex;flex-direction:column}
 .price-rows li{
   display:flex;align-items:baseline;justify-content:space-between;gap:18px;
@@ -596,13 +586,11 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
 
 @media (max-width:1080px){
   .svc-page{grid-template-columns:1fr 1fr}
-  .prices,.prices.even{grid-template-columns:1fr}
 }
 @media (max-width:620px){
   .svc-page{grid-template-columns:1fr}
   .page-head-inner{padding-top:54px;padding-bottom:34px}
   #list{padding-top:36px}
-  .price-card{padding:28px 24px 30px}
   /* a long line keeps its price, and drops it to its own row */
   .price-rows li{flex-wrap:wrap;gap:2px 14px}
   .price-rows b{margin-left:auto}
@@ -610,6 +598,43 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
   .cta-strip{justify-content:center;text-align:center}
   .cta-strip p{margin:0 auto}
   .cta-strip .btn{width:100%;justify-content:center}
+}
+
+/* ══ RENTAL ══════════════════════════════════════════════════ */
+.cars{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:34px}
+.car-card{
+  display:flex;flex-direction:column;overflow:hidden;
+  border:1px solid var(--line);border-radius:var(--r-lg);
+  background:linear-gradient(170deg,var(--card),var(--tile) 55%,var(--bg-2));
+  transition:border-color .4s,transform .45s cubic-bezier(.22,.7,.3,1),box-shadow .45s;
+}
+.car-card:hover{transform:translateY(-4px);border-color:var(--line-2);box-shadow:var(--shadow)}
+/* the photo slot: a drawn car sits there until the file is in place */
+.car-photo{position:relative;aspect-ratio:16/10;overflow:hidden;border-bottom:1px solid var(--line)}
+.car-photo .fallback{position:absolute;inset:0;background:linear-gradient(150deg,var(--sheen),transparent 46%),linear-gradient(165deg,var(--tile),var(--bg-2))}
+.car-photo .img{
+  position:absolute;inset:0;background-size:cover;background-position:center;
+  opacity:0;transition:opacity .5s;
+}
+.car-photo.has .img{opacity:1}
+.car-photo.has .car-mark{opacity:0}
+.car-mark{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;transition:opacity .4s}
+.car-mark svg{width:86px;height:86px;stroke:var(--brass);fill:none;stroke-width:1;opacity:.22}
+.car-card:nth-child(1) .car-photo .img{background-image:var(--ph-car1)}
+.car-card:nth-child(2) .car-photo .img{background-image:var(--ph-car2)}
+.car-body{padding:28px 30px 30px;display:flex;flex-direction:column;flex:1}
+.car-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:20px}
+.car-head h3{margin:0;font-size:21px;font-weight:700;letter-spacing:-.025em}
+.car-tag{
+  flex:none;font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--brass);
+  padding:5px 11px;border-radius:999px;background:var(--brass-wash);border:1px solid var(--brass-line);
+}
+@media (max-width:860px){
+  .cars{grid-template-columns:1fr}
+  .car-photo{aspect-ratio:16/9}
+}
+@media (max-width:620px){
+  .car-body{padding:24px 22px 26px}
 }
 
 /* ══ RESPONSIVE ══════════════════════════════════════════════ */
@@ -679,8 +704,8 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
     <nav class="nav">
       <a href="index.html" data-i18n="nav.home">Home</a>
       <a href="services.html" data-i18n="nav.services">Services</a>
-      <a href="wash.html" class="on" data-i18n="nav.wash">Wash</a>
-      <a href="rental.html" data-i18n="nav.rental">Rental</a>
+      <a href="wash.html" data-i18n="nav.wash">Wash</a>
+      <a href="rental.html" class="on" data-i18n="nav.rental">Rental</a>
       <a href="index.html#work" data-i18n="nav.work">Our work</a>
       <a href="about.html" data-i18n="nav.about">About</a>
       <a href="#contact" data-i18n="nav.contact">Contact</a>
@@ -720,8 +745,8 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
   <div class="wrap" style="padding:0">
     <a class="m-link" href="index.html" data-i18n="nav.home">Home</a>
     <a class="m-link" href="services.html" data-i18n="nav.services">Services</a>
-    <a class="m-link on" href="wash.html" data-i18n="nav.wash">Wash</a>
-    <a class="m-link" href="rental.html" data-i18n="nav.rental">Rental</a>
+    <a class="m-link" href="wash.html" data-i18n="nav.wash">Wash</a>
+    <a class="m-link on" href="rental.html" data-i18n="nav.rental">Rental</a>
     <a class="m-link" href="index.html#work" data-i18n="nav.work">Our work</a>
     <a class="m-link" href="about.html" data-i18n="nav.about">About</a>
     <a class="m-link" href="#contact" data-i18n="nav.contact">Contact</a>
@@ -760,47 +785,60 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
   </div>
   <div class="grain"></div>
   <div class="wrap page-head-inner">
-    <p class="kicker rv"><span class="bar"></span> <span data-i18n="sp.kicker">Car wash</span></p>
-    <h1 class="rv" data-i18n-html="sp.h1">A clean car,<br><em>inside and out.</em></h1>
-    <p class="lede rv" data-i18n="sp.lead">Washing by hand and cleaning inside, from a quick rinse to a deep clean of the seats.</p>
+    <p class="kicker rv"><span class="bar"></span> <span data-i18n="sp.kicker">Car rental</span></p>
+    <h1 class="rv" data-i18n-html="sp.h1">A car for the days<br><em>yours is with us.</em></h1>
+    <p class="lede rv" data-i18n="sp.lead">Two cars kept ready to go, by the day or by the fortnight.</p>
   </div>
 </section>
 
-<!-- ══════════ WASH PRICES ══════════ -->
-<section class="sec" id="prices" style="padding-top:0">
+<!-- ══════════ THE CARS ══════════ -->
+<section class="sec" id="cars" style="padding-top:0">
   <div class="wrap">
     <p class="kicker rv"><span class="bar"></span> <span data-i18n="sp.priceKicker">Price list</span></p>
-    <h2 class="rv" data-i18n-html="sp.priceH2">What a wash <em>costs.</em></h2>
+    <h2 class="rv" data-i18n-html="sp.priceH2">What it costs <em>by the day.</em></h2>
 
-    <div class="prices even rv">
-      <article class="price-card">
-        <div class="price-head">
-          <h3 data-i18n="sp.fullTitle">Full wash</h3>
+    <div class="cars rv">
+      <article class="car-card">
+        <div class="car-photo" data-photo>
+          <div class="fallback"></div>
+          <div class="img"></div>
+          <div class="car-mark"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5h15M5 16.5v1.8a1 1 0 0 1-1 1H3.4a1 1 0 0 1-1-1v-1.8M21.6 16.5v1.8a1 1 0 0 1-1 1H20a1 1 0 0 1-1-1v-1.8"/><path d="M3.2 16.5v-3.1l1.7-4.6a2 2 0 0 1 1.9-1.3h10.4a2 2 0 0 1 1.9 1.3l1.7 4.6v3.1"/><path d="M4.9 13.4h14.2"/><circle cx="7.4" cy="14.9" r="1"/><circle cx="16.6" cy="14.9" r="1"/></svg></div>
         </div>
-        <p class="price-sub" data-i18n="sp.fullNote">Outside and inside, priced by the size of the car.</p>
-        <ul class="price-rows">
-          <li><span data-i18n="sp.full1">Passenger car</span><b><span class="from" data-i18n="sp.from">from</span>22 000 <i data-i18n="sp.rateCur">ISK</i></b></li>
-          <li><span data-i18n="sp.full2">Crossover</span><b><span class="from" data-i18n="sp.from">from</span>24 000 <i data-i18n="sp.rateCur">ISK</i></b></li>
-          <li><span data-i18n="sp.full3">Four-wheel drive</span><b><span class="from" data-i18n="sp.from">from</span>26 000 <i data-i18n="sp.rateCur">ISK</i></b></li>
-          <li><span data-i18n="sp.full4">Large pickup</span><b><span class="from" data-i18n="sp.from">from</span>30 000 <i data-i18n="sp.rateCur">ISK</i></b></li>
-        </ul>
+        <div class="car-body">
+          <div class="car-head">
+            <h3 data-i18n="sp.c1.name">Kia Rio</h3>
+            <span class="car-tag" data-i18n="sp.c1.tag">Passenger car</span>
+          </div>
+          <ul class="price-rows">
+            <li><span data-i18n="sp.d1">1 day</span><b><span class="from" data-i18n="sp.from">from</span>9 000 <i data-i18n="sp.rateCur">ISK</i></b></li>
+            <li><span data-i18n="sp.d3">3 days</span><b><span class="from" data-i18n="sp.from">from</span>25 500 <i data-i18n="sp.rateCur">ISK</i></b></li>
+            <li><span data-i18n="sp.d7">7 days</span><b><span class="from" data-i18n="sp.from">from</span>56 000 <i data-i18n="sp.rateCur">ISK</i></b></li>
+            <li><span data-i18n="sp.d14">14 days</span><b><span class="from" data-i18n="sp.from">from</span>105 000 <i data-i18n="sp.rateCur">ISK</i></b></li>
+          </ul>
+        </div>
       </article>
-
-      <article class="price-card">
-        <div class="price-head">
-          <h3 data-i18n="sp.singleTitle">On its own</h3>
+      <article class="car-card">
+        <div class="car-photo" data-photo>
+          <div class="fallback"></div>
+          <div class="img"></div>
+          <div class="car-mark"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5h15M5 16.5v1.8a1 1 0 0 1-1 1H3.4a1 1 0 0 1-1-1v-1.8M21.6 16.5v1.8a1 1 0 0 1-1 1H20a1 1 0 0 1-1-1v-1.8"/><path d="M3.2 16.5v-3.1l1.7-4.6a2 2 0 0 1 1.9-1.3h10.4a2 2 0 0 1 1.9 1.3l1.7 4.6v3.1"/><path d="M4.9 13.4h14.2"/><circle cx="7.4" cy="14.9" r="1"/><circle cx="16.6" cy="14.9" r="1"/></svg></div>
         </div>
-        <p class="price-sub" data-i18n="sp.singleNote">When the car only needs one of them.</p>
-        <ul class="price-rows">
-          <li><span data-i18n="sp.single1">Outside wash</span><b><span class="from" data-i18n="sp.from">from</span>10 000 <i data-i18n="sp.rateCur">ISK</i></b></li>
-          <li><span data-i18n="sp.single2">Interior cleaning</span><b><span class="from" data-i18n="sp.from">from</span>15 000 <i data-i18n="sp.rateCur">ISK</i></b></li>
-          <li><span data-i18n="sp.single3">Deep clean, seats</span><b><span class="from" data-i18n="sp.from">from</span>30 000 <i data-i18n="sp.rateCur">ISK</i></b></li>
-          <li><span data-i18n="sp.single4">Deep clean, seats and carpets</span><b><span class="from" data-i18n="sp.from">from</span>40 000 <i data-i18n="sp.rateCur">ISK</i></b></li>
-        </ul>
+        <div class="car-body">
+          <div class="car-head">
+            <h3 data-i18n="sp.c2.name">Mitsubishi Outlander PHEV</h3>
+            <span class="car-tag" data-i18n="sp.c2.tag">4x4 · plug-in hybrid</span>
+          </div>
+          <ul class="price-rows">
+            <li><span data-i18n="sp.d1">1 day</span><b><span class="from" data-i18n="sp.from">from</span>15 600 <i data-i18n="sp.rateCur">ISK</i></b></li>
+            <li><span data-i18n="sp.d3">3 days</span><b><span class="from" data-i18n="sp.from">from</span>45 000 <i data-i18n="sp.rateCur">ISK</i></b></li>
+            <li><span data-i18n="sp.d7">7 days</span><b><span class="from" data-i18n="sp.from">from</span>98 000 <i data-i18n="sp.rateCur">ISK</i></b></li>
+            <li><span data-i18n="sp.d14">14 days</span><b><span class="from" data-i18n="sp.from">from</span>182 000 <i data-i18n="sp.rateCur">ISK</i></b></li>
+          </ul>
+        </div>
       </article>
     </div>
 
-    <p class="price-foot rv" data-i18n="sp.priceFoot">We use professional car care products only, chosen so that they clean the car without harming its paint, trim or upholstery.</p>
+    <p class="price-foot rv" data-i18n="sp.priceFoot">The longer the rental, the lower the daily price. Call us for the exact figure and to check the car is free on your dates.</p>
 
     <div class="cta-strip rv">
       <p data-i18n="sp.rateNote">Call us and we will go through the details.</p>
@@ -858,8 +896,8 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
      The choice is remembered; <html lang> and the metadata move with it. */
   var I18N = {
     is:{
-      "meta.title":"Bílaþvottur · Nord Garage á Selfossi",
-      "meta.desc":"Bílaþvottur hjá Nord Garage á Selfossi. Alþrif frá 22 000 ISK, þvottur að utan frá 10 000 ISK, djúphreinsun á sætum frá 30 000 ISK.",
+      "meta.title":"Bílaleiga · Nord Garage á Selfossi",
+      "meta.desc":"Bílaleiga hjá Nord Garage á Selfossi. Kia Rio frá 9 000 ISK á dag og Mitsubishi Outlander PHEV fjórhjóladrifinn frá 15 600 ISK á dag.",
       "brand.sub":"Þjónusta · Þvottur · Bílaleiga",
       "nav.home":"Heim","nav.services":"Þjónusta","nav.wash":"Þvottur","nav.rental":"Bílaleiga","nav.work":"Verkin okkar","nav.about":"Um okkur","nav.contact":"Hafa samband",
       "hero.h1":"Bíllinn þinn,<br>eins og <em>okkar eigin.</em>",
@@ -893,32 +931,23 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
       
       "a11y.theme":"Skipta um þema","a11y.lang":"Skipta um tungumál","a11y.menu":"Valmynd","menu.language":"Tungumál","menu.theme":"Þema",
       "a11y.swap":"Skipta um mynd","a11y.remove":"Fjarlægja mynd",
-      "sp.kicker":"Bílaþvottur",
-      "sp.h1":"Hreinn bíll,<br><em>að innan og utan.</em>",
-      "sp.lead":"Handþvottur og þrif að innan, allt frá fljótlegum þvotti upp í djúphreinsun á sætum.",
+      "sp.kicker":"Bílaleiga",
+      "sp.h1":"Bíll fyrir dagana<br><em>sem þinn er hjá okkur.</em>",
+      "sp.lead":"Tveir bílar tilbúnir til leigu, hvort sem er í einn dag eða hálfan mánuð.",
       "sp.priceKicker":"Verðskrá",
-      "sp.priceH2":"Hvað <em>þvotturinn kostar.</em>",
-      "sp.fullTitle":"Alþrif",
-      "sp.fullNote":"Að utan og innan, verðið fer eftir stærð bílsins.",
-      "sp.full1":"Fólksbíll",
-      "sp.full2":"Jepplingur",
-      "sp.full3":"Jeppi",
-      "sp.full4":"Stór pallbíll",
-      "sp.singleTitle":"Stakir liðir",
-      "sp.singleNote":"Þegar bíllinn þarf bara annað hvort.",
-      "sp.single1":"Þvottur að utan",
-      "sp.single2":"Þrif að innan",
-      "sp.single3":"Djúphreinsun á sætum",
-      "sp.single4":"Djúphreinsun á sætum og teppum",
-      "sp.priceFoot":"Við notum eingöngu fagleg bílaþrifaefni, valin þannig að þau hreinsi bílinn án þess að skaða lakk, innréttingu eða áklæði.",
+      "sp.priceH2":"Hvað <em>dagurinn kostar.</em>",
+      "sp.c1.name":"Kia Rio","sp.c1.tag":"Fólksbíll",
+      "sp.c2.name":"Mitsubishi Outlander PHEV","sp.c2.tag":"4x4 · tengiltvinn",
+      "sp.d1":"1 dagur","sp.d3":"3 dagar","sp.d7":"7 dagar","sp.d14":"14 dagar",
+      "sp.priceFoot":"Því lengur sem bíllinn er leigður, því lægra verður dagsverðið. Hringdu til að fá nákvæmt verð og athuga hvort bíllinn sé laus á þínum dagsetningum.",
       "sp.from":"frá",
       "sp.rateCur":"ISK",
       "sp.rateNote":"Hringdu í okkur og við förum yfir smáatriðin.",
       "sp.cta":"Hringdu í verkstæðið"
     },
     en:{
-      "meta.title":"Car wash · Nord Garage in Selfoss",
-      "meta.desc":"Car wash at Nord Garage in Selfoss. Full wash from 22 000 ISK, outside wash from 10 000 ISK, deep clean of the seats from 30 000 ISK.",
+      "meta.title":"Car rental · Nord Garage in Selfoss",
+      "meta.desc":"Car rental at Nord Garage in Selfoss. Kia Rio from 9 000 ISK a day and a four-wheel drive Mitsubishi Outlander PHEV from 15 600 ISK a day.",
       "brand.sub":"Service · Wash · Rental",
       "nav.home":"Home","nav.services":"Services","nav.wash":"Wash","nav.rental":"Rental","nav.work":"Our work","nav.about":"About","nav.contact":"Contact",
       "hero.h1":"Your car,<br>treated like <em>our own.</em>",
@@ -952,24 +981,15 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
       
       "a11y.theme":"Switch theme","a11y.lang":"Change language","a11y.menu":"Menu","menu.language":"Language","menu.theme":"Theme",
       "a11y.swap":"Change photo","a11y.remove":"Remove photo",
-      "sp.kicker":"Car wash",
-      "sp.h1":"A clean car,<br><em>inside and out.</em>",
-      "sp.lead":"Washing by hand and cleaning inside, from a quick rinse to a deep clean of the seats.",
+      "sp.kicker":"Car rental",
+      "sp.h1":"A car for the days<br><em>yours is with us.</em>",
+      "sp.lead":"Two cars kept ready to go, by the day or by the fortnight.",
       "sp.priceKicker":"Price list",
-      "sp.priceH2":"What a <em>wash costs.</em>",
-      "sp.fullTitle":"Full wash",
-      "sp.fullNote":"Outside and inside, priced by the size of the car.",
-      "sp.full1":"Passenger car",
-      "sp.full2":"Crossover",
-      "sp.full3":"Four-wheel drive",
-      "sp.full4":"Large pickup",
-      "sp.singleTitle":"On its own",
-      "sp.singleNote":"When the car only needs one of them.",
-      "sp.single1":"Outside wash",
-      "sp.single2":"Interior cleaning",
-      "sp.single3":"Deep clean, seats",
-      "sp.single4":"Deep clean, seats and carpets",
-      "sp.priceFoot":"We use professional car care products only, chosen so that they clean the car without harming its paint, trim or upholstery.",
+      "sp.priceH2":"What it costs <em>by the day.</em>",
+      "sp.c1.name":"Kia Rio","sp.c1.tag":"Passenger car",
+      "sp.c2.name":"Mitsubishi Outlander PHEV","sp.c2.tag":"4x4 · plug-in hybrid",
+      "sp.d1":"1 day","sp.d3":"3 days","sp.d7":"7 days","sp.d14":"14 days",
+      "sp.priceFoot":"The longer the rental, the lower the daily price. Call us for the exact figure and to check the car is free on your dates.",
       "sp.from":"from",
       "sp.rateCur":"ISK",
       "sp.rateNote":"Call us and we will go through the details.",
