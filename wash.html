@@ -6,9 +6,10 @@
 <title>Nord Garage</title>
 <meta name="description" id="metaDesc" content="Nord Garage, Selfossi.">
 
+<link rel="preload" as="image" href="/photos/wash.jpg" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
 
 <style>
 /* ═══════════════════════════════════════════════════════════════
@@ -25,14 +26,8 @@
    LANGUAGE  Icelandic and English. Icelandic is the default.
    ═══════════════════════════════════════════════════════════════ */
 :root{
-  --ph-hero:  none;   /* url("photos/hero.jpg")     */
-  --ph-svc:   url("photos/wash.jpg");      /* swap the file, not the code */
-  --ph-a:     none;   /* url("photos/workshop.jpg") */
-  --ph-b:     none;   /* url("photos/wash.jpg")     */
-  --ph-c:     none;   /* url("photos/wheels.jpg")   */
-  --ph-d:     none;   /* url("photos/rental.jpg")   */
-  --ph-e:     none;   /* url("photos/detail.jpg")   */
-  --ph-f:     none;   /* url("photos/selfoss.jpg")  */
+  --ph-hero:  none;   /* url("/photos/hero.jpg")     */
+  --ph-svc:   url("/photos/wash.jpg");      /* swap the file, not the code */
 }
 
 /* ── DARK: brand navy carrying the golden yellow accent ──────── */
@@ -141,6 +136,7 @@
 }
 
 *,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}   /* a class with its own display would win otherwise */
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
 body{
   margin:0;background:var(--bg);color:var(--ink);
@@ -669,7 +665,7 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
         <path d="M24 19.4a4.6 4.6 0 1 0 0 9.2 4.6 4.6 0 0 0 0-9.2Z" stroke-width="1.3" opacity=".7"/>
         <path d="M24 5.2v3.4M24 39.4v3.4M8.6 24h3.4M36 24h3.4" stroke-width="1.4" stroke-linecap="round" opacity=".55"/>
       </svg>
-        <img class="logo-img" src="photos/logo.png" alt="" width="42" height="42">
+        <img class="logo-img" src="/photos/logo.png" alt="Nord Garage" width="42" height="42" fetchpriority="high" decoding="async">
       </span>
       <a class="brand-text" href="#">
         <span class="brand-name">Nord <em>Garage</em></span>
@@ -678,12 +674,12 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
     </div>
 
     <nav class="nav">
-      <a href="index.html" data-i18n="nav.home">Home</a>
-      <a href="services.html" data-i18n="nav.services">Services</a>
-      <a href="wash.html" class="on" data-i18n="nav.wash">Wash</a>
-      <a href="rental.html" data-i18n="nav.rental">Rental</a>
-      <a href="index.html#work" data-i18n="nav.work">Our work</a>
-      <a href="about.html" data-i18n="nav.about">About</a>
+      <a href="/" data-i18n="nav.home">Home</a>
+      <a href="/services" data-i18n="nav.services">Services</a>
+      <a href="/wash" class="on" data-i18n="nav.wash">Wash</a>
+      <a href="/rental" data-i18n="nav.rental">Rental</a>
+      <a href="/#work" data-i18n="nav.work">Our work</a>
+      <a href="/about" data-i18n="nav.about">About</a>
       <a href="#contact" data-i18n="nav.contact">Contact</a>
     </nav>
 
@@ -719,12 +715,12 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
 <!-- ══════════ MOBILE PANEL ══════════ -->
 <div class="m-menu" id="mMenu">
   <div class="wrap" style="padding:0">
-    <a class="m-link" href="index.html" data-i18n="nav.home">Home</a>
-    <a class="m-link" href="services.html" data-i18n="nav.services">Services</a>
-    <a class="m-link on" href="wash.html" data-i18n="nav.wash">Wash</a>
-    <a class="m-link" href="rental.html" data-i18n="nav.rental">Rental</a>
-    <a class="m-link" href="index.html#work" data-i18n="nav.work">Our work</a>
-    <a class="m-link" href="about.html" data-i18n="nav.about">About</a>
+    <a class="m-link" href="/" data-i18n="nav.home">Home</a>
+    <a class="m-link" href="/services" data-i18n="nav.services">Services</a>
+    <a class="m-link on" href="/wash" data-i18n="nav.wash">Wash</a>
+    <a class="m-link" href="/rental" data-i18n="nav.rental">Rental</a>
+    <a class="m-link" href="/#work" data-i18n="nav.work">Our work</a>
+    <a class="m-link" href="/about" data-i18n="nav.about">About</a>
     <a class="m-link" href="#contact" data-i18n="nav.contact">Contact</a>
 
     <div class="m-row">
