@@ -3,8 +3,31 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Nord Garage</title>
-<meta name="description" id="metaDesc" content="Nord Garage, Selfossi.">
+<title>Nord Garage · Bílaþjónusta, bílaþvottur og bílaleiga á Selfossi</title>
+<meta name="description" id="metaDesc" content="Nord Garage á Selfossi. Bílaþjónusta, bílaþvottur og bílaleiga. Eitt verkstæði, allar tegundir og gerðir.">
+<link rel="canonical" href="https://nordgaragev3.vercel.app/">
+
+<!-- The card other apps draw when the link is shared. A scraper does not run
+     JavaScript, so these repeat in Icelandic what the page says and the
+     language switch leaves them alone. On a new domain, the address below is
+     the only thing to change, on every page. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Nord Garage">
+<meta property="og:locale" content="is_IS">
+<meta property="og:locale:alternate" content="en_GB">
+<meta property="og:url" content="https://nordgaragev3.vercel.app/">
+<meta property="og:title" content="Nord Garage · Bílaþjónusta, bílaþvottur og bílaleiga á Selfossi">
+<meta property="og:description" content="Nord Garage á Selfossi. Bílaþjónusta, bílaþvottur og bílaleiga. Eitt verkstæði, allar tegundir og gerðir.">
+<meta property="og:image" content="https://nordgaragev3.vercel.app/og/home.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Nord Garage á Selfossi">
+<meta name="twitter:card" content="summary_large_image">
+
+<meta name="theme-color" content="#000C40">
+<link rel="icon" type="image/png" sizes="128x128" href="/photos/logo.png">
+<link rel="apple-touch-icon" href="/og/icon.png">
 
 <link rel="preload" as="image" href="/photos/hero.jpg" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -541,6 +564,75 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
   .btn-a{box-shadow:none}          /* the yellow halo is too loud on a phone */
 }
 </style>
+
+<!-- What the garage is, in the form search engines read. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AutoRepair",
+  "name": "Nord Garage",
+  "url": "https://nordgaragev3.vercel.app/",
+  "image": "https://nordgaragev3.vercel.app/og/home.jpg",
+  "logo": "https://nordgaragev3.vercel.app/og/icon.png",
+  "telephone": "+354 833 3370",
+  "email": "nordgarage.is@gmail.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Gagnheiði 51",
+    "postalCode": "800",
+    "addressLocality": "Selfoss",
+    "addressCountry": "IS"
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ],
+      "opens": "08:00",
+      "closes": "18:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Saturday",
+      "opens": "08:00",
+      "closes": "17:00"
+    }
+  ],
+  "sameAs": [
+    "https://www.instagram.com/nordgarage.is"
+  ],
+  "priceRange": "$$",
+  "areaServed": "Selfoss",
+  "makesOffer": [
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": "Bílaþjónusta"
+      }
+    },
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": "Bílaþvottur"
+      }
+    },
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": "Bílaleiga"
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 

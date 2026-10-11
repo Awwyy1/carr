@@ -32,6 +32,10 @@ which file goes where just by looking at the page.
 An empty file simply does not load, and the site draws its own background
 instead — so a tile you have not filled yet still looks finished.
 
+The share cards in `/og` are drawn from these photos, and they do not
+redraw themselves. Swap a page photo and the card keeps the old one until
+it is rebuilt — see `og/README.md`.
+
 ## What to upload
 
 **hero.jpg** — landscape, roughly 3:2 (for example 2400 × 1600). The heading
