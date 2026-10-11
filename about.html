@@ -9,7 +9,10 @@
 <link rel="preload" as="image" href="/photos/about.jpg" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<!-- the stylesheet blocked the first paint for most of a second; with display=swap
+     the text draws in a fallback face and the real one arrives behind it -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Instrument+Serif:ital@1&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Instrument+Serif:ital@1&display=swap"></noscript>
 
 <style>
 /* ═══════════════════════════════════════════════════════════════
@@ -286,7 +289,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   padding:8px 13px;border:1px solid var(--line-2);border-radius:999px;
   font-size:12.5px;font-weight:700;color:var(--ink-2);
 }
-.m-langs button[aria-selected="true"]{background:var(--brass-wash);border-color:var(--brass-line);color:var(--brass)}
+.m-langs button[aria-pressed="true"]{background:var(--brass-wash);border-color:var(--brass-line);color:var(--brass)}
 .m-menu .call{display:inline-flex;width:100%;justify-content:center;margin-top:18px;padding:13px 18px;font-size:15px}
 .m-menu .call i{font-style:normal;opacity:.55}
 .m-menu .call b{font-weight:800;letter-spacing:.01em}
@@ -728,8 +731,8 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
     <div class="m-row">
       <span class="m-row-label" data-i18n="menu.language">Language</span>
       <div class="m-langs" id="mLangs">
-        <button type="button" data-lang="is" lang="is">Íslenska</button>
-        <button type="button" data-lang="en" lang="en">English</button>
+        <button type="button" data-lang="is" lang="is" aria-pressed="true">Íslenska</button>
+        <button type="button" data-lang="en" lang="en" aria-pressed="false">English</button>
       </div>
     </div>
 
@@ -751,6 +754,7 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
   </div>
 </div>
 
+<main id="main">
 <!-- ══════════ PAGE HEAD ══════════ -->
 <section class="page-head">
   <div class="page-bg" data-photo>
@@ -812,6 +816,8 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
     </div>
   </div>
 </section>
+
+</main>
 
 <!-- ══════════ FOOTER ══════════ -->
 <footer class="strip" id="contact">
@@ -1042,7 +1048,9 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
 
     if (langNow) langNow.textContent = lang.toUpperCase();
     document.querySelectorAll('[data-lang]').forEach(function(b){
-      b.setAttribute('aria-selected', String(b.getAttribute('data-lang') === lang));
+      /* the dropdown entries are listbox options; the panel buttons are toggles */
+      var on = String(b.getAttribute('data-lang') === lang);
+      b.setAttribute(b.getAttribute('role') === 'option' ? 'aria-selected' : 'aria-pressed', on);
     });
     LS.set('nordgarage.lang', lang);
   }
@@ -1086,22 +1094,35 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
   var spySecs = spyIds.map(function(id){ return document.getElementById(id); }).filter(Boolean);
   var header = document.querySelector('.site-header');
 
+  /* measuring on every scroll event forces the browser to lay the page out
+     again mid-scroll, so the reads are cached and the work waits for a frame */
+  var headH = 80, docH = 0, queued = false;
+
+  function measure(){
+    headH = header ? header.offsetHeight : 80;
+    docH  = document.documentElement.scrollHeight;
+  }
+
   function spy(){
     if (!spySecs.length) return;
-    var line = window.pageYOffset + (header ? header.offsetHeight : 80) + 40;
+    var y = window.pageYOffset, line = y + headH + 40;
     var cur = spySecs[0].id;
     spySecs.forEach(function(sec){
-      if (sec.getBoundingClientRect().top + window.pageYOffset <= line) cur = sec.id;
+      if (sec.offsetTop <= line) cur = sec.id;
     });
     /* the footer is short, so pin it once the page bottoms out */
-    if (window.innerHeight + window.pageYOffset >= document.documentElement.scrollHeight - 4){
-      cur = spySecs[spySecs.length - 1].id;
-    }
+    if (window.innerHeight + y >= docH - 4) cur = spySecs[spySecs.length - 1].id;
     spyLinks.forEach(function(a){ a.classList.toggle('on', a.getAttribute('data-spy') === cur); });
   }
-  window.addEventListener('scroll', spy, {passive:true});   /* four rects, cheap enough to run straight */
-  window.addEventListener('resize', spy);
-  spy();
+
+  function onScroll(){
+    if (queued) return;
+    queued = true;
+    requestAnimationFrame(function(){ queued = false; spy(); });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', function(){ measure(); spy(); });
+  measure(); spy();
 
   /* ══════════════ MOBILE MENU ══════════════ */
   var burger = document.getElementById('burger');
