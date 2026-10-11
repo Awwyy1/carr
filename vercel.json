@@ -4,7 +4,7 @@
   "trailingSlash": false,
   "headers": [
     {
-      "source": "/photos/(.*)",
+      "source": "/(photos|og)/(.*)",
       "headers": [
         {
           "key": "Cache-Control",
