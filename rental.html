@@ -641,17 +641,31 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
 /* ── booking ── */
 .book{margin-top:auto;padding-top:22px;border-top:1px solid var(--line)}
 .book-dates{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.fld{display:flex;flex-direction:column;gap:7px}
-.fld > span{font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+/* min-width:0 keeps a date input, which asks for a wide intrinsic size,
+   from pushing the grid column past the edge of a phone screen */
+.fld{display:flex;flex-direction:column;gap:7px;min-width:0}
+.fld > span:not(.fld-box){font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+.fld-box{position:relative;display:block;min-width:0}
 .fld input{
-  width:100%;padding:11px 13px;border-radius:var(--r-md);
+  display:block;width:100%;max-width:100%;min-width:0;
+  padding:12px 13px;border-radius:var(--r-md);
   border:1px solid var(--line-2);background:var(--glass-2);color:var(--ink);
-  font:inherit;font-size:14.5px;
+  font:inherit;font-size:16px;              /* under 16px iOS zooms the page in */
+  -webkit-appearance:none;appearance:none;
   transition:border-color .25s,background .25s;
 }
 .fld input:focus{outline:none;border-color:var(--brass);background:var(--brass-wash)}
 .fld input::-webkit-calendar-picker-indicator{cursor:pointer;opacity:.6;filter:var(--cal-icon)}
 .fld input::-webkit-calendar-picker-indicator:hover{opacity:1}
+/* an empty date field draws nothing on a phone, so it gets a prompt of its
+   own; the native value takes over the moment one is picked */
+.fld-ph{
+  position:absolute;inset:0;display:flex;align-items:center;gap:9px;
+  padding:0 13px;pointer-events:none;color:var(--ink-3);font-size:14.5px;
+}
+.fld-ph svg{width:16px;height:16px;flex:none;stroke:var(--brass);fill:none;stroke-width:1.7;opacity:.85}
+.fld:not(.filled) input{color:transparent}
+.fld.filled .fld-ph{display:none}
 .book-est{
   margin:16px 0 0;min-height:21px;font-size:14.5px;color:var(--ink-2);
   display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;
@@ -849,21 +863,33 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
             <span class="car-tag" data-i18n="sp.c1.tag">Passenger car</span>
           </div>
           <ul class="price-rows">
-            <li><span data-i18n="sp.d1">1 day</span><b><span class="from" data-i18n="sp.from">from</span>9 000 <i data-i18n="sp.rateCur">ISK</i></b></li>
-            <li><span data-i18n="sp.d3">3 days</span><b><span class="from" data-i18n="sp.from">from</span>25 500 <i data-i18n="sp.rateCur">ISK</i></b></li>
-            <li><span data-i18n="sp.d7">7 days</span><b><span class="from" data-i18n="sp.from">from</span>56 000 <i data-i18n="sp.rateCur">ISK</i></b></li>
-            <li><span data-i18n="sp.d14">14 days</span><b><span class="from" data-i18n="sp.from">from</span>105 000 <i data-i18n="sp.rateCur">ISK</i></b></li>
+            <li><span data-i18n="sp.d1">1 day</span><b>9 000 <i data-i18n="sp.rateCur">ISK</i></b></li>
+            <li><span data-i18n="sp.d3">3 days</span><b>25 500 <i data-i18n="sp.rateCur">ISK</i></b></li>
+            <li><span data-i18n="sp.d7">7 days</span><b>56 000 <i data-i18n="sp.rateCur">ISK</i></b></li>
+            <li><span data-i18n="sp.d14">14 days</span><b>105 000 <i data-i18n="sp.rateCur">ISK</i></b></li>
           </ul>
 
           <div class="book" data-tariffs="1:9000,3:25500,7:56000,14:105000">
             <div class="book-dates">
               <label class="fld">
                 <span data-i18n="sp.bkFrom">Pick-up</span>
-                <input type="date" data-role="from" data-i18n-aria="sp.bkFrom" aria-label="Pick-up">
+                <span class="fld-box">
+                  <input type="date" data-role="from" data-i18n-aria="sp.bkFrom" aria-label="Pick-up">
+                  <span class="fld-ph" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v3M16 3v3M3.5 9.5h17M5 5.5h14a1.5 1.5 0 0 1 1.5 1.5v12A1.5 1.5 0 0 1 19 20.5H5A1.5 1.5 0 0 1 3.5 19V7A1.5 1.5 0 0 1 5 5.5Z"/></svg>
+                    <span data-i18n="sp.bkPick">Choose a date</span>
+                  </span>
+                </span>
               </label>
               <label class="fld">
                 <span data-i18n="sp.bkTo">Return</span>
-                <input type="date" data-role="to" data-i18n-aria="sp.bkTo" aria-label="Return">
+                <span class="fld-box">
+                  <input type="date" data-role="to" data-i18n-aria="sp.bkTo" aria-label="Return">
+                  <span class="fld-ph" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v3M16 3v3M3.5 9.5h17M5 5.5h14a1.5 1.5 0 0 1 1.5 1.5v12A1.5 1.5 0 0 1 19 20.5H5A1.5 1.5 0 0 1 3.5 19V7A1.5 1.5 0 0 1 5 5.5Z"/></svg>
+                    <span data-i18n="sp.bkPick">Choose a date</span>
+                  </span>
+                </span>
               </label>
             </div>
             <p class="book-est" data-role="est"></p>
@@ -900,21 +926,33 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
             <span class="car-tag" data-i18n="sp.c2.tag">4x4 · plug-in hybrid</span>
           </div>
           <ul class="price-rows">
-            <li><span data-i18n="sp.d1">1 day</span><b><span class="from" data-i18n="sp.from">from</span>15 600 <i data-i18n="sp.rateCur">ISK</i></b></li>
-            <li><span data-i18n="sp.d3">3 days</span><b><span class="from" data-i18n="sp.from">from</span>45 000 <i data-i18n="sp.rateCur">ISK</i></b></li>
-            <li><span data-i18n="sp.d7">7 days</span><b><span class="from" data-i18n="sp.from">from</span>98 000 <i data-i18n="sp.rateCur">ISK</i></b></li>
-            <li><span data-i18n="sp.d14">14 days</span><b><span class="from" data-i18n="sp.from">from</span>182 000 <i data-i18n="sp.rateCur">ISK</i></b></li>
+            <li><span data-i18n="sp.d1">1 day</span><b>15 600 <i data-i18n="sp.rateCur">ISK</i></b></li>
+            <li><span data-i18n="sp.d3">3 days</span><b>45 000 <i data-i18n="sp.rateCur">ISK</i></b></li>
+            <li><span data-i18n="sp.d7">7 days</span><b>98 000 <i data-i18n="sp.rateCur">ISK</i></b></li>
+            <li><span data-i18n="sp.d14">14 days</span><b>182 000 <i data-i18n="sp.rateCur">ISK</i></b></li>
           </ul>
 
           <div class="book" data-tariffs="1:15600,3:45000,7:98000,14:182000">
             <div class="book-dates">
               <label class="fld">
                 <span data-i18n="sp.bkFrom">Pick-up</span>
-                <input type="date" data-role="from" data-i18n-aria="sp.bkFrom" aria-label="Pick-up">
+                <span class="fld-box">
+                  <input type="date" data-role="from" data-i18n-aria="sp.bkFrom" aria-label="Pick-up">
+                  <span class="fld-ph" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v3M16 3v3M3.5 9.5h17M5 5.5h14a1.5 1.5 0 0 1 1.5 1.5v12A1.5 1.5 0 0 1 19 20.5H5A1.5 1.5 0 0 1 3.5 19V7A1.5 1.5 0 0 1 5 5.5Z"/></svg>
+                    <span data-i18n="sp.bkPick">Choose a date</span>
+                  </span>
+                </span>
               </label>
               <label class="fld">
                 <span data-i18n="sp.bkTo">Return</span>
-                <input type="date" data-role="to" data-i18n-aria="sp.bkTo" aria-label="Return">
+                <span class="fld-box">
+                  <input type="date" data-role="to" data-i18n-aria="sp.bkTo" aria-label="Return">
+                  <span class="fld-ph" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v3M16 3v3M3.5 9.5h17M5 5.5h14a1.5 1.5 0 0 1 1.5 1.5v12A1.5 1.5 0 0 1 19 20.5H5A1.5 1.5 0 0 1 3.5 19V7A1.5 1.5 0 0 1 5 5.5Z"/></svg>
+                    <span data-i18n="sp.bkPick">Choose a date</span>
+                  </span>
+                </span>
               </label>
             </div>
             <p class="book-est" data-role="est"></p>
@@ -1049,6 +1087,7 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
       "sp.rateCur":"ISK",
       "sp.bkFrom":"Sótt",
       "sp.bkTo":"Skilað",
+      "sp.bkPick":"Veldu dagsetningu",
       "sp.bkGo":"Taka frá þessar dagsetningar",
       "sp.bkDay":"dagur","sp.bkDays":"dagar",
       "sp.bkFrom2":"frá",
@@ -1111,6 +1150,7 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
       "sp.rateCur":"ISK",
       "sp.bkFrom":"Pick-up",
       "sp.bkTo":"Return",
+      "sp.bkPick":"Choose a date",
       "sp.bkGo":"Reserve these dates",
       "sp.bkDay":"day","sp.bkDays":"days",
       "sp.bkFrom2":"from",
@@ -1342,6 +1382,13 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
     var today = ymd(new Date());
     from.min = today; to.min = today;
 
+    function mark(inp){ inp.closest('.fld').classList.toggle('filled', !!inp.value); }
+    [from, to].forEach(function(inp){
+      mark(inp);
+      inp.addEventListener('change', function(){ mark(inp); });
+      inp.addEventListener('input',  function(){ mark(inp); });
+    });
+
     function carName(){ return card.querySelector('h3').textContent.trim(); }
 
     function read(){
@@ -1354,7 +1401,7 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
       var price = quote(tariffs, days);
       est.classList.remove('warn');
       est.innerHTML = '<span>' + days + ' ' + T(days === 1 ? 'bkDay' : 'bkDays') + '</span>'
-                    + '<b>' + T('bkFrom2') + ' ' + money(price) + '<i>' + T('rateCur') + '</i></b>';
+                    + '<b>' + money(price) + '<i>' + T('rateCur') + '</i></b>';
       state = {days:days, price:price};
       go.disabled = false;
     }
@@ -1388,7 +1435,7 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
       if (from.value){
         var next = new Date(new Date(from.value).getTime() + DAY);
         to.min = ymd(next);
-        if (to.value && to.value <= from.value) to.value = ymd(next);
+        if (to.value && to.value <= from.value){ to.value = ymd(next); mark(to); }
       }
       read();
     });
