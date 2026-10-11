@@ -18,7 +18,7 @@ straight from here — nothing in the code needs to change when you swap one.
 | `work-3.jpg`   | our work, tile **03** — tyre service                     |
 | `work-4.jpg`   | our work, tile **04** — keys ready                       |
 | `work-5.jpg`   | our work, tile **05** — interior care                    |
-| `work-6.jpg`   | our work, tile **06** — the workshop on Gagnheiði        |
+| `work-6.jpg`   | our work, tile **06** — under the bonnet                 |
 
 The numbers match the ones printed on the tiles themselves, so you can tell
 which file goes where just by looking at the page.
