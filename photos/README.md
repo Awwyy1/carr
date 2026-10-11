@@ -47,8 +47,9 @@ the middle of the frame with a little room around it. A three-quarter view
 from the front reads best. Until the file is there the card draws a car
 outline instead, so an empty slot still looks deliberate.
 
-**logo.png** — square, at least 200 × 200. It is masked into a circle, so keep
-the important part away from the corners. A transparent background works.
+**logo.png** — square, 256 × 256 is plenty. It is masked into a circle, so keep
+the important part away from the corners. A transparent background works. It is
+drawn at 42 px, so the file kept here is shrunk to 128 × 128 after upload.
 
 **work-1 … work-6** — the tiles are different shapes, and the picture is
 cropped to fill, so keep the subject near the middle. Tiles 1 and 6 are wide,
