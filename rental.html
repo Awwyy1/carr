@@ -1497,23 +1497,84 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
      The hero band, the services band and the logo are files in /photos.
      A file that is still an empty placeholder never loads, and the drawn
      fallback underneath stays in place - so the page never shows a hole. */
-  document.querySelectorAll('[data-photo]').forEach(function(band){
-    var img = band.querySelector('.img');
-    if (!img) return;
-    var m = getComputedStyle(img).backgroundImage.match(/url\(["']?(.*?)["']?\)/);
-    if (!m) return;
-    var probe = new Image();
-    probe.onload = function(){ band.classList.add('has'); };   /* the veil follows the picture */
-    probe.src = m[1];
-  });
+  /* A slot keeps asking until its file is really decoded. One probe was not
+     enough: Safari lets go of image requests far more readily than Chrome
+     does, on a backgrounded tab, a switch between wifi and mobile data, or
+     under memory pressure, and a slot asked only once then stayed blank for
+     the rest of the visit. A request that never answers at all is the same
+     thing, so it is given eight seconds and then counted as a failure.
+     From the fourth attempt the address carries a query, which gets past a
+     browser still holding the empty placeholder this file used to be; when
+     that is what worked, the element is pointed at that copy. */
+  (function(){
+    var MAX = 6, WAIT = 900, HANG = 8000;
+    var slots = [];
+    document.querySelectorAll('[data-photo]').forEach(function(band){
+      var img = band.querySelector('.img');
+      if (!img) return;
+      var m = getComputedStyle(img).backgroundImage.match(/url\(["']?(.*?)["']?\)/);
+      if (!m || !m[1] || m[1] === 'none') return;
+      slots.push({ band:band, img:img, url:m[1], tries:0, busy:false });
+    });
+    if (!slots.length) return;
+
+    function load(slot){
+      if (slot.busy || slot.tries >= MAX || slot.band.classList.contains('has')) return;
+      slot.busy = true;
+      var n = ++slot.tries;
+      var url = n < 4 ? slot.url
+                      : slot.url + (slot.url.indexOf('?') < 0 ? '?' : '&') + 'r=' + n;
+      var probe = new Image(), settled = false, watch;
+
+      function again(){
+        if (settled) return;
+        settled = true;
+        clearTimeout(watch);
+        if (slot.tries >= MAX){ slot.busy = false; return; }
+        setTimeout(function(){ slot.busy = false; load(slot); }, WAIT * n);
+      }
+      watch = setTimeout(function(){
+        probe.onload = probe.onerror = null;   /* nothing came back at all */
+        again();
+      }, HANG);
+
+      probe.onload = function(){
+        if (settled) return;
+        settled = true;
+        clearTimeout(watch);
+        slot.busy = false;
+        if (!probe.naturalWidth) return;       /* a file that is still empty */
+        if (n > 3) slot.img.style.backgroundImage = 'url("' + url + '")';
+        slot.band.classList.add('has');        /* the veil follows the picture */
+      };
+      probe.onerror = again;
+      probe.src = url;
+    }
+
+    function sweep(){ slots.forEach(load); }
+    sweep();
+    /* back from another app, off the back button, or back on the network */
+    window.addEventListener('pageshow', sweep);
+    window.addEventListener('online', sweep);
+    document.addEventListener('visibilitychange', function(){
+      if (!document.hidden) sweep();
+    });
+  })();
+
   var logoImg = document.querySelector('.logo-img');
   if (logoImg){
+    var logoTry = 0;
+    var logoSrc = logoImg.getAttribute('src');
     var dropLogo = function(){
-      logoImg.parentNode.classList.add('nologo');   /* fall back to the drawing */
+      if (++logoTry < 3){                             /* a dropped request is not a missing file */
+        setTimeout(function(){ logoImg.src = logoSrc + '?r=' + logoTry; }, 900 * logoTry);
+        return;
+      }
+      logoImg.parentNode.classList.add('nologo');     /* fall back to the drawing */
       logoImg.remove();
     };
-    if (logoImg.complete){ if (!logoImg.naturalWidth) dropLogo(); }
-    else logoImg.addEventListener('error', dropLogo);
+    logoImg.addEventListener('error', dropLogo);
+    if (logoImg.complete && !logoImg.naturalWidth) dropLogo();
   }
 
   /* ══════════════ BOOT ══════════════ */
